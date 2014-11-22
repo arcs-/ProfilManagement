@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link href="resources/images/favicon.ico" rel="shortcut icon"/>
+    <title>BZZ - Recover</title>
+    <h:outputStylesheet library="css" name="default.css"  />
+    <h:outputStylesheet library="css" name="public.css"  />
+</h:head>
+<h:body>
+
+<ui:composition>
+
+    <div id="navBar">
+        <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
+    </div>
+
+    <h:form id="formContainer">
+        <h1>Recover password</h1>
+
+        <h:message class="wrong" for="username" />
+        <h:inputText type="text" id="username" required="true" value="#{recoverSendBean.username}" a:placeholder="Username" />
+
+        <h:button outcome="index" value="Cancel" class="small cancel"/>
+        <h:commandButton value="Save" action="#{recoverSendBean.recover()}" class="small next" />
+    </h:form>
+
+</ui:composition>
+
+
+</h:body>
+</html>

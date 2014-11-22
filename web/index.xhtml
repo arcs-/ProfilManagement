@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link href="resources/images/favicon.ico" rel="shortcut icon"/>
+    <title>BZZ - Login</title>
+    <h:outputStylesheet library="css" name="default.css"  />
+    <h:outputStylesheet library="css" name="public.css"  />
+
+</h:head>
+<h:body>
+    <ui:composition>
+
+        <div id="navBar">
+            <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
+        </div>
+
+        <h:form id="formContainer">
+            <h1>Log in</h1>
+
+            <h:outputText value="Too many trys! Wait a couple of minutes" class="wrong" rendered="#{loginBean.locked}"/>
+            <h:outputText value="Wrong username or password" class="wrong" rendered="#{loginBean.wrong}"/>
+
+            <h:inputText id="username" value="#{loginBean.credentials.username}" a:placeholder="Username" autofocus="true"/>
+            <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Password" />
+
+            <h:commandButton class="next" value="Login" action="#{loginBean.login()}" />
+            <a href="recoverSend.xhtml">Forgot Password</a>
+        </h:form>
+
+    </ui:composition>
+
+
+</h:body>
+</html>

@@ -1,0 +1,13 @@
+#profileContainer {
+    position: absolute;
+    right:10%;
+    padding: 10px;
+    border-radius: 20px;
+    width: 220px;
+}
+
+.uploader_mask {
+    background: #FFFDD6;
+    color: #D3B910;
+}
+

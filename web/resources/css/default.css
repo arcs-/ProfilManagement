@@ -1,0 +1,180 @@
+/*--------------------------------------------------------------*\
+|*                     Layout                                   *|
+\*--------------------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700);
+
+body{
+    font-family:'Roboto',sans-serif;
+    background: #fff;
+    margin: 0;
+}
+
+h1{
+    margin-top: 25px;
+    padding:29px 0;
+    font-size:170%;
+    font-weight:300;
+    color:#000;
+}
+
+#navBar {
+    top:0;
+    width: 320px;
+    height: 100%;
+    background: #333;
+    position: fixed;
+}
+
+#drawer {
+    display:none;
+}
+
+.logo {
+    margin: 30px;
+}
+
+#nav {
+    overflow: hidden!important;
+}
+
+#nav a, #nav input[type="submit"] {
+    width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 140%;
+    padding: 15px 0 15px 30px;
+    color: #008bcb;
+    transition:background .2s, color .2s;
+    margin-bottom: 2px;
+    outline: none!important;
+}
+
+#nav input[type="submit"] {
+    border: 0;
+    font-family: 'Roboto',sans-serif;
+    cursor: pointer;
+    background: none;
+    text-align: left;
+}
+
+#nav a:hover, #nav input[type="submit"]:hover {
+    background-color: #008bcb;
+    color: #fff;
+    transition:background .2s, color .2s;
+}
+
+#nav .active {
+    color: #fff;
+    background-color: #008bcb;
+}
+
+#workspace {
+    margin: 6% 0 0 500px;
+    max-width: calc(100% - 300px);
+    margin-top: 91px;
+}
+
+
+
+/*--------------------------------------------------------------*\
+|*                     Form style                               *|
+\*--------------------------------------------------------------*/
+input[type="text"],input[type="password"]{
+    width:280px;
+    max-width: 100%;
+    background:#fff;
+    margin-top: 10px;
+    margin-bottom:5px;
+    border:1px solid #ccc;
+    padding:3%;
+    font-family:'Roboto',sans-serif;
+    font-size:19px;
+    color:#555;
+}
+
+input[type="text"]:disabled {
+    background-color: #cfcfcf;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"]{
+    display: inline;
+    width:299px;
+    max-width: 330px;
+    color: #fff;
+    border:0;
+    padding:10px;
+    font-family:'Roboto',sans-serif;
+    font-size:19px;
+    cursor:pointer;
+    transition:background .5s;
+    margin-bottom: 5px;
+    outline: none;
+}
+
+.next {
+    background: #008bcb;
+}
+
+.next:hover {
+    background: #0f72cb;
+    transition:background .4s;
+}
+
+.cancel {
+    background: #737373;
+}
+
+.cancel:hover {
+    background: #575757;
+    transition:background .4s;
+}
+
+.small {
+    width: 147px!important; /* Because rule input[] over classes ... */
+    margin-right: 3px!important;
+}
+
+.wrong {
+    color: #ff3500;
+    list-style-type: none;
+    -webkit-padding-start: 0;
+}
+
+/*--------------------------------------------------------------*\
+|*                     Mobile                                   *|
+\*--------------------------------------------------------------*/
+@media only screen
+and (max-width : 1000px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    #navBar {
+        width: 295px;
+    }
+
+    #drawer {
+        display: inline;
+        position: absolute;
+        width: 45px;
+        margin-top: -1px;
+        margin-left: 295px;
+    }
+
+    #workspace {
+        margin:10px;
+        max-width:100%;
+    }
+
+    input[type="text"], input[type="password"] {
+        font-size: 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    input[type="submit"], input[type="button"] {
+        width:84%;
+        display:block;
+    }
+
+}
