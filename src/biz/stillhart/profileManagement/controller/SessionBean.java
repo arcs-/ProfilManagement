@@ -31,7 +31,7 @@ public class SessionBean implements Serializable {
     private UserState userState = UserState.NOT_SET;
 
     /**
-     * Checks if user credentials are correct and if so, logs the user in
+     * Checks if user credentials are correct and if so logs the user in
      * @param credentials The credentials
      * @return Enum userState
      */

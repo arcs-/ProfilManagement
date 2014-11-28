@@ -13,23 +13,29 @@ import java.io.Serializable;
 public class Student implements Serializable {
 
     private String userName;
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String firstName;
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String lastName;
 
 
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String password;
 
 
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String privateMail;
 
 
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String addressStreet;
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String addressCity;
 
     private String profilePicturePath;
@@ -45,7 +51,7 @@ public class Student implements Serializable {
     }
 
     public void update(Student student) {
-        update(student.getUserName(),student.getFirstName(),student.getLastName(),student.getPassword(),student.getPrivateMail(),student.getAddressStreet(),student.getAddressCity());
+        update(student.getUserName(), student.getFirstName(), student.getLastName(), student.getPassword(), student.getPrivateMail(), student.getAddressStreet(), student.getAddressCity());
     }
 
     public void update(String userName, String firstName, String lastName, String password, String privateMail, String addressStreet, String addressCity) {
@@ -59,7 +65,7 @@ public class Student implements Serializable {
     }
 
     public Student copy() {
-        return new Student(userName,firstName,lastName,password,privateMail,addressStreet,addressCity);
+        return new Student(userName, firstName, lastName, password, privateMail, addressStreet, addressCity);
     }
 
     public String getUserName() {
@@ -124,8 +130,8 @@ public class Student implements Serializable {
     }
 
     public String getProfilePicturePath() {
-        if(profilePicturePath == null) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
-        return profilePicturePath+"?dum="+System.currentTimeMillis();
+        if (profilePicturePath == null) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
+        return profilePicturePath + "?dum=" + System.currentTimeMillis();
     }
 
     public void setProfilePicturePath(String profilePicturePath) {

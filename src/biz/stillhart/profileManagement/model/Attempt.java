@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Patrick Stillhart on 11/2/14.
  */
-public class Attempt implements Serializable{
+public class Attempt implements Serializable {
 
     private Date entryDate;
     private int attempts;

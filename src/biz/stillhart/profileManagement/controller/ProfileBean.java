@@ -26,14 +26,12 @@ public class ProfileBean implements Serializable {
     private SessionBean sessionBean;
 
     private Student student;
-  //  private Student studentSource;
 
     private Part profilePicture;
 
     @PostConstruct
     public void init() {
         student = sessionBean.getStudent();
-       // student = studentSource.copy();
     }
 
     public void upload() {
@@ -64,11 +62,8 @@ public class ProfileBean implements Serializable {
     }
 
     public void save() {
-       // studentSource.update(student);
-
         sessionBean.getDataBaseBean().getDataBase().save(student);
 
-        // ToDO: save to DB
     }
 
     public void cancel() {

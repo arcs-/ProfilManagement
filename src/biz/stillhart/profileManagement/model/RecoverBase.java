@@ -23,7 +23,7 @@ public class RecoverBase implements Serializable {
     private DataBaseBean dataBaseBean;
 
     // <code , username>
-    private HashMap<String,String> keyList;
+    private HashMap<String, String> keyList;
     private SecureRandom random;
 
 
@@ -36,13 +36,14 @@ public class RecoverBase implements Serializable {
 
     /**
      * Init recover process
+     *
      * @param username the username of the user which want to recover
      */
     public void recover(String username) {
         Student student = dataBaseBean.getDataBase().getStudent(username);
-        if(null != student.getPrivateMail() ) {
+        if (null != student.getPrivateMail()) {
             String code = generateKey();
-            while(keyList.containsKey(code)) code = generateKey();
+            while (keyList.containsKey(code)) code = generateKey();
 
             keyList.put(code, username);
             sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
@@ -52,6 +53,7 @@ public class RecoverBase implements Serializable {
 
     /**
      * creates random key
+     *
      * @return the recovery key
      */
     private String generateKey() {
@@ -60,8 +62,9 @@ public class RecoverBase implements Serializable {
 
     /**
      * Sends recover mail
-     * @param email email to send the mail
-     * @param name name of the user
+     *
+     * @param email       email to send the mail
+     * @param name        name of the user
      * @param recoverCode the recover code
      */
     public static void sendRecoverMail(String email, String name, String recoverCode) {
@@ -69,17 +72,17 @@ public class RecoverBase implements Serializable {
         // Sender's email ID needs to be mentioned
         String from = "recover@bzz.ch";
 
-   //     Properties properties = new Properties();
-   //     properties.setProperty("mail.transport.protocol", "pop3");
-   //     properties.setProperty("mail.host", "pop.udag.de");
-   //     properties.setProperty("mail.user", "stillhartbiz-0002");
-   //     properties.setProperty("mail.password", "YouDontSeeMe");
+        //     Properties properties = new Properties();
+        //     properties.setProperty("mail.transport.protocol", "pop3");
+        //     properties.setProperty("mail.host", "pop.udag.de");
+        //     properties.setProperty("mail.user", "stillhartbiz-0002");
+        //     properties.setProperty("mail.password", "YouDontSeeMe");
 
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", "localhost");
 
         Session session = Session.getDefaultInstance(properties);
-        try{
+        try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
@@ -93,7 +96,7 @@ public class RecoverBase implements Serializable {
             // Send message
             Transport.send(message);
             System.out.println("Sent mail to " + email);
-        }catch (MessagingException mex) {
+        } catch (MessagingException mex) {
             mex.printStackTrace();
         }
 
@@ -101,10 +104,11 @@ public class RecoverBase implements Serializable {
 
     /**
      * Gets a username with a recover key
+     *
      * @param key the recover key
      * @return the username
      */
-    public String getUsernameByKey(String key){
+    public String getUsernameByKey(String key) {
         return keyList.get(key);
     }
 
