@@ -1,12 +1,12 @@
 package biz.stillhart.profileManagement.model;
 
 import biz.stillhart.profileManagement.utils.OpenLDAPConnection;
+import biz.stillhart.profileManagement.utils.Settings;
 
 import javax.naming.NamingException;
 import javax.naming.directory.*;
 import java.io.Serializable;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
@@ -17,10 +17,10 @@ public class DataBase implements Serializable {
 
     public DataBase() {
 
-        connection = new OpenLDAPConnection("localhost",
-                "dc=openiam,dc=com",
-                "cn=Manager",
-                "123456");
+        connection = new OpenLDAPConnection(Settings.DATABASE,
+                Settings.BASE_DN,
+                Settings.USER_DN,
+                Settings.USER_PASSWORD);
 
     }
 

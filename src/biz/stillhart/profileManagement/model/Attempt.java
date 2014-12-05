@@ -8,12 +8,18 @@ import java.util.Date;
  */
 public class Attempt implements Serializable {
 
+    private LockType lockType;
     private Date entryDate;
     private int attempts;
 
-    public Attempt() {
+    public Attempt(LockType lockType) {
+        this.lockType = lockType;
         this.entryDate = new Date();
         this.attempts = 1;
+    }
+
+    public LockType getLockType() {
+        return lockType;
     }
 
     public Date getEntryDate() {

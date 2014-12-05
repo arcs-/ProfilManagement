@@ -22,11 +22,11 @@ public class AttemptManager implements Serializable {
      *
      * @param ip from the user
      */
-    public void add(String ip) {
-        if (attempts.containsKey(ip))
+    public void add(String ip, LockType lockType) {
+        if (attempts.containsKey(ip) && attempts.get(ip).getLockType() == lockType)
             attempts.get(ip).addOne();
         else
-            attempts.put(ip, new Attempt());
+            attempts.put(ip, new Attempt(lockType));
     }
 
     /**
@@ -35,13 +35,13 @@ public class AttemptManager implements Serializable {
      * @param ip from the user
      * @return true if locked
      */
-    public boolean isLocked(String ip) {
+    public boolean isLocked(String ip, LockType lockType) {
         if (attempts.containsKey(ip)) {
             Attempt attempt = attempts.get(ip);
-            // Maximum attempts exceeded
-            if (attempt.getAttempts() >= Settings.LOGIN_ATTEMPTS) {
+            // right lock and maximum attempts exceeded
+            if (attempt.getLockType() == lockType && attempt.getAttempts() >= getAttempts(lockType)) {
                 // However enough time passed
-                if ((new Date().getTime() - attempt.getEntryDate().getTime()) / 1000 > Settings.SECONDS_LOCKED) {
+                if ((new Date().getTime() - attempt.getEntryDate().getTime()) / 1000 > getLockTime(lockType)) {
                     attempts.remove(ip);
                     return false; // Cool down
                 }
@@ -53,5 +53,21 @@ public class AttemptManager implements Serializable {
         }
 
         return false; // He's not even in the list
+    }
+
+    public static int getAttempts(LockType lockType) {
+        switch (lockType) {
+            case LOGIN: return Settings.LOGIN_ATTEMPTS;
+            case RECOVER: return Settings.MAIL_RECOVER_ATTEMPTS;
+            default: return 3;
+        }
+    }
+
+    public static int getLockTime(LockType lockType) {
+        switch (lockType) {
+            case LOGIN: return Settings.SECONDS_LOCKED;
+            case RECOVER: return Settings.MAIL_RECOVER_LOCK_SECONDS;
+            default: return 60;
+        }
     }
 }

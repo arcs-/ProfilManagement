@@ -2,6 +2,7 @@ package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.face.model.FaceImage;
 import biz.stillhart.profileManagement.model.Student;
+import biz.stillhart.profileManagement.utils.Settings;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -47,8 +48,8 @@ public class ProfileBean implements Serializable {
                 BufferedImage profilePicture = face.getScaledProfileFace();
 
                 // ToDo: Check jpg error
-                File outputfile = new File("/home/benutzer/Downloads/Profil/out/artifacts/Profil_war_exploded/profile/" + student.getUserName() + ".png");
-                ImageIO.write(profilePicture, "png", outputfile);
+                File outfile = new File(Settings.NEW_PROFILE_IMAGE_PATH.replace("~~username~~", student.getUserName()));
+                ImageIO.write(profilePicture, "png", outfile);
 
                 student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
 

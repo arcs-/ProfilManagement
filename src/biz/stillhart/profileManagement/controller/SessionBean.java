@@ -1,6 +1,7 @@
 package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.profileManagement.model.Credentials;
+import biz.stillhart.profileManagement.model.LockType;
 import biz.stillhart.profileManagement.model.Student;
 import biz.stillhart.profileManagement.model.UserState;
 import biz.stillhart.profileManagement.service.AttemptBean;
@@ -29,6 +30,7 @@ public class SessionBean implements Serializable {
 
     private Student student;
     private UserState userState = UserState.NOT_SET;
+    private UserState recoverState = UserState.NOT_SET;
 
     /**
      * Checks if user credentials are correct and if so logs the user in
@@ -38,7 +40,9 @@ public class SessionBean implements Serializable {
     public UserState loginUser(Credentials credentials) {
         String ip = SessionUtils.getIp();
 
-        if(attemptBean.getAttemptManager().isLocked(ip)) { // Too many attempts
+        attemptBean.getAttemptManager().add(ip, LockType.LOGIN);
+
+        if(attemptBean.getAttemptManager().isLocked(ip, LockType.LOGIN)) { // Too many attempts
             userState = UserState.LOCKED;
             return userState;
 
@@ -52,7 +56,7 @@ public class SessionBean implements Serializable {
             return userState;
 
         } else { // Incorrect
-            attemptBean.getAttemptManager().add(ip);
+
             userState = UserState.WRONG;
             return userState;
 
@@ -111,5 +115,13 @@ public class SessionBean implements Serializable {
 
     public void setUserState(UserState userState) {
         this.userState = userState;
+    }
+
+    public UserState getRecoverState() {
+        return recoverState;
+    }
+
+    public void setRecoverState(UserState recoverState) {
+        this.recoverState = recoverState;
     }
 }

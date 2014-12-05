@@ -22,11 +22,13 @@
     <h:form id="formContainer">
         <h1>Recover password</h1>
 
+        <h:outputText value="Too many trys! Wait a couple of minutes" class="wrong" rendered="#{recoverSendBean.locked}"/>
+
         <h:message class="wrong" for="username" />
         <h:inputText type="text" id="username" required="true" value="#{recoverSendBean.username}" a:placeholder="Username" />
 
         <h:button outcome="index" value="Cancel" class="small cancel"/>
-        <h:commandButton value="Save" action="#{recoverSendBean.recover()}" class="small next" />
+        <h:commandButton value="Send" action="#{recoverSendBean.recover()}" class="small next" />
     </h:form>
 
 </ui:composition>

@@ -20,6 +20,7 @@ import java.util.Properties;
  */
 public class RecoverBase implements Serializable {
 
+    // This value is set in the constructor
     private DataBaseBean dataBaseBean;
 
     // <code , username>
@@ -40,14 +41,18 @@ public class RecoverBase implements Serializable {
      * @param username the username of the user which want to recover
      */
     public void recover(String username) {
-        Student student = dataBaseBean.getDataBase().getStudent(username);
-        if (null != student.getPrivateMail()) {
-            String code = generateKey();
-            while (keyList.containsKey(code)) code = generateKey();
+        try {
+            Student student = dataBaseBean.getDataBase().getStudent(username);
+            if (null != student.getPrivateMail()) {
+                String code = generateKey();
+                while (keyList.containsKey(code)) code = generateKey();
 
-            keyList.put(code, username);
-            sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
+                keyList.put(code, username);
+                sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
 
+            }
+        } catch (NullPointerException e) {
+            // Ignore, user gave wrong username... don't react
         }
     }
 

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Patrick Stillhart on 10/31/14.
@@ -40,6 +41,8 @@ public class Student implements Serializable {
 
     private String profilePicturePath;
 
+    private ArrayList<Device> devices;
+
     public Student(String userName, String firstName, String lastName, String password, String privateMail, String addressStreet, String addressCity) {
         this.userName = userName;
         this.firstName = firstName;
@@ -48,24 +51,6 @@ public class Student implements Serializable {
         this.privateMail = privateMail;
         this.addressStreet = addressStreet;
         this.addressCity = addressCity;
-    }
-
-    public void update(Student student) {
-        update(student.getUserName(), student.getFirstName(), student.getLastName(), student.getPassword(), student.getPrivateMail(), student.getAddressStreet(), student.getAddressCity());
-    }
-
-    public void update(String userName, String firstName, String lastName, String password, String privateMail, String addressStreet, String addressCity) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.privateMail = privateMail;
-        this.addressStreet = addressStreet;
-        this.addressCity = addressCity;
-    }
-
-    public Student copy() {
-        return new Student(userName, firstName, lastName, password, privateMail, addressStreet, addressCity);
     }
 
     public String getUserName() {
@@ -104,7 +89,6 @@ public class Student implements Serializable {
         return userName + "@bzz.ch";
     }
 
-
     public String getPrivateMail() {
         return privateMail;
     }
@@ -137,5 +121,11 @@ public class Student implements Serializable {
     public void setProfilePicturePath(String profilePicturePath) {
         this.profilePicturePath = profilePicturePath;
     }
+
+    public ArrayList<Device> getDevices() {
+        return devices;
+    }
+
+
 }
 
