@@ -4,7 +4,10 @@ import biz.stillhart.profileManagement.utils.OpenLDAPConnection;
 import biz.stillhart.profileManagement.utils.Settings;
 
 import javax.naming.NamingException;
-import javax.naming.directory.*;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.ModificationItem;
+import javax.naming.directory.SearchResult;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 

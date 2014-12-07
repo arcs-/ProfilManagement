@@ -26,18 +26,18 @@ public class SessionUtils {
 
     public static String getUserName() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        return  session.getAttribute("username").toString();
+        return session.getAttribute("username").toString();
     }
 
     public static String getUserId() {
         HttpSession session = getSession();
-        if ( session != null )
+        if (session != null)
             return (String) session.getAttribute("userid");
         else
             return null;
     }
 
-    public static String getIp(){
+    public static String getIp() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String ipAddress = request.getHeader("X-FORWARDED-FOR");
         if (ipAddress == null) {
@@ -45,8 +45,6 @@ public class SessionUtils {
         }
         return ipAddress;
     }
-
-
 
 
 }

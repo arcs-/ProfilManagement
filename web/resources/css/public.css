@@ -1,6 +1,7 @@
-#formContainer{
+#formContainer{width: 100%;
+max-width: 520px;
+
     width:100%;
-    max-width: 305px;
     margin: 6% 0 0 500px;
 }
 
@@ -49,6 +50,12 @@
 .uploader_mask_visible {
     visibility:visible;
     opacity:0.5;
+}
+
+input[type="text"],input[type="password"]{
+    margin-top: 10px;
+    margin-bottom: 2px;
+    display: block;
 }
 
 @media only screen

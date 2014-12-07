@@ -5,33 +5,21 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-        <link href="resources/images/favicon.ico" rel="shortcut icon"/>
-        <title>BZZ - Profile</title>
-        <h:outputStylesheet library="css" name="default.css"  />
-        <h:outputStylesheet library="css" name="profile.css"  />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link href="resources/images/favicon.ico" rel="shortcut icon"/>
+    <title>BZZ - Profile</title>
+    <h:outputStylesheet library="css" name="default.css"/>
 
-        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <h:outputScript library="js" name="swipeNav.min.js" />
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <h:outputScript library="js" name="swipeNav.min.js"/>
+    <h:outputScript library="js" name="init.js"/>
+    <h:outputScript library="js" name="drop.min.js"/>
 
 </h:head>
 <h:body>
 
-    <div id="navBar">
-        <h:graphicImage library="images" name="drawer.svg" id="drawer"/>
-        <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
-        <div id="nav">
-
-            <a class="active">Profile</a>
-            <a href="devices.xhtml">Devices</a>
-
-            <h:form>
-                <h:commandButton value="Logout" action="#{sessionBean.logoutUser}" />
-            </h:form>
-
-        </div>
-    </div>
+    <ui:include src="navigation.xhtml"/>
 
     <ui:composition>
 
@@ -42,74 +30,69 @@
             <div id="profileContainer">
                 <h:graphicImage library="images" value="#{profileBean.student.profilePicturePath}" class="logo"/>
 
-                 <h:form id="imageContainer" enctype="multipart/form-data">
+                <h:form id="imageContainer" enctype="multipart/form-data">
 
-                     <h:inputFile id="file" value="#{profileBean.profilePicture}">
-                         <f:validator validatorId="fileUploadValidator" />
-                     </h:inputFile>
-                     <br/>
+                    <h:inputFile id="file" value="#{profileBean.profilePicture}">
+                        <f:validator validatorId="fileUploadValidator"/>
+                    </h:inputFile>
+                    <br/>
 
-                     <h:commandButton action="#{profileBean.upload()}" value="Upload"/>
-                     <h:message for="file" class="wrong"/>
-                 </h:form>
-             </div>
+                    <h:commandButton action="#{profileBean.upload()}" value="Upload"/>
+                    <h:message for="file" class="wrong"/>
+                </h:form>
+            </div>
 
-             <h:form id="formContainer">
-                 <h:panelGrid id="grid" columns="3">
+            <h:form id="formContainer">
 
-                     <h:outputLabel value="Username" for="username"/>
-                     <h:inputText id="username" value="#{profileBean.student.userName}" disabled="true"/>
-                     <h:message for="username" />
+                <div class="formBlock">
+                    <h:outputLabel value="Username" for="username"/>
+                    <h:inputText id="username" value="#{profileBean.student.userName}" disabled="true"/>
+                </div>
 
-                     <h:outputLabel value="First Name" for="firstName"/>
-                     <h:inputText id="firstName" value="#{profileBean.student.firstName}"/>
-                     <h:message for="firstName" class="wrong"/>
+                <div class="formBlock">
+                    <h:message for="firstName" class="isa_error"/>
+                    <h:outputLabel value="First Name" for="firstName"/>
+                    <h:inputText id="firstName" value="#{profileBean.student.firstName}"/>
+                </div>
 
-                     <h:outputLabel value="Last Name" for="lastName"/>
-                     <h:inputText id="lastName" value="#{profileBean.student.lastName}"/>
-                     <h:message for="lastName" class="wrong"/>
+                <div class="formBlock">
+                    <h:message for="lastName" class="wrong"/>
+                    <h:outputLabel value="Last Name" for="lastName"/>
+                    <h:inputText id="lastName" value="#{profileBean.student.lastName}"/>
+                </div>
 
+                <div class="formBlock">
+                    <h:outputLabel value="BZZ Mail" for="schoolMail"/>
+                    <h:inputText id="schoolMail" value="#{profileBean.student.schoolMail}" disabled="true"/>
+                </div>
 
+                <div class="formBlock">
+                    <h:message for="privateMail" class="wrong"/>
+                    <h:outputLabel value="Private Mail" for="privateMail"/>
+                    <h:inputText id="privateMail" value="#{profileBean.student.privateMail}">
+                        <f:validator validatorId="emailAddressValidator"/>
+                    </h:inputText>
+                </div>
 
-                     <h:outputLabel value="Password" for="password"/>
-                     <h:inputText id="password" value="#{profileBean.student.password}"/>
-                     <h:message for="password" class="wrong"/>
+                <div class="formBlock">
+                    <h:message for="street" class="wrong"/>
+                    <h:outputLabel value="Street" for="street"/>
+                    <h:inputText id="street" value="#{profileBean.student.addressStreet}"/>
+                </div>
 
+                <div class="formBlock">
+                    <h:message for="city" class="wrong"/>
+                    <h:outputLabel value="City" for="city"/>
+                    <h:inputText id="city" value="#{profileBean.student.addressCity}"/>
+                </div>
 
-
-                     <h:outputLabel value="BZZ Mail" for="schoolMail"/>
-                     <h:inputText id="schoolMail" value="#{profileBean.student.schoolMail}" disabled="true"/>
-                     <h:message for="schoolMail" class="wrong"/>
-
-                     <h:outputLabel value="Private Mail" for="privateMail"/>
-                     <h:inputText id="privateMail" value="#{profileBean.student.privateMail}">
-                         <f:validator validatorId="emailAddressValidator" />
-                     </h:inputText>
-                     <h:message for="privateMail" class="wrong"/>
-
-
-
-                     <h:outputLabel value="Street" for="street"/>
-                     <h:inputText id="street" value="#{profileBean.student.addressStreet}"/>
-                     <h:message for="street" class="wrong"/>
-
-                     <h:outputLabel value="City" for="city"/>
-                     <h:inputText id="city" value="#{profileBean.student.addressCity}"/>
-                     <h:message for="city" class="wrong"/>
-
-
-                 </h:panelGrid>
-
-                 <br/>
-                 <h:commandButton class="cancel small" value="Cancel" type="reset" />
-                 <h:commandButton class="next small" value="Save" action="#{profileBean.save()}" />
-             </h:form>
-         </div>
-     </ui:composition>
+                <br/><br/>
+                <h:commandButton class="cancel small" value="Cancel" type="reset"/>
+                <h:commandButton class="next small" value="Save" action="#{profileBean.save()}"/>
+            </h:form>
+        </div>
+    </ui:composition>
 
 
- </h:body>
-
-<h:outputScript library="js" name="drop.min.js"/>
-
- </html>
+</h:body>
+</html>

@@ -13,31 +13,27 @@ import java.util.Properties;
  * Created by Patrick Stillhart on 11/1/14.
  * These are some settings
  */
-@ManagedBean(eager=true)
+@ManagedBean(eager = true)
 @ApplicationScoped
 public class Settings {
-
-    public static String DATABASE;
-    public static String BASE_DN;
-    public static String USER_DN;
-    public static String USER_PASSWORD;
 
     /**
      * The public home page (without .xhtml)
      */
     public static final String PUBLIC_HOME = "index";
-
     /**
      * Pages that are public (with .xhtml)
      * Most visited pages should be at the beginning
      */
     public static final List<String> PUBLIC_PAGES = Arrays.asList("index.xhtml", "recoverSend.xhtml", "newPassword.xhtml");
-
     /**
      * The private home page (without .xhtml)
      */
     public static final String PRIVATE_HOME = "profile";
-
+    public static String DATABASE;
+    public static String BASE_DN;
+    public static String USER_DN;
+    public static String USER_PASSWORD;
     /**
      * Number of login attempts
      */

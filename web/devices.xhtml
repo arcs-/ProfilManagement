@@ -2,39 +2,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <link href="resources/images/favicon.ico" rel="shortcut icon"/>
     <title>BZZ - Devices</title>
-    <h:outputStylesheet library="css" name="default.css"  />
+    <h:outputStylesheet library="css" name="default.css"/>
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <h:outputScript library="js" name="swipeNav.min.js" />
+    <h:outputScript library="js" name="swipeNav.min.js"/>
+    <h:outputScript library="js" name="init.js"/>
 </h:head>
 <h:body>
 
-    <div id="navBar">
-        <h:graphicImage library="images" name="drawer.svg" id="drawer"/>
-        <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
-        <div id="nav">
-
-
-            <a href="profile.xhtml">Profile</a>
-            <a class="active">Devices</a>
-
-            <h:form>
-                <h:commandButton value="Logout" action="#{sessionBean.logoutUser}" />
-            </h:form>
-
-        </div>
-    </div>
+    <ui:include src="navigation.xhtml"/>
 
     <ui:composition>
         <div id="workspace">
 
             <h1>Devices</h1>
+
+            <h:dataTable value="#{deviceBean.devices}" var="device" class="wide">
+                <h:column>
+                    <f:facet name="header">Primary</f:facet>
+                    #{device.primary}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{device.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Mac-Adress</f:facet>
+                    #{device.mac}
+                </h:column>
+            </h:dataTable>
 
 
         </div>

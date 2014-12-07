@@ -5,10 +5,25 @@ import java.io.Serializable;
 /**
  * Created by Patrick Stillhart on 12/5/14.
  */
-public class Device implements Serializable{
+public class Device implements Serializable {
 
+    private boolean primary;
     private String name;
     private String mac;
+
+    public Device(boolean primary, String name, String mac) {
+        this.primary = primary;
+        this.name = name;
+        this.mac = mac;
+    }
+
+    public boolean isPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(boolean primary) {
+        this.primary = primary;
+    }
 
     public String getName() {
         return name;

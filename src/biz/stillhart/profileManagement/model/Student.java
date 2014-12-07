@@ -4,7 +4,6 @@ import biz.stillhart.profileManagement.utils.Settings;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -27,16 +26,9 @@ public class Student implements Serializable {
     private String password;
 
 
-    @NotBlank
-    @NotNull
     private String privateMail;
 
-
-    @NotBlank
-    @NotNull
     private String addressStreet;
-    @NotBlank
-    @NotNull
     private String addressCity;
 
     private String profilePicturePath;

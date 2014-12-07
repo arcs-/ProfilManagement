@@ -4,34 +4,36 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <link href="resources/images/favicon.ico" rel="shortcut icon"/>
     <title>BZZ - Recover</title>
-    <h:outputStylesheet library="css" name="default.css"  />
-    <h:outputStylesheet library="css" name="public.css"  />
+    <h:outputStylesheet library="css" name="default.css"/>
+    <h:outputStylesheet library="css" name="public.css"/>
 </h:head>
 <h:body>
 
-<ui:composition>
+    <ui:composition>
 
-    <div id="navBar">
-        <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
-    </div>
+        <div id="navBar">
+            <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
+        </div>
 
-    <h:form id="formContainer">
-        <h1>Recover password</h1>
+        <h:form id="formContainer">
+            <h1>Recover password</h1>
 
-        <h:outputText value="Too many trys! Wait a couple of minutes" class="wrong" rendered="#{recoverSendBean.locked}"/>
+            <h:outputText value="Too many trys! Wait a couple of minutes" class="wrong"
+                          rendered="#{recoverSendBean.locked}"/>
 
-        <h:message class="wrong" for="username" />
-        <h:inputText type="text" id="username" required="true" value="#{recoverSendBean.username}" a:placeholder="Username" />
+            <h:message class="wrong" for="username"/>
+            <h:inputText type="text" id="username" required="true" value="#{recoverSendBean.username}"
+                         a:placeholder="Username"/>
 
-        <h:button outcome="index" value="Cancel" class="small cancel"/>
-        <h:commandButton value="Send" action="#{recoverSendBean.recover()}" class="small next" />
-    </h:form>
+            <h:button outcome="index" value="Cancel" class="small cancel"/>
+            <h:commandButton value="Send" action="#{recoverSendBean.recover()}" class="small next"/>
+        </h:form>
 
-</ui:composition>
+    </ui:composition>
 
 
 </h:body>

@@ -17,6 +17,28 @@ public class AttemptManager implements Serializable {
         this.attempts = new HashMap<String, Attempt>();
     }
 
+    public static int getAttempts(LockType lockType) {
+        switch (lockType) {
+            case LOGIN:
+                return Settings.LOGIN_ATTEMPTS;
+            case RECOVER:
+                return Settings.MAIL_RECOVER_ATTEMPTS;
+            default:
+                return 3;
+        }
+    }
+
+    public static int getLockTime(LockType lockType) {
+        switch (lockType) {
+            case LOGIN:
+                return Settings.SECONDS_LOCKED;
+            case RECOVER:
+                return Settings.MAIL_RECOVER_LOCK_SECONDS;
+            default:
+                return 60;
+        }
+    }
+
     /**
      * add or update a user in attempt list
      *
@@ -53,21 +75,5 @@ public class AttemptManager implements Serializable {
         }
 
         return false; // He's not even in the list
-    }
-
-    public static int getAttempts(LockType lockType) {
-        switch (lockType) {
-            case LOGIN: return Settings.LOGIN_ATTEMPTS;
-            case RECOVER: return Settings.MAIL_RECOVER_ATTEMPTS;
-            default: return 3;
-        }
-    }
-
-    public static int getLockTime(LockType lockType) {
-        switch (lockType) {
-            case LOGIN: return Settings.SECONDS_LOCKED;
-            case RECOVER: return Settings.MAIL_RECOVER_LOCK_SECONDS;
-            default: return 60;
-        }
     }
 }

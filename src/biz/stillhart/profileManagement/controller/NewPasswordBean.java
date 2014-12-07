@@ -20,7 +20,7 @@ import java.io.Serializable;
 
 @ManagedBean
 @RequestScoped
-public class NewPasswordBean implements Serializable{
+public class NewPasswordBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;
@@ -34,19 +34,19 @@ public class NewPasswordBean implements Serializable{
     public NewPasswordBean() {
         key = UrlUtils.getDomainParameter("code");
 
-        if(key == null) {
+        if (key == null) {
             try {
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 context.redirect(Settings.PUBLIC_HOME + ".xhtml");
             } catch (IOException e) {
-                // DO something intelligent
+                // Do something intelligent
             }
         }
     }
 
     public String set() {
         String studentName = recoverBaseBean.getDataBase().getUsernameByKey(key);
-        if(studentName != null) {
+        if (studentName != null) {
             Student student = dataBaseBean.getDataBase().getStudent(studentName);
             student.setPassword(password);
         }

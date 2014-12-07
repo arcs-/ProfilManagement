@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<div id="navBar">
+    <h:graphicImage library="images" name="drawer.svg" id="drawer"/>
+    <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
+
+    <div id="nav">
+
+        <a href="profile.xhtml" id="profile">Profile</a>
+        <a href="password.xhtml" id="password">Password</a>
+        <a href="devices.xhtml" id="devices">Devices</a>
+
+        <h:form>
+            <h:commandButton value="Logout" action="#{sessionBean.logoutUser}"/>
+        </h:form>
+
+    </div>
+</div>
+</body>
+</html>

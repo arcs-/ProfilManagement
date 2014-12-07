@@ -30,7 +30,7 @@ public class RecoverSendBean implements Serializable {
     @ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 
-    public RecoverSendBean(){
+    public RecoverSendBean() {
         username = "";
     }
 
@@ -39,12 +39,14 @@ public class RecoverSendBean implements Serializable {
 
         attemptBean.getAttemptManager().add(ip, LockType.RECOVER);
 
-        if(attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
+        if (attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
             sessionBean.setRecoverState(UserState.LOCKED);
+            recoverBaseBean.getDataBase().recover(username);
+            return Settings.PUBLIC_HOME + "?faces-redirect=true&success=false";
         }
 
-        recoverBaseBean.getDataBase().recover(username);
-        return Settings.PUBLIC_HOME + "?faces-redirect=true";
+
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&success=true";
     }
 
     /*

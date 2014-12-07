@@ -21,7 +21,7 @@ public class FileUploadValidator implements Validator {
 
         // 1. validate file name
         String fileName = getFileName(part);
-        if(fileName.length() == 0 ) {
+        if (fileName.length() == 0) {
             FacesMessage message = new FacesMessage("Please select a file");
             throw new ValidatorException(message);
         } else if (fileName.length() > 50) {

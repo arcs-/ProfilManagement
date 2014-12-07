@@ -1,9 +1,6 @@
 package biz.stillhart.profileManagement.controller;
 
-import biz.stillhart.profileManagement.model.Credentials;
-import biz.stillhart.profileManagement.model.LockType;
-import biz.stillhart.profileManagement.model.Student;
-import biz.stillhart.profileManagement.model.UserState;
+import biz.stillhart.profileManagement.model.*;
 import biz.stillhart.profileManagement.service.AttemptBean;
 import biz.stillhart.profileManagement.service.DataBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
@@ -34,6 +31,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Checks if user credentials are correct and if so logs the user in
+     *
      * @param credentials The credentials
      * @return Enum userState
      */
@@ -42,12 +40,13 @@ public class SessionBean implements Serializable {
 
         attemptBean.getAttemptManager().add(ip, LockType.LOGIN);
 
-        if(attemptBean.getAttemptManager().isLocked(ip, LockType.LOGIN)) { // Too many attempts
+        if (attemptBean.getAttemptManager().isLocked(ip, LockType.LOGIN)) { // Too many attempts
             userState = UserState.LOCKED;
             return userState;
 
-        } else if(dataBaseBean.getDataBase().isUser(credentials)) { // Correct credentials
+        } else if (dataBaseBean.getDataBase().isUser(credentials)) { // Correct credentials
             HttpSession session = SessionUtils.getSession();
+            // Set dummy attribute to hold session
             session.setAttribute("username", credentials.getUsername());
 
             student = dataBaseBean.getDataBase().getStudent(credentials.getUsername());
@@ -65,6 +64,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Logout user, forward to next page
+     *
      * @return the next page
      */
     public String logoutUser() {
@@ -93,10 +93,6 @@ public class SessionBean implements Serializable {
         this.dataBaseBean = dataBaseBean;
     }
 
-    public AttemptBean getAttemptBean() {
-        return attemptBean;
-    }
-
     public void setAttemptBean(AttemptBean attemptBean) {
         this.attemptBean = attemptBean;
     }
@@ -105,16 +101,8 @@ public class SessionBean implements Serializable {
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
     public UserState getUserState() {
         return userState;
-    }
-
-    public void setUserState(UserState userState) {
-        this.userState = userState;
     }
 
     public UserState getRecoverState() {

@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @ManagedBean
 @ApplicationScoped
-public class RecoverBaseBean implements Serializable{
+public class RecoverBaseBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;

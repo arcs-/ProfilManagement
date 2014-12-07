@@ -40,11 +40,11 @@ public class ProfileBean implements Serializable {
             BufferedImage bufferedProfile = ImageIO.read(profilePicture.getInputStream());
             FaceImage face = new FaceImage(bufferedProfile);
 
-            if(face.foundFace()) {
+            if (face.foundFace()) {
 
                 face.setNoCropMultiplier(1);
                 face.setAdditionPadding(20);
-                face.setDimension(128,128);
+                face.setDimension(128, 128);
                 BufferedImage profilePicture = face.getScaledProfileFace();
 
                 // ToDo: Check jpg error

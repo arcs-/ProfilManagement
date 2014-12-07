@@ -36,36 +36,6 @@ public class RecoverBase implements Serializable {
     }
 
     /**
-     * Init recover process
-     *
-     * @param username the username of the user which want to recover
-     */
-    public void recover(String username) {
-        try {
-            Student student = dataBaseBean.getDataBase().getStudent(username);
-            if (null != student.getPrivateMail()) {
-                String code = generateKey();
-                while (keyList.containsKey(code)) code = generateKey();
-
-                keyList.put(code, username);
-                sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
-
-            }
-        } catch (NullPointerException e) {
-            // Ignore, user gave wrong username... don't react
-        }
-    }
-
-    /**
-     * creates random key
-     *
-     * @return the recovery key
-     */
-    private String generateKey() {
-        return new BigInteger(130, random).toString(32);
-    }
-
-    /**
      * Sends recover mail
      *
      * @param email       email to send the mail
@@ -105,6 +75,36 @@ public class RecoverBase implements Serializable {
             mex.printStackTrace();
         }
 
+    }
+
+    /**
+     * Init recover process
+     *
+     * @param username the username of the user which want to recover
+     */
+    public void recover(String username) {
+        try {
+            Student student = dataBaseBean.getDataBase().getStudent(username);
+            if (null != student.getPrivateMail()) {
+                String code = generateKey();
+                while (keyList.containsKey(code)) code = generateKey();
+
+                keyList.put(code, username);
+                sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
+
+            }
+        } catch (NullPointerException e) {
+            // Ignore, user gave wrong username... don't react
+        }
+    }
+
+    /**
+     * creates random key
+     *
+     * @return the recovery key
+     */
+    private String generateKey() {
+        return new BigInteger(130, random).toString(32);
     }
 
     /**

@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  */
 public class UrlUtils {
 
-    public static String getDomainParameter(String parameterName) throws NoSuchElementException{
+    public static String getDomainParameter(String parameterName) throws NoSuchElementException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         return facesContext.getExternalContext().getRequestParameterMap().get(parameterName);
     }
