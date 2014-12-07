@@ -1,6 +1,7 @@
 package biz.stillhart.profileManagement.filter;
 
 import biz.stillhart.profileManagement.utils.Settings;
+import biz.stillhart.profileManagement.utils.UrlUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -16,32 +17,33 @@ import java.io.IOException;
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthFilter implements Filter {
 
-    public AuthFilter() {
-    }
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         try {
-            HttpServletRequest req = (HttpServletRequest) request;
-            String reqURI = req.getRequestURI();
+            HttpServletRequest request = (HttpServletRequest) req;
+            String reqURI = request.getRequestURI();
             HttpServletResponse res = (HttpServletResponse) response;
 
-            HttpSession ses = req.getSession(false);
+            HttpSession session = request.getSession(false);
+
 
             //  allow user to proceed if url is index.xhtml or user logged in
-            if (ses != null && ses.getAttribute("username") != null) {// Is logged in
+            if (session != null && session.getAttribute("username") != null) {// Is logged in
                 if (isPublicPage(reqURI))
-                    res.sendRedirect(req.getContextPath() + "/" + Settings.PRIVATE_HOME + ".xhtml");
+                    res.sendRedirect(request.getContextPath() + "/" + Settings.PRIVATE_HOME + ".xhtml");
                 else
                     chain.doFilter(request, response);
-            } else { // Not logged in
-                if (!isPublicPage(reqURI) && !reqURI.contains("javax.faces.resource"))
-                    res.sendRedirect(req.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml");
-                else
+
+            } else {
+                if (request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid() && !isPublicPage(reqURI)) // session expired
+                    res.sendRedirect(request.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml?state=warning&message=" + UrlUtils.encode("Session expired"));
+                else if (!isPublicPage(reqURI) && !reqURI.contains("javax.faces.resource")) {
+                    res.sendRedirect(request.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml");
+                } else
                     chain.doFilter(request, response);
             }
 

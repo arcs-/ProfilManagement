@@ -1,7 +1,6 @@
 package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.profileManagement.model.Credentials;
-import biz.stillhart.profileManagement.model.UserState;
 import biz.stillhart.profileManagement.utils.Settings;
 import biz.stillhart.profileManagement.utils.UrlUtils;
 
@@ -21,14 +20,25 @@ public class LoginBean implements Serializable {
     private SessionBean sessionBean;
 
     private Credentials credentials;
-    private boolean mailSuccess;
-    private boolean mailError;
+
+    private boolean successMessage;
+    private boolean errorMessage;
+    private boolean warningMessage;
+    private String message;
 
     /**
      * Bean for login page
      */
     public LoginBean() {
-        if(UrlUtils.getDomainParameter("success") != null) if(UrlUtils.getDomainParameter("success").equals("true")) mailSuccess = true; else mailError = true;
+        if (UrlUtils.getDomainParameter("state") != null) {
+            String state = UrlUtils.getDomainParameter("state");
+            if (state.equals("success")) successMessage = true;
+            else if (state.equals("error")) errorMessage = true;
+            else if (state.equals("warning")) warningMessage = true;
+        }
+
+        if (UrlUtils.getDomainParameter("message") != null)
+            message = UrlUtils.decode(UrlUtils.getDomainParameter("message"));
         credentials = new Credentials();
     }
 
@@ -36,9 +46,9 @@ public class LoginBean implements Serializable {
 
         switch (sessionBean.loginUser(credentials)) {
             case LOCKED:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true";
+                return Settings.PUBLIC_HOME + "?faces-redirect=true&stae=error&message=" + UrlUtils.encode("Too many trys! Wait a couple of minutes");
             case WRONG:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true";
+                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Wrong username or password");
             case CORRECT:
                 return Settings.PRIVATE_HOME + "?faces-redirect=true";
             default:
@@ -47,18 +57,21 @@ public class LoginBean implements Serializable {
 
     }
 
-    public boolean isLocked() {
-        return sessionBean.getState() == UserState.LOCKED;
+    public boolean isSuccessMessage() {
+        return successMessage;
     }
 
-    public boolean isWrong() {
-        return sessionBean.getState() == UserState.WRONG;
+    public boolean isErrorMessage() {
+        return errorMessage;
     }
 
-    public boolean isMailSuccess() { return mailSuccess; }
+    public boolean isWarningMessage() {
+        return warningMessage;
+    }
 
-    public boolean isMailError() { return mailError; }
-
+    public String getMessage() {
+        return message;
+    }
 
     /*
      Following is JSF stuff

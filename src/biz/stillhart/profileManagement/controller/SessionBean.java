@@ -1,6 +1,9 @@
 package biz.stillhart.profileManagement.controller;
 
-import biz.stillhart.profileManagement.model.*;
+import biz.stillhart.profileManagement.model.Credentials;
+import biz.stillhart.profileManagement.model.LockType;
+import biz.stillhart.profileManagement.model.Student;
+import biz.stillhart.profileManagement.model.UserState;
 import biz.stillhart.profileManagement.service.AttemptBean;
 import biz.stillhart.profileManagement.service.DataBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
@@ -41,8 +44,7 @@ public class SessionBean implements Serializable {
         attemptBean.getAttemptManager().add(ip, LockType.LOGIN);
 
         if (attemptBean.getAttemptManager().isLocked(ip, LockType.LOGIN)) { // Too many attempts
-            userState = UserState.LOCKED;
-            return userState;
+            return userState = UserState.LOCKED;
 
         } else if (dataBaseBean.getDataBase().isUser(credentials)) { // Correct credentials
             HttpSession session = SessionUtils.getSession();
@@ -51,14 +53,10 @@ public class SessionBean implements Serializable {
 
             student = dataBaseBean.getDataBase().getStudent(credentials.getUsername());
 
-            userState = UserState.CORRECT;
-            return userState;
+            return userState = UserState.CORRECT;
 
         } else { // Incorrect
-
-            userState = UserState.WRONG;
-            return userState;
-
+            return userState = UserState.WRONG;
         }
     }
 

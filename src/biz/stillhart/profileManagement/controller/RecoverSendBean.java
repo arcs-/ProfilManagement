@@ -6,6 +6,7 @@ import biz.stillhart.profileManagement.service.AttemptBean;
 import biz.stillhart.profileManagement.service.RecoverBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
 import biz.stillhart.profileManagement.utils.Settings;
+import biz.stillhart.profileManagement.utils.UrlUtils;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -42,11 +43,11 @@ public class RecoverSendBean implements Serializable {
         if (attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
             sessionBean.setRecoverState(UserState.LOCKED);
             recoverBaseBean.getDataBase().recover(username);
-            return Settings.PUBLIC_HOME + "?faces-redirect=true&success=false";
+
+            return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("A mail is already sent. Please wait");
         }
 
-
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&success=true";
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail was sent");
     }
 
     /*

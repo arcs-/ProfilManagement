@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-<body>
+<h:body>
 <div id="navBar">
     <h:graphicImage library="images" name="drawer.svg" id="drawer"/>
     <a href="index.xhtml"><h:graphicImage library="images" name="logo.svg" class="logo"/></a>
@@ -19,5 +19,28 @@
 
     </div>
 </div>
-</body>
+</h:body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var url = window.location.pathname;
+        var filename = url.substring(url.lastIndexOf('/') + 1);
+
+        switch (filename) {
+            case "profile.xhtml":
+                setup("profile");
+                break;
+            case "password.xhtml":
+                setup("password");
+                break;
+            case "devices.xhtml":
+                setup("devices");
+                break;
+        }
+    });
+    function setup(a) {
+        var b = document.getElementById(a);
+        b.removeAttribute("href");
+        b.setAttribute("class", "active");
+    }
+</script>
 </html>

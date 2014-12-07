@@ -21,20 +21,16 @@
         <h:form id="formContainer">
             <h1>Log in</h1>
 
-            <h:panelGrid columns="1" rendered="#{loginBean.mailError}" class="isa_error">
-                <h:outputText value="A mail is already sent. Please wait"/>
+            <h:panelGrid columns="1" rendered="#{loginBean.errorMessage}" class="isa_error">
+                <h:outputText value="#{loginBean.message}"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="1" rendered="#{loginBean.mailSuccess}" class="isa_success">
-                <h:outputText value="A recover mail was sent"/>
+            <h:panelGrid columns="1" rendered="#{loginBean.successMessage}" class="isa_success">
+                <h:outputText value="#{loginBean.message}"/>
             </h:panelGrid>
 
-            <h:panelGrid columns="1" rendered="#{loginBean.wrong}" class="isa_error">
-                <h:outputText value="Wrong username or password"/>
-            </h:panelGrid>
-
-            <h:panelGrid columns="1" rendered="#{loginBean.locked}" class="isa_error">
-                <h:outputText value="Too many trys! Wait a couple of minutes"/>
+            <h:panelGrid columns="1" rendered="#{loginBean.warningMessage}" class="isa_warning">
+                <h:outputText value="#{loginBean.message}"/>
             </h:panelGrid>
 
 

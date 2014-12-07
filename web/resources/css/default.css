@@ -1,16 +1,16 @@
-@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-@import url('http://fonts.googleapis.com/css?family=Roboto:400,300,700');
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700);
 /*--------------------------------------------------------------*\
 |*                     Layout                                   *|
 \*--------------------------------------------------------------*/
-body{
-    font-family:'Roboto',sans-serif;
-    background: #fff;
-    margin: 0;
+body {
+    font-family:Roboto,sans-serif;
+    background:#fff;
+    margin:0;
 }
 
-h1{
-    margin-top: 25px;
+h1 {
+    margin-top:25px;
     padding:29px 0;
     font-size:170%;
     font-weight:300;
@@ -19,10 +19,10 @@ h1{
 
 #navBar {
     top:0;
-    width: 320px;
-    height: 100%;
-    background: #333;
-    position: fixed;
+    width:320px;
+    height:100%;
+    background:#333;
+    position:fixed;
 }
 
 #drawer {
@@ -30,255 +30,273 @@ h1{
 }
 
 .logo {
-    margin: 30px;
+    margin:30px;
 }
 
 #nav {
-    overflow: hidden!important;
+    overflow:hidden!important;
 }
 
-#nav a, #nav input[type="submit"] {
-    width: 100%;
-    display: inline-block;
-    text-decoration: none;
-    font-size: 140%;
-    padding: 15px 0 15px 30px;
-    color: #008bcb;
+#nav a,#nav input[type="submit"] {
+    width:100%;
+    display:inline-block;
+    text-decoration:none;
+    font-size:140%;
+    padding:15px 0 15px 30px;
+    color:#008bcb;
+    font-weight:700;
     transition:background .2s, color .2s;
-    margin-bottom: 2px;
-    outline: none!important;
+    margin-bottom:2px;
+    outline:none!important;
 }
 
 #nav input[type="submit"] {
-    border: 0;
-    font-family: 'Roboto',sans-serif;
-    cursor: pointer;
-    background: none;
-    text-align: left;
+    border:0;
+    font-family:Roboto,sans-serif;
+    cursor:pointer;
+    background:none;
+    text-align:left;
 }
 
-#nav a:hover, #nav input[type="submit"]:hover {
-    background-color: #008bcb;
-    color: #fff;
+#nav a:hover,#nav input[type="submit"]:hover {
+    background-color:#008bcb;
+    color:#fff;
     transition:background .2s, color .2s;
 }
 
 #nav .active {
-    color: #fff;
-    background-color: #008bcb;
+    color:#fff;
+    background-color:#008bcb;
 }
 
 #workspace {
-    margin: 6% 0 0 500px;
-    max-width: calc(100% - 300px);
-    margin-top: 91px;
+    margin:6% 0 0 500px;
+    max-width:calc(100% - 300px);
+    margin-top:91px;
 }
 
 #profileContainer {
-    position: absolute;
-    right:10%;
-    padding: 10px;
+    padding: 0 10px;
     border-radius: 20px;
-    width: 220px;
+    width: 188px;
+    float: right;
+    margin-right: 25%;
+}
+
+#profileContainer input[type="submit"] {
+    width: 188px;
+}
+
+#profileContainer img {
+    margin: 0 30px;
 }
 
 .uploader_mask {
-    background: #FFFDD6;
-    color: #D3B910;
+    background:#FFFDD6;
+    color:#D3B910;
 }
 
 #formContainer {
-    width: 100%;
-    max-width: 520px;
+    width:100%;
+    max-width:520px;
 }
 
-.formBlock input[type="text"],
-.formBlock input[type="password"] {
-    float: right;
+.formBlock input[type="text"],.formBlock input[type="password"] {
+    float:right;
 }
 
 .formBlock {
-    display: block;
-    height: 55px;
+    display:inline-block;
+    margin-bottom: 13px;
+    width: 100%;
 }
-
-
 
 /*--------------------------------------------------------------*\
 |*                     Table style                              *|
 \*--------------------------------------------------------------*/
 table.wide {
-    width: 100%;
-    max-width: 560px;
-    border-spacing: 0;
-    text-align: right
+    width:100%;
+    max-width:560px;
+    border-spacing:0;
+    text-align:right;
 }
 
 thead {
-    background-color: #545454;
-    color: #ffffff;
-}
-thead th{
-    padding: 10px 15px;
-}
-tbody td{
-    padding: 10px 20px;
+    background-color:#545454;
+    color:#fff;
 }
 
-table.wide tbody  tr:hover {
-    background-color: #F7F7F7;
-    cursor: pointer;
+thead th {
+    padding:10px 15px;
 }
 
+tbody td {
+    padding:10px 20px;
+}
+
+table.wide tbody tr:hover {
+    background-color:#F7F7F7;
+    cursor:pointer;
+}
 
 /*--------------------------------------------------------------*\
 |*                     Form style                               *|
 \*--------------------------------------------------------------*/
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"] {
     width:280px;
-    max-width: 100%;
+    max-width:100%;
     background:#fff;
     border:1px solid #ccc;
     padding:7px;
-    font-family:'Roboto',sans-serif;
+    font-family:Roboto,sans-serif;
     font-size:19px;
     color:#555;
 }
 
 input[type="text"]:disabled {
-    background-color: #cfcfcf;
+    background-color:#cfcfcf;
 }
 
-input[type="submit"], input[type="button"], input[type="reset"]{
-    display: inline;
+input[type="submit"],input[type="button"],input[type="reset"] {
+    display:inline;
     width:299px;
-    max-width: 330px;
-    color: #fff;
+    max-width:330px;
+    color:#fff;
     border:0;
     padding:10px;
-    font-family:'Roboto',sans-serif;
+    font-family:Roboto,sans-serif;
     font-size:19px;
     cursor:pointer;
     transition:background .5s;
-    margin-bottom: 5px;
-    outline: none;
+    margin-bottom:5px;
+    outline:none;
 }
 
 .next {
-    background: #008bcb;
+    background:#008bcb;
 }
 
 .next:hover {
-    background: #0f72cb;
+    background:#0f72cb;
     transition:background .4s;
 }
 
 .cancel {
-    background: #737373;
+    background:#737373;
 }
 
 .cancel:hover {
-    background: #575757;
+    background:#575757;
     transition:background .4s;
 }
 
 .small {
-    width: 147px!important; /* Because rule input[] over classes ... */
-    margin-right: 3px!important;
+    width:147px!important;
+    /* Because rule input[] over classes ... */
+    margin-right:3px!important;
 }
 
-.isa_info, .isa_success, .isa_warning, .isa_error {
-    margin: 10px 0px;
+.isa_success,.isa_warning,.isa_error {
+    margin:10px 0;
     padding:3px 10px 3px 0;
-    min-width: 300px;
-}
-.isa_info {
-    color: #00529B;
-    background-color: #BDE5F8;
-}
-.isa_success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-}
-.isa_warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-}
-.isa_error {
-    color: #D8000C;
-    background-color: #FFBABA;
+    min-width:300px;
 }
 
-.isa_info td:before {
-    content: '\f05a';
-    font-family: FontAwesome;
-    font-size:1.7em;
-    margin-right: 10px;
-    vertical-align:middle;
+.isa_success {
+    color:#4F8A10;
+    background-color:#DFF2BF;
+}
+
+.isa_warning {
+    color:#9F6000;
+    background-color:#FEEFB3;
+}
+
+.isa_error {
+    color:#D8000C;
+    background-color:#FFBABA;
 }
 
 .isa_success td:before {
-    content: '\f058';
-    font-family: FontAwesome;
+    content:'\f058';
+    font-family:FontAwesome;
     font-size:1.7em;
-    margin-right: 10px;
+    margin-right:10px;
     vertical-align:middle;
 }
 
 .isa_warning td:before {
-    content: '\f071';
-    font-family: FontAwesome;
+    content:'\f071';
+    font-family:FontAwesome;
     font-size:1.7em;
-    margin-top: -3px;
-    margin-right: 10px;
+    margin-top:-3px;
+    margin-right:10px;
     vertical-align:middle;
 }
 
 .isa_error td:before {
-    content: '\f057';
-    font-family: FontAwesome;
+    content:'\f057';
+    font-family:FontAwesome;
     font-size:1.7em;
-    margin-right: 10px;
+    margin-right:10px;
     vertical-align:middle;
 }
 
+.error {
+    color:#D8000C;
+    background-color:#FFBABA;
+    padding: 11px 16px 9px 14px;
+    list-style-type: none;
+    display: inline-block;
+}
+.error li:before {
+    content:'\f057';
+    font-family:FontAwesome;
+    font-size:1.7em;
+    margin-right:10px;
+    vertical-align:middle;
+}
 
+.singleError {
+    color: #D8000C;
+    background-color: #FFBABA;
+    padding: 5px 2px 7px 7px;
+    list-style-type: none;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    float: right;
+    width: 287px;
+    max-width: 100%;
+}
 
 /*--------------------------------------------------------------*\
 |*                     Mobile                                   *|
 \*--------------------------------------------------------------*/
-@media only screen
-and (max-width : 1000px) {
-    body {
-        overflow-x: hidden;
+@media only screen and (max-width: 970px){
+    #navBar {
+        width:295px;
     }
 
-    #navBar {
-        width: 295px;
+    #formContainer {
+        margin: 0 auto
     }
 
     #drawer {
-        display: inline;
-        position: absolute;
-        width: 45px;
-        margin-top: -1px;
-        margin-left: 295px;
+        display:inline;
+        position:absolute;
+        width:45px;
+        margin-top:-1px;
+        margin-left:295px;
+    }
+
+    #profileContainer {
+        float: inherit;
+        margin: 0 auto 30px auto;
     }
 
     #workspace {
         margin:10px;
         max-width:100%;
     }
-
-    input[type="text"], input[type="password"] {
-        font-size: 100%;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    input[type="submit"], input[type="button"] {
-        width:84%;
-        display:block;
-    }
-
 }

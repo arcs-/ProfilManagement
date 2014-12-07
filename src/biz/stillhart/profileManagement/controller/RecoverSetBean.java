@@ -12,15 +12,15 @@ import biz.stillhart.profileManagement.utils.UrlUtils;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 
 @ManagedBean
-@RequestScoped
-public class NewPasswordBean implements Serializable {
+@ViewScoped
+public class RecoverSetBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;
@@ -31,7 +31,7 @@ public class NewPasswordBean implements Serializable {
     private String password;
     private String key;
 
-    public NewPasswordBean() {
+    public RecoverSetBean() {
         key = UrlUtils.getDomainParameter("code");
 
         if (key == null) {
@@ -39,7 +39,7 @@ public class NewPasswordBean implements Serializable {
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 context.redirect(Settings.PUBLIC_HOME + ".xhtml");
             } catch (IOException e) {
-                // Do something intelligent
+                // back to home if no code
             }
         }
     }
@@ -50,7 +50,7 @@ public class NewPasswordBean implements Serializable {
             Student student = dataBaseBean.getDataBase().getStudent(studentName);
             student.setPassword(password);
         }
-        return Settings.PUBLIC_HOME + "?faces-redirect=true";
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("New password is set");
     }
 
 /*

@@ -13,7 +13,6 @@
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <h:outputScript library="js" name="swipeNav.min.js"/>
-    <h:outputScript library="js" name="init.js"/>
     <h:outputScript library="js" name="drop.min.js"/>
 
 </h:head>
@@ -28,7 +27,7 @@
             <h1>Personal info</h1>
 
             <div id="profileContainer">
-                <h:graphicImage library="images" value="#{profileBean.student.profilePicturePath}" class="logo"/>
+                <h:graphicImage library="images" value="#{profileBean.student.profilePicturePath}" />
 
                 <h:form id="imageContainer" enctype="multipart/form-data">
 
@@ -50,16 +49,17 @@
                 </div>
 
                 <div class="formBlock">
-                    <h:message for="firstName" class="isa_error"/>
+                    <h:message for="firstName" class="singleError"/>
                     <h:outputLabel value="First Name" for="firstName"/>
                     <h:inputText id="firstName" value="#{profileBean.student.firstName}"/>
                 </div>
 
                 <div class="formBlock">
-                    <h:message for="lastName" class="wrong"/>
+                    <h:message for="lastName" class="singleError"/>
                     <h:outputLabel value="Last Name" for="lastName"/>
                     <h:inputText id="lastName" value="#{profileBean.student.lastName}"/>
                 </div>
+                <br/> <br/>
 
                 <div class="formBlock">
                     <h:outputLabel value="BZZ Mail" for="schoolMail"/>
@@ -67,24 +67,25 @@
                 </div>
 
                 <div class="formBlock">
-                    <h:message for="privateMail" class="wrong"/>
+                    <h:message for="privateMail" class="singleError"/>
                     <h:outputLabel value="Private Mail" for="privateMail"/>
                     <h:inputText id="privateMail" value="#{profileBean.student.privateMail}">
                         <f:validator validatorId="emailAddressValidator"/>
                     </h:inputText>
                 </div>
+                <br/><br/>
 
                 <div class="formBlock">
-                    <h:message for="street" class="wrong"/>
+                    <h:message for="street" class="singleError"/>
                     <h:outputLabel value="Street" for="street"/>
                     <h:inputText id="street" value="#{profileBean.student.addressStreet}"/>
                 </div>
 
                 <div class="formBlock">
-                    <h:message for="city" class="wrong"/>
+                    <h:message for="city" class="singleError"/>
                     <h:outputLabel value="City" for="city"/>
                     <h:inputText id="city" value="#{profileBean.student.addressCity}"/>
-                </div>
+                </div><br/>
 
                 <br/><br/>
                 <h:commandButton class="cancel small" value="Cancel" type="reset"/>

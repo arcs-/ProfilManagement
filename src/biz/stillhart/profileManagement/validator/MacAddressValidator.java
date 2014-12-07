@@ -17,11 +17,8 @@ public class MacAddressValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String mac = String.valueOf(value);
 
-        if(!mac.matches("[0-9a-f]{2}([-:])[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$")) {
-            FacesMessage message = new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Invalid mac address",
-                    "The mac address you entered is not valid.");
-            throw new ValidatorException(message);
+        if (!mac.matches("[0-9a-f]{2}([-:])[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$")) {
+            throw new ValidatorException(new FacesMessage("The mac address you entered is not valid."));
         }
 
     }

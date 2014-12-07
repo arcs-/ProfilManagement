@@ -19,11 +19,10 @@ public class EmailAddressValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String email = String.valueOf(value);
 
-        if (email.matches("/\\S/") && !new EmailValidator().isValid(email, null)) {
-            FacesMessage message = new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Invalid email address",
-                    "The email address you entered is not valid.");
-            throw new ValidatorException(message);
+        if (email == null || email.isEmpty() || email.trim().length() == 0) return;
+
+        if (!new EmailValidator().isValid(email, null)) {
+            throw new ValidatorException(new FacesMessage("The email address you entered is not valid."));
         }
     }
 }
