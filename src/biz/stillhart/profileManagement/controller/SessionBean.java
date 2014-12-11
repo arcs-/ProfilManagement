@@ -75,6 +75,10 @@ public class SessionBean implements Serializable {
         return Settings.PUBLIC_HOME + "?faces-redirect=true";
     }
 
+    public void saveStudent() {
+        getDataBaseBean().getDataBase().save(student);
+    }
+
     /*
     JSF Stuff
      */

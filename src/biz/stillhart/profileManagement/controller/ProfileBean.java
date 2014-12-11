@@ -63,7 +63,7 @@ public class ProfileBean implements Serializable {
     }
 
     public void save() {
-        sessionBean.getDataBaseBean().getDataBase().save(student);
+        sessionBean.saveStudent();
 
     }
 

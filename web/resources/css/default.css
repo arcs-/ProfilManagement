@@ -1,5 +1,5 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700);
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,700);
 /*--------------------------------------------------------------*\
 |*                     Layout                                   *|
 \*--------------------------------------------------------------*/
@@ -200,6 +200,10 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin:10px 0;
     padding:3px 10px 3px 0;
     min-width:300px;
+}
+
+.isa_success tbody td,.isa_warning tbody td,.isa_error tbody td {
+    padding: 4px 20px;
 }
 
 .isa_success {

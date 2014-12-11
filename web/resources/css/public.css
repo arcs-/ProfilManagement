@@ -32,7 +32,7 @@ input[type="text"],input[type="password"]{
 and (max-width : 970px) {
     #formContainer {
         margin: 10px auto;
-        width: 360px;
+        width: 381px;
     }
     #navBar {
         display:none;

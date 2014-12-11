@@ -25,7 +25,7 @@ public class Settings {
      * Pages that are public (with .xhtml)
      * Most visited pages should be at the beginning
      */
-    public static final List<String> PUBLIC_PAGES = Arrays.asList("index.xhtml", "recoverSend.xhtml", "newPassword.xhtml");
+    public static final List<String> PUBLIC_PAGES = Arrays.asList("index.xhtml", "recoverSend.xhtml", "recoverSet.xhtml");
     /**
      * The private home page (without .xhtml)
      */

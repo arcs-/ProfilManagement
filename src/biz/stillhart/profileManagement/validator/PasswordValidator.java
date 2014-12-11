@@ -19,12 +19,13 @@ public class PasswordValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String password = value.toString();
 
+        // ToDo: Validate length etc
+
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmPassword");
         String confirmPassword = uiInputConfirmPassword.getSubmittedValue().toString();
 
-        // Let required="true" do its job.
-        if (password == null || password.isEmpty() || confirmPassword == null
-                || confirmPassword.isEmpty()) {
+        // required="true" does this job.
+        if (password == null || password.isEmpty() || confirmPassword == null || confirmPassword.isEmpty()) {
             return;
         }
 
