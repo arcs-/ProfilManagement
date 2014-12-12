@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by Patrick Stillhart on 11/1/14.
+ * Created by Patrick Stillhart on 11/1/14..
+ * Checks if a user have access to a certain page and forwards if not
  */
-
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthFilter implements Filter {
 

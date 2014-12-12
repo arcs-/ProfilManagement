@@ -15,9 +15,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
-
 /**
  * Created by Patrick Stillhart on 10/31/14.
+ * Bean for the profile manage bean
  */
 @ManagedBean
 @RequestScoped
@@ -30,11 +30,18 @@ public class ProfileBean implements Serializable {
 
     private Part profilePicture;
 
+    /**
+     * Initialize the user
+     */
     @PostConstruct
     public void init() {
         student = sessionBean.getStudent();
     }
 
+    /**
+     * Action for commandButton
+     * Uploads and sets a profile picture
+     */
     public void upload() {
         try {
             BufferedImage bufferedProfile = ImageIO.read(profilePicture.getInputStream());
@@ -62,17 +69,17 @@ public class ProfileBean implements Serializable {
 
     }
 
+    /**
+     * Action for commandButton
+     * Saves the student
+     */
     public void save() {
         sessionBean.saveStudent();
-
     }
 
-    public void cancel() {
-
-    }
 
     /*
-      JSF Stuff
+      Getter & Setter for JSF / View
      */
 
     public Student getStudent() {

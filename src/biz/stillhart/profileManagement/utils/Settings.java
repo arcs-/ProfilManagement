@@ -79,8 +79,17 @@ public class Settings {
     public static String NEW_PROFILE_IMAGE_PATH;
 
 
+    /**
+     * Construct the settings
+     */
     public Settings() {
+        readFile();
+    }
 
+    /**
+     * Read settings from file
+     */
+    private void readFile() {
         Properties prop = new Properties();
         InputStream input = null;
 

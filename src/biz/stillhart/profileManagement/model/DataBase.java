@@ -13,11 +13,18 @@ import java.nio.charset.Charset;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
+ * Holds the connection to the database
  */
 public class DataBase implements Serializable {
 
+    /**
+     * The connection
+     */
     OpenLDAPConnection connection;
 
+    /**
+     * Establish a database connection
+     */
     public DataBase() {
 
         connection = new OpenLDAPConnection(Settings.DATABASE,
@@ -49,6 +56,11 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Saves a student to database
+     *
+     * @param student the student
+     */
     public void save(Student student) {
 
         ModificationItem[] mods = new ModificationItem[4];
@@ -82,10 +94,22 @@ public class DataBase implements Serializable {
         }
     }
 
+    /**
+     * Encode a string to database format
+     *
+     * @param obj The string to encode
+     * @return the encoded string
+     */
     private String encodeByte(String obj) {
         return new String(obj.getBytes(Charset.forName("UTF-8")));
     }
 
+    /**
+     * Decode a string from database format to normal
+     *
+     * @param obj The encoded string
+     * @return the decoded string
+     */
     private String decodeByte(Object obj) {
         return new String((byte[]) obj);
     }

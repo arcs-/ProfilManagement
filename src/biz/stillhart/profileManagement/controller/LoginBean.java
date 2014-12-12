@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 10/31/14.
+ * Bean for the login page
  */
 @ManagedBean
 @RequestScoped
@@ -27,7 +28,7 @@ public class LoginBean implements Serializable {
     private String message;
 
     /**
-     * Bean for login page
+     * Initialize a messages
      */
     public LoginBean() {
         if (UrlUtils.getDomainParameter("state") != null) {
@@ -42,6 +43,11 @@ public class LoginBean implements Serializable {
         credentials = new Credentials();
     }
 
+    /**
+     * Action for commandButton
+     *
+     * @return the next page
+     */
     public String login() {
 
         switch (sessionBean.loginUser(credentials)) {
@@ -57,24 +63,44 @@ public class LoginBean implements Serializable {
 
     }
 
+    /**
+     * Get success message state
+     *
+     * @return true if there's a message
+     */
     public boolean isSuccessMessage() {
         return successMessage;
     }
 
+    /**
+     * Get error message state
+     *
+     * @return true if there's a message
+     */
     public boolean isErrorMessage() {
         return errorMessage;
     }
 
+    /**
+     * Get warning message state
+     *
+     * @return true if there's a message
+     */
     public boolean isWarningMessage() {
         return warningMessage;
     }
 
+    /**
+     * Returns the message for success/warning/error
+     *
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
     /*
-     Following is JSF stuff
+        Getter & Setter for JSF / View
      */
 
     public Credentials getCredentials() {

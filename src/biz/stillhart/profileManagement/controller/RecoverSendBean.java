@@ -15,6 +15,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 10/31/14.
+ * Recover process: Sends a recover mail to a user
  */
 @ManagedBean
 @RequestScoped
@@ -35,6 +36,12 @@ public class RecoverSendBean implements Serializable {
         username = "";
     }
 
+    /**
+     * Action for commandButton
+     * Sends a recover mail
+     *
+     * @return the next page
+     */
     public String recover() {
         String ip = SessionUtils.getIp();
 
@@ -51,12 +58,8 @@ public class RecoverSendBean implements Serializable {
     }
 
     /*
-      JSF Stuff
+          JGetter & Setter for JSF / View
      */
-    public RecoverBaseBean getRecoverBaseBean() {
-        return recoverBaseBean;
-    }
-
     public void setRecoverBaseBean(RecoverBaseBean recoverBaseBean) {
         this.recoverBaseBean = recoverBaseBean;
     }

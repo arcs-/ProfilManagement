@@ -10,6 +10,7 @@ import javax.faces.validator.ValidatorException;
 
 /**
  * Created by Patrick Stillhart on 11/4/14.
+ * Validates a new password
  */
 
 @FacesValidator("passwordValidator")

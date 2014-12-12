@@ -9,6 +9,7 @@ import javax.faces.validator.ValidatorException;
 
 /**
  * Created by Patrick Stillhart on 11/2/14.
+ * Validates a mail address
  */
 @FacesValidator(value = "macAddressValidator")
 public class MacAddressValidator implements Validator {
