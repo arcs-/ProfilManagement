@@ -15,6 +15,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 10/31/14.
+ * Recover process: Sends a recover mail to a user
  */
 @ManagedBean
 @RequestScoped
@@ -35,28 +36,31 @@ public class RecoverSendBean implements Serializable {
         username = "";
     }
 
-    public String recover() {
+    /**
+     * Action for commandButton
+     * Sends a recover mail
+     *
+     * @return the next page
+     */
+    public String send() {
         String ip = SessionUtils.getIp();
 
         attemptBean.getAttemptManager().add(ip, LockType.RECOVER);
 
         if (attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
             sessionBean.setRecoverState(UserState.LOCKED);
-            recoverBaseBean.getDataBase().recover(username);
 
             return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("A mail is already sent. Please wait");
         }
+
+        recoverBaseBean.getDataBase().sendMail(username);
 
         return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail was sent");
     }
 
     /*
-      JSF Stuff
+          JGetter & Setter for JSF / View
      */
-    public RecoverBaseBean getRecoverBaseBean() {
-        return recoverBaseBean;
-    }
-
     public void setRecoverBaseBean(RecoverBaseBean recoverBaseBean) {
         this.recoverBaseBean = recoverBaseBean;
     }

@@ -12,6 +12,7 @@
     <h:outputStylesheet library="css" name="default.css"/>
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <h:outputScript library="js" name="tableManager.js"/>
     <h:outputScript library="js" name="swipeNav.min.js"/>
 </h:head>
 <h:body>
@@ -37,6 +38,37 @@
                     #{device.mac}
                 </h:column>
             </h:dataTable>
+
+            <h1>New device</h1>
+
+            <h:form id="formContainer">
+
+                <div class="formBlock">
+                    <h:message for="primary" class="singleError"/>
+                    <label id="checkContainer">
+                        <h:selectBooleanCheckbox id="primary" value="#{deviceBean.device.primary}"/>
+                        <span>Is your primary device</span>
+                    </label>
+                </div>
+
+                <div class="formBlock">
+                    <h:message for="devicename" class="singleError"/>
+                    <h:outputLabel value="Name" for="devicename"/>
+                    <h:inputText id="devicename" value="#{deviceBean.device.name}"/>
+                </div>
+
+                <div class="formBlock">
+                    <h:message for="mac" class="singleError"/>
+                    <h:outputLabel value="Mac-address" for="mac"/>
+                    <h:inputText id="mac" value="#{deviceBean.device.mac}"/>
+                </div>
+
+                <h:inputHidden id="huk" value="#{deviceBean.oldMac}" />
+
+                <h:commandButton class="cancel small" value="Cancel" type="reset"/>
+                <h:commandButton class="cancel small delete" value="Delete" action="#{deviceBean.delete()}"/>
+                <h:commandButton class="next small" value="Save" action="#{deviceBean.save()}"/>
+            </h:form>
 
 
         </div>

@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 11/2/14.
+ * Global bean to control recover processes
  */
 @ManagedBean
 @ApplicationScoped

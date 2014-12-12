@@ -27,7 +27,7 @@
             <h1>Personal info</h1>
 
             <div id="profileContainer">
-                <h:graphicImage library="images" value="#{profileBean.student.profilePicturePath}" />
+                <h:graphicImage library="images" value="#{profileBean.student.profilePicturePathTime}" />
 
                 <h:form id="imageContainer" enctype="multipart/form-data">
 
@@ -72,6 +72,13 @@
                     <h:inputText id="privateMail" value="#{profileBean.student.privateMail}">
                         <f:validator validatorId="emailAddressValidator"/>
                     </h:inputText>
+                </div>
+                <br/><br/>
+
+                <div class="formBlock">
+                    <h:message for="phone" class="singleError"/>
+                    <h:outputLabel value="Phone number" for="phone"/>
+                    <h:inputText id="phone" value="#{profileBean.student.phoneNumber}"/>
                 </div>
                 <br/><br/>
 

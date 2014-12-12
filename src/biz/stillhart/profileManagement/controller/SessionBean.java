@@ -17,6 +17,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 11/14/14.
+ * Holder for session information
  */
 @ManagedBean
 @SessionScoped
@@ -75,17 +76,16 @@ public class SessionBean implements Serializable {
         return Settings.PUBLIC_HOME + "?faces-redirect=true";
     }
 
+    /**
+     * Saves session user to database
+     */
     public void saveStudent() {
         getDataBaseBean().getDataBase().save(student);
     }
 
     /*
-    JSF Stuff
+        Getter & Setter for JSF / View
      */
-
-    public UserState getState() {
-        return userState;
-    }
 
     public DataBaseBean getDataBaseBean() {
         return dataBaseBean;

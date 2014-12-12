@@ -31,8 +31,8 @@ public class Settings {
      */
     public static final String PRIVATE_HOME = "profile";
     public static String DATABASE;
-    public static String BASE_DN;
     public static String USER_DN;
+    public static String LOGIN_DN;
     public static String USER_PASSWORD;
     /**
      * Number of login attempts
@@ -79,8 +79,17 @@ public class Settings {
     public static String NEW_PROFILE_IMAGE_PATH;
 
 
+    /**
+     * Construct the settings
+     */
     public Settings() {
+        readFile();
+    }
 
+    /**
+     * Read settings from file
+     */
+    private void readFile() {
         Properties prop = new Properties();
         InputStream input = null;
 
@@ -90,8 +99,8 @@ public class Settings {
 
             prop.load(input);
             Settings.DATABASE = prop.getProperty("DATABASE");
-            Settings.BASE_DN = prop.getProperty("BASE_DN");
             Settings.USER_DN = prop.getProperty("USER_DN");
+            Settings.LOGIN_DN = prop.getProperty("LOGIN_DN");
             Settings.USER_PASSWORD = prop.getProperty("USER_PASSWORD");
 
             Settings.LOGIN_ATTEMPTS = Integer.parseInt(prop.getProperty("LOGIN_ATTEMPTS"));

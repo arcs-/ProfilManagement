@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
+ * Global bean to hold the user database
  */
 @ManagedBean
 @ApplicationScoped

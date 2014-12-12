@@ -8,15 +8,28 @@ import java.util.HashMap;
 
 /**
  * Created by Patrick Stillhart on 11/2/14.
+ * Attempt controller to manage all attempts
  */
 public class AttemptManager implements Serializable {
 
+    /**
+     * Container for current attempts
+     */
     private HashMap<String, Attempt> attempts;
 
+    /**
+     * Construct the AttemptManager
+     */
     public AttemptManager() {
         this.attempts = new HashMap<String, Attempt>();
     }
 
+    /**
+     * Returns how many attempts are allowed for a lockType
+     *
+     * @param lockType the lockType your asking for
+     * @return int how many attempts are allowed
+     */
     public static int getAttempts(LockType lockType) {
         switch (lockType) {
             case LOGIN:
@@ -28,6 +41,12 @@ public class AttemptManager implements Serializable {
         }
     }
 
+    /**
+     * Returns how long you get locked for a lockType
+     *
+     * @param lockType the lockType your asking for
+     * @return int how many minutes you get locked
+     */
     public static int getLockTime(LockType lockType) {
         switch (lockType) {
             case LOGIN:
@@ -40,9 +59,9 @@ public class AttemptManager implements Serializable {
     }
 
     /**
-     * add or update a user in attempt list
+     * Add user to list, or, if hes already in there, add one to counter
      *
-     * @param ip from the user
+     * @param ip of the user
      */
     public void add(String ip, LockType lockType) {
         if (attempts.containsKey(ip) && attempts.get(ip).getLockType() == lockType)
@@ -54,7 +73,7 @@ public class AttemptManager implements Serializable {
     /**
      * Checks if a user is locked
      *
-     * @param ip from the user
+     * @param ip of the user
      * @return true if locked
      */
     public boolean isLocked(String ip, LockType lockType) {

@@ -1,9 +1,5 @@
 package biz.stillhart.profileManagement.controller;
 
-/**
- * Created by Patrick Stillhart on 11/1/14.
- */
-
 import biz.stillhart.profileManagement.model.Student;
 import biz.stillhart.profileManagement.service.DataBaseBean;
 import biz.stillhart.profileManagement.service.RecoverBaseBean;
@@ -18,6 +14,10 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * Created by Patrick Stillhart on 11/1/14.
+ * Recover process: sets new password for user
+ */
 @ManagedBean
 @ViewScoped
 public class RecoverSetBean implements Serializable {
@@ -31,6 +31,9 @@ public class RecoverSetBean implements Serializable {
     private String password;
     private String key;
 
+    /**
+     * Set the recover code from url
+     */
     public RecoverSetBean() {
         key = UrlUtils.getDomainParameter("code");
 
@@ -44,18 +47,25 @@ public class RecoverSetBean implements Serializable {
         }
     }
 
+    /**
+     * Action for commandButton
+     * Sets the new password
+     *
+     * @return the next page
+     */
     public String set() {
         String studentName = recoverBaseBean.getDataBase().getUsernameByKey(key);
         if (studentName != null) {
             Student student = dataBaseBean.getDataBase().getStudent(studentName);
             student.setPassword(password);
+            dataBaseBean.getDataBase().save(student);
         }
         return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("New password is set");
     }
 
-/*
-  JSF Stuff
- */
+    /*
+          Getter & Setter for JSF / View
+     */
 
     public String getPassword() {
         return password;

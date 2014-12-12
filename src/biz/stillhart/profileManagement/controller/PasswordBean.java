@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 12/7/14.
+ * Bean for 'new password' page
  */
 @ManagedBean
 @RequestScoped
@@ -22,18 +23,25 @@ public class PasswordBean implements Serializable {
     @ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 
+    /**
+     * Action for commandButton
+     * Saves the new password
+     */
     public void save() {
-        if(sessionBean.getStudent().getPassword().equals(oldPassword)) {
+        if (sessionBean.getStudent().getPassword().equals(oldPassword)) {
+            sessionBean.getStudent().setPassword(newPassword);
             sessionBean.saveStudent();
             success = true;
         } else {
-
-
             FacesMessage message = new FacesMessage("Old password isn't correct");
             FacesContext.getCurrentInstance().addMessage("oldPassword", message);
         }
 
     }
+
+    /*
+        Getter & Setter for JSF / View
+     */
 
     public String getOldPassword() {
         return oldPassword;

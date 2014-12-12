@@ -17,17 +17,32 @@ import java.util.Properties;
 
 /**
  * Created by Patrick Stillhart on 11/2/14.
+ * Contains ongoing recover information
  */
 public class RecoverBase implements Serializable {
 
-    // This value is set in the constructor
+    /**
+     * The database
+     */
     private DataBaseBean dataBaseBean;
 
-    // <code , username>
+    /**
+     * Current recover list
+     * <code , username>
+     */
     private HashMap<String, String> keyList;
+
+    /**
+     * Secure random object
+     */
     private SecureRandom random;
 
 
+    /**
+     * Constructs a RecoverBase
+     *
+     * @param dataBaseBean the database with user information
+     */
     public RecoverBase(DataBaseBean dataBaseBean) {
         this.dataBaseBean = dataBaseBean;
         keyList = new HashMap<String, String>();
@@ -82,7 +97,7 @@ public class RecoverBase implements Serializable {
      *
      * @param username the username of the user which want to recover
      */
-    public void recover(String username) {
+    public void sendMail(String username) {
         try {
             Student student = dataBaseBean.getDataBase().getStudent(username);
             if (null != student.getPrivateMail()) {

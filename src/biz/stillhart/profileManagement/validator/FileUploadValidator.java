@@ -10,6 +10,7 @@ import javax.servlet.http.Part;
 
 /**
  * Created by Patrick Stillhart on 11/18/14.
+ * Validates a file upload
  */
 @FacesValidator(value = "fileUploadValidator")
 public class FileUploadValidator implements Validator {

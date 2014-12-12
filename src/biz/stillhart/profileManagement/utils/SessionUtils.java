@@ -6,10 +6,17 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
+ * <p/>
+ * Utils to work with session
  */
 
 public class SessionUtils {
 
+    /**
+     * Returns current session
+     *
+     * @return current session
+     */
     public static HttpSession getSession() {
         return (HttpSession)
                 FacesContext.
@@ -18,17 +25,32 @@ public class SessionUtils {
                         getSession(false);
     }
 
+    /**
+     * Returns current request
+     *
+     * @return current request
+     */
     public static HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.
                 getCurrentInstance().
                 getExternalContext().getRequest();
     }
 
+    /**
+     * Returns the username saved in the session
+     *
+     * @return the username
+     */
     public static String getUserName() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         return session.getAttribute("username").toString();
     }
 
+    /**
+     * Returns users id in session
+     *
+     * @return user id
+     */
     public static String getUserId() {
         HttpSession session = getSession();
         if (session != null)
@@ -37,6 +59,11 @@ public class SessionUtils {
             return null;
     }
 
+    /**
+     * Gets the users ip
+     *
+     * @return the ip
+     */
     public static String getIp() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String ipAddress = request.getHeader("X-FORWARDED-FOR");

@@ -11,41 +11,70 @@ import java.util.Properties;
  */
 public class OpenLDAPConnection {
 
+    private static final String PREFIX = "LDAP -> ";
+
     private String server;
-    private String baseDN;
-    private String dN;
+    private int port;
+    private String userDN;
+    private String loginDN;
     private String password;
 
     private boolean connected;
     private InitialDirContext connection;
 
     /**
-     * Creates a new connection
+     * Creates a new connection on default port (389)
      *
      * @param server   the servers ip / domain
-     * @param baseDN   the base DN (e.g. 'dc=openiam,dc=com')
-     * @param dN       admin logon (e.g. 'cn=Manager')
+     * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
+     * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
      */
-    public OpenLDAPConnection(String server, String baseDN, String dN, String password) {
-        reconnect(server, baseDN, dN, password);
+    public OpenLDAPConnection(String server, String userDN, String loginDN, String password) {
+        reconnect(server, 389, userDN, loginDN, password);
+    }
 
+    /**
+     * Creates a new connection on custom port
+     *
+     * @param server   the servers ip / domain
+     * @param port     a custom port
+     * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
+     * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
+     * @param password admin password
+     */
+    public OpenLDAPConnection(String server, int port, String userDN, String loginDN, String password) {
+        reconnect(server, port, userDN, loginDN, password);
+    }
+
+    /**
+     * Closes current connection and creates a new one on default port(389)
+     *
+     * @param server   the servers ip / domain
+     * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
+     * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
+     * @param password admin password
+     */
+    public void reconnect(String server, String userDN, String loginDN, String password) {
+        reconnect(server, 389, userDN, loginDN, password);
     }
 
     /**
      * Closes currect connection and creates a new one
      *
      * @param server   the servers ip / domain
-     * @param baseDN   the base DN (e.g. 'dc=openiam,dc=com')
-     * @param dN       admin logon (e.g. 'cn=Manager')
+     * @param port     a custom port
+     * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
+     * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
      */
-    public void reconnect(String server, String baseDN, String dN, String password) {
+    public void reconnect(String server, int port, String userDN, String loginDN, String password) {
         if (connected) close();
 
         this.server = server;
-        this.baseDN = baseDN;
-        this.dN = dN + "," + baseDN;
+        this.port = port;
+        this.userDN = userDN;
+        this.loginDN = loginDN;
         this.password = password;
 
         connect();
@@ -55,20 +84,20 @@ public class OpenLDAPConnection {
     private void connect() {
         Properties props = new Properties();
         props.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-        props.put(Context.PROVIDER_URL, "ldap://" + server + ":389/");
+        props.put(Context.PROVIDER_URL, "ldap://" + server + ":" + port + "/");
         props.put(Context.SECURITY_CREDENTIALS, password);
-        props.put(Context.SECURITY_PRINCIPAL, dN);
+        props.put(Context.SECURITY_PRINCIPAL, loginDN);
 
         try {
             connection = new InitialDirContext(props);
-            System.out.println("Authentication Success!");
+            System.out.println(PREFIX + "Authentication Success!");
             connected = true;
 
         } catch (AuthenticationException e) {
-            System.err.println("Authentication failed!");
+            System.err.println(PREFIX + "Authentication failed!");
 
         } catch (NamingException e) {
-            System.err.println("Something went wrong!");
+            System.err.println(PREFIX + "Something went wrong! " + e.getMessage());
 
         }
 
@@ -87,21 +116,22 @@ public class OpenLDAPConnection {
         searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
         try {
-            NamingEnumeration<SearchResult> results = connection.search(baseDN, searchFilter, searchControls);
+            NamingEnumeration<SearchResult> results = connection.search(userDN, searchFilter, searchControls);
 
             if (results.hasMoreElements()) {
                 SearchResult searchResult = results.nextElement();
 
                 //make sure there is not another item available, there should be only 1 match
                 if (results.hasMoreElements()) {
-                    throw new NamingException("Matched multiple users for the accountName: " + uid);
+                    System.err.println(PREFIX + "Matched multiple users for the accountName: " + uid);
+                    return null;
                 }
 
                 return searchResult;
             }
 
         } catch (NamingException e) {
-            System.err.println("search error: " + e.getMessage());
+            System.err.println(PREFIX + "Couldn't find user with uid (" + uid + ") error: " + e.getMessage());
         }
 
         return null;
@@ -119,7 +149,7 @@ public class OpenLDAPConnection {
         SearchControls searchControls = new SearchControls();
         searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
-        NamingEnumeration<SearchResult> results = connection.search(baseDN, searchFilter, searchControls);
+        NamingEnumeration<SearchResult> results = connection.search(userDN, searchFilter, searchControls);
 
         if (results.hasMoreElements()) {
             ArrayList<SearchResult> searchResults = new ArrayList<SearchResult>();
@@ -144,14 +174,14 @@ public class OpenLDAPConnection {
         String dn = getDN(uid);
         try {
             connection.createSubcontext(dn, entry);
-            System.out.println("AddUser: added entry " + dn + ".");
+            System.out.println(PREFIX + "AddUser: added entry " + dn + ".");
             return true;
 
         } catch (NameAlreadyBoundException e) {
-            System.err.println("AddUser: Entry Already Exists (68)");
+            System.err.println(PREFIX + "AddUser: Entry Already Exists (68)");
             return false;
         } catch (NamingException e) {
-            System.err.println("AddUser: error adding entry." + e.getMessage());
+            System.err.println(PREFIX + "AddUser: error adding entry." + e.getMessage());
             return false;
         }
 
@@ -170,7 +200,7 @@ public class OpenLDAPConnection {
             connection.modifyAttributes(getDN(uid), mods);
             return true;
         } catch (NamingException e) {
-            System.err.println("Updating error: " + e.getMessage());
+            System.err.println(PREFIX + "Update error: " + e.getMessage());
             return false;
         }
 
@@ -196,7 +226,7 @@ public class OpenLDAPConnection {
             connection.destroySubcontext(uid);
             return true;
         } catch (NamingException e) {
-            System.err.println("Deleting error: " + e.getMessage());
+            System.err.println(PREFIX + "Deleting error: " + e.getMessage());
             return false;
         }
 
@@ -209,14 +239,15 @@ public class OpenLDAPConnection {
         connected = false;
         try {
             connection.close();
+            System.out.println(PREFIX + "Connection closed!");
         } catch (NamingException e) {
-            System.err.println("Close: failed to close connection: " + e.getMessage());
+            System.err.println(PREFIX + "Close: failed to close connection: " + e.getMessage());
         }
 
     }
 
     private String getDN(String uid) {
-        return "uid=" + uid + "," + baseDN;
+        return "uid=" + uid + "," + userDN;
     }
 }
 
