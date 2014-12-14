@@ -1,6 +1,7 @@
 package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.profileManagement.model.Device;
+import biz.stillhart.profileManagement.model.Student;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
- * Bean for device page
  */
 @ManagedBean
 @RequestScoped
@@ -21,56 +21,21 @@ public class DeviceBean implements Serializable {
     private SessionBean sessionBean;
 
     private ArrayList<Device> devices;
-    private Device device;
-    private String oldMac;
+    private Student student;
 
     @PostConstruct
     public void init() {
-        oldMac = "/";
-        device = new Device(false, "", "");
-        devices = sessionBean.getStudent().getDevices();
-    }
+        student = sessionBean.getStudent();
 
-    public void save() {
-        System.out.println("save " + oldMac + " x");
-        if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("/")) {
-            devices.add(device);
-        } else {
-            for (Device de : devices) {
-                if (de.getMac().equals(oldMac)) {
-                    de.update(device);
-                    System.out.println("found");
-                    break;
-                }
 
-                if (device.isPrimary()) de.setPrimary(false);
-            }
-        }
-        device = new Device(false, "", "");
-        oldMac = "/";
-        sessionBean.getStudent().setDevices(devices);
-        sessionBean.saveStudent();
-    }
-
-    public void delete() {
-        System.out.println("del " + oldMac + " x");
-        if (oldMac != null && !oldMac.equals("/")) {
-            System.out.println("check");
-            for (Device de : devices)
-                if (de.getMac().equals(oldMac)) {
-                    devices.remove(de);
-                    System.out.println("out");
-                    break;
-                }
-        }
-        device = new Device(false, "", "");
-        oldMac = "/";
-        sessionBean.getStudent().setDevices(devices);
-        sessionBean.saveStudent();
+        devices = new ArrayList<Device>();
+        devices.add(new Device(true, "Laptop", "01-00-5e-7f-ff-ff"));
+        devices.add(new Device(false, "Handy", "00-80-41-ae-fd-7e"));
     }
 
     /*
-      Getter & Setter for JSF / View
+    mac evtl. doppelt über name finden
+    name (mit username)
      */
 
     public ArrayList<Device> getDevices() {
@@ -83,21 +48,5 @@ public class DeviceBean implements Serializable {
 
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
-    }
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-
-    public String getOldMac() {
-        return oldMac;
-    }
-
-    public void setOldMac(String oldMac) {
-        this.oldMac = oldMac;
     }
 }
