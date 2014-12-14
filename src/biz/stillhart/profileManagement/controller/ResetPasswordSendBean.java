@@ -3,7 +3,7 @@ package biz.stillhart.profileManagement.controller;
 import biz.stillhart.profileManagement.model.LockType;
 import biz.stillhart.profileManagement.model.UserState;
 import biz.stillhart.profileManagement.service.AttemptBean;
-import biz.stillhart.profileManagement.service.RecoverBaseBean;
+import biz.stillhart.profileManagement.service.ResetPasswordBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
 import biz.stillhart.profileManagement.utils.Settings;
 import biz.stillhart.profileManagement.utils.UrlUtils;
@@ -19,12 +19,12 @@ import java.io.Serializable;
  */
 @ManagedBean
 @RequestScoped
-public class RecoverSendBean implements Serializable {
+public class ResetPasswordSendBean implements Serializable {
 
     private String username;
 
-    @ManagedProperty("#{recoverBaseBean}")
-    private RecoverBaseBean recoverBaseBean;
+    @ManagedProperty("#{resetPasswordBaseBean}")
+    private ResetPasswordBaseBean resetPasswordBaseBean;
 
     @ManagedProperty("#{attemptBean}")
     private AttemptBean attemptBean;
@@ -32,7 +32,7 @@ public class RecoverSendBean implements Serializable {
     @ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 
-    public RecoverSendBean() {
+    public ResetPasswordSendBean() {
         username = "";
     }
 
@@ -53,7 +53,7 @@ public class RecoverSendBean implements Serializable {
             return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("A mail is already sent. Please wait");
         }
 
-        recoverBaseBean.getDataBase().sendMail(username);
+        resetPasswordBaseBean.getDataBase().sendMail(username);
 
         return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail was sent");
     }
@@ -61,8 +61,8 @@ public class RecoverSendBean implements Serializable {
     /*
           JGetter & Setter for JSF / View
      */
-    public void setRecoverBaseBean(RecoverBaseBean recoverBaseBean) {
-        this.recoverBaseBean = recoverBaseBean;
+    public void setResetPasswordBaseBean(ResetPasswordBaseBean resetPasswordBaseBean) {
+        this.resetPasswordBaseBean = resetPasswordBaseBean;
     }
 
     public String getUsername() {

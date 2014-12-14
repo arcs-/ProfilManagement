@@ -1,6 +1,6 @@
 package biz.stillhart.profileManagement.service;
 
-import biz.stillhart.profileManagement.model.RecoverBase;
+import biz.stillhart.profileManagement.model.ResetPasswordBase;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -14,20 +14,20 @@ import java.io.Serializable;
  */
 @ManagedBean
 @ApplicationScoped
-public class RecoverBaseBean implements Serializable {
+public class ResetPasswordBaseBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;
 
-    private RecoverBase recoverBase;
+    private ResetPasswordBase resetPasswordBase;
 
     @PostConstruct
     public void init() {
-        recoverBase = new RecoverBase(dataBaseBean);
+        resetPasswordBase = new ResetPasswordBase(dataBaseBean);
     }
 
-    public RecoverBase getDataBase() {
-        return recoverBase;
+    public ResetPasswordBase getDataBase() {
+        return resetPasswordBase;
     }
 
     public void setDataBaseBean(DataBaseBean dataBaseBean) {

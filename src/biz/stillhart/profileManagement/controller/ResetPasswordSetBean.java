@@ -2,7 +2,7 @@ package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.profileManagement.model.Student;
 import biz.stillhart.profileManagement.service.DataBaseBean;
-import biz.stillhart.profileManagement.service.RecoverBaseBean;
+import biz.stillhart.profileManagement.service.ResetPasswordBaseBean;
 import biz.stillhart.profileManagement.utils.Settings;
 import biz.stillhart.profileManagement.utils.UrlUtils;
 
@@ -20,13 +20,13 @@ import java.io.Serializable;
  */
 @ManagedBean
 @ViewScoped
-public class RecoverSetBean implements Serializable {
+public class ResetPasswordSetBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;
 
-    @ManagedProperty("#{recoverBaseBean}")
-    private RecoverBaseBean recoverBaseBean;
+    @ManagedProperty("#{resetPasswordBaseBean}")
+    private ResetPasswordBaseBean resetPasswordBaseBean;
 
     private String password;
     private String key;
@@ -34,7 +34,7 @@ public class RecoverSetBean implements Serializable {
     /**
      * Set the recover code from url
      */
-    public RecoverSetBean() {
+    public ResetPasswordSetBean() {
         key = UrlUtils.getDomainParameter("code");
 
         if (key == null) {
@@ -54,7 +54,7 @@ public class RecoverSetBean implements Serializable {
      * @return the next page
      */
     public String set() {
-        String studentName = recoverBaseBean.getDataBase().getUsernameByKey(key);
+        String studentName = resetPasswordBaseBean.getDataBase().getUsernameByKey(key);
         if (studentName != null) {
             Student student = dataBaseBean.getDataBase().getStudent(studentName);
             student.setPassword(password);
@@ -79,7 +79,7 @@ public class RecoverSetBean implements Serializable {
         this.dataBaseBean = dataBaseBean;
     }
 
-    public void setRecoverBaseBean(RecoverBaseBean recoverBaseBean) {
-        this.recoverBaseBean = recoverBaseBean;
+    public void setResetPasswordBaseBean(ResetPasswordBaseBean resetPasswordBaseBean) {
+        this.resetPasswordBaseBean = resetPasswordBaseBean;
     }
 }

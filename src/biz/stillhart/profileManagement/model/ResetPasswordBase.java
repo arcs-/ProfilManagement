@@ -19,7 +19,7 @@ import java.util.Properties;
  * Created by Patrick Stillhart on 11/2/14.
  * Contains ongoing recover information
  */
-public class RecoverBase implements Serializable {
+public class ResetPasswordBase implements Serializable {
 
     /**
      * The database
@@ -43,7 +43,7 @@ public class RecoverBase implements Serializable {
      *
      * @param dataBaseBean the database with user information
      */
-    public RecoverBase(DataBaseBean dataBaseBean) {
+    public ResetPasswordBase(DataBaseBean dataBaseBean) {
         this.dataBaseBean = dataBaseBean;
         keyList = new HashMap<String, String>();
 
@@ -57,9 +57,8 @@ public class RecoverBase implements Serializable {
      * @param name        name of the user
      * @param recoverCode the recover code
      */
-    public static void sendRecoverMail(String email, String name, String recoverCode) {
+    public static void sendResetMail(String email, String name, String recoverCode) {
 
-        // Sender's email ID needs to be mentioned
         String from = "recover@bzz.ch";
 
         //     Properties properties = new Properties();
@@ -86,8 +85,8 @@ public class RecoverBase implements Serializable {
             // Send message
             Transport.send(message);
             System.out.println("Sent mail to " + email);
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
+        } catch (MessagingException e) {
+            System.err.println("Error sending mail to: "+email+" -> " + e.getMessage() );
         }
 
     }
@@ -105,7 +104,7 @@ public class RecoverBase implements Serializable {
                 while (keyList.containsKey(code)) code = generateKey();
 
                 keyList.put(code, username);
-                sendRecoverMail(student.getPrivateMail(), student.getFirstName(), code);
+                sendResetMail(student.getPrivateMail(), student.getFirstName(), code);
 
             }
         } catch (NullPointerException e) {

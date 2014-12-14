@@ -26,7 +26,7 @@
 
             <h:messages class="error"/>
 
-            <h:inputSecret id="password" value="#{recoverSetBean.password}" a:placeholder="Password" required="true"
+            <h:inputSecret id="password" value="#{resetPasswordSetBean.password}" a:placeholder="Password" required="true"
                            requiredMessage="Please enter password">
                 <f:validator validatorId="passwordValidator"/>
                 <f:attribute name="confirmPassword" value="#{confirmPassword}"/>
@@ -35,7 +35,7 @@
             <h:inputSecret id="confirmPassword" required="true" binding="#{confirmPassword}"
                            a:placeholder="Confirm password" requiredMessage="Please confirm password"/>
 
-            <h:commandButton class="next" value="Save" action="#{recoverSetBean.set()}"/>
+            <h:commandButton class="next" value="Save" action="#{resetPasswordSetBean.set()}"/>
 
         </h:form>
 
