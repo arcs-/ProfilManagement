@@ -4,6 +4,8 @@
 $(document).ready(function() {
     $('.delete').first().hide();
 
+    // Sorry about this, but blame JSF
+
     $('table tr').click(function() {
         $('.delete').first().show();
         $('h1:eq(1)').first().text('Edit device');
@@ -18,7 +20,7 @@ $(document).ready(function() {
     $("input[type='reset']").click( function() {
         $('h1:eq(1)').first().text('New device');
         $('.delete').first().hide();
-        $('input[name="formContainer:huk"]').val('/');
+        $('input[name="formContainer:huk"]').val('');
         $('.formBlock:eq(1) input').val('');
         $('.formBlock:eq(2) input').val('');
     });

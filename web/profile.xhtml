@@ -51,13 +51,13 @@
                 <div class="formBlock">
                     <h:message for="firstName" class="singleError"/>
                     <h:outputLabel value="First Name" for="firstName"/>
-                    <h:inputText id="firstName" value="#{profileBean.student.firstName}"/>
+                    <h:inputText id="firstName" value="#{profileBean.student.firstName}" maxlength="30"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="lastName" class="singleError"/>
                     <h:outputLabel value="Last Name" for="lastName"/>
-                    <h:inputText id="lastName" value="#{profileBean.student.lastName}"/>
+                    <h:inputText id="lastName" value="#{profileBean.student.lastName}" maxlength="30"/>
                 </div>
                 <br/> <br/>
 
@@ -69,7 +69,7 @@
                 <div class="formBlock">
                     <h:message for="privateMail" class="singleError"/>
                     <h:outputLabel value="Private Mail" for="privateMail"/>
-                    <h:inputText id="privateMail" value="#{profileBean.student.privateMail}">
+                    <h:inputText id="privateMail" value="#{profileBean.student.privateMail}" maxlength="30">
                         <f:validator validatorId="emailAddressValidator"/>
                     </h:inputText>
                 </div>
@@ -78,20 +78,20 @@
                 <div class="formBlock">
                     <h:message for="phone" class="singleError"/>
                     <h:outputLabel value="Phone number" for="phone"/>
-                    <h:inputText id="phone" value="#{profileBean.student.phoneNumber}"/>
+                    <h:inputText id="phone" value="#{profileBean.student.phoneNumber}" maxlength="30"/>
                 </div>
                 <br/><br/>
 
                 <div class="formBlock">
                     <h:message for="street" class="singleError"/>
                     <h:outputLabel value="Street" for="street"/>
-                    <h:inputText id="street" value="#{profileBean.student.addressStreet}"/>
+                    <h:inputText id="street" value="#{profileBean.student.addressStreet}" maxlength="30"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="city" class="singleError"/>
                     <h:outputLabel value="City" for="city"/>
-                    <h:inputText id="city" value="#{profileBean.student.addressCity}"/>
+                    <h:inputText id="city" value="#{profileBean.student.addressCity}" maxlength="30"/>
                 </div><br/>
 
                 <br/><br/>

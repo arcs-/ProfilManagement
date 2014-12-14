@@ -54,14 +54,18 @@
                 <div class="formBlock">
                     <h:message for="devicename" class="singleError"/>
                     <h:outputLabel value="Name" for="devicename"/>
-                    <h:inputText id="devicename" value="#{deviceBean.device.name}"/>
+                    <h:inputText id="devicename" value="#{deviceBean.device.name}" maxlength="20"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="mac" class="singleError"/>
                     <h:outputLabel value="Mac-address" for="mac"/>
-                    <h:inputText id="mac" value="#{deviceBean.device.mac}"/>
+                    <h:inputText id="mac" value="#{deviceBean.device.mac}" maxlength="17">
+                        <f:validator validatorId="macAddressValidator"/>
+                    </h:inputText>
                 </div>
+
+                <br/><br/>
 
                 <h:inputHidden id="huk" value="#{deviceBean.oldMac}" />
 

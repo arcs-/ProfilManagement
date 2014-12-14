@@ -3,9 +3,11 @@ package biz.stillhart.profileManagement.controller;
 import biz.stillhart.profileManagement.model.Device;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -26,45 +28,50 @@ public class DeviceBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        oldMac = "/";
+        oldMac = "";
         device = new Device(false, "", "");
         devices = sessionBean.getStudent().getDevices();
     }
 
     public void save() {
-        System.out.println("save " + oldMac + " x");
-        if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("/")) {
+        if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("")) {
             devices.add(device);
         } else {
+            // Check if mac already is in use
+            // ToDo: check all devices?
+            for(Device de : devices) {
+                if(de.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
+                    FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Mac already in use"));
+                    return;
+                }
+            }
+
+            // Update devices
             for (Device de : devices) {
                 if (de.getMac().equals(oldMac)) {
+                    device.setMac(device.getMac().replace(":","-"));
                     de.update(device);
-                    System.out.println("found");
-                    break;
-                }
-
-                if (device.isPrimary()) de.setPrimary(false);
+                } else if (device.isPrimary()) de.setPrimary(false);
             }
         }
+
         device = new Device(false, "", "");
-        oldMac = "/";
+        oldMac = "";
         sessionBean.getStudent().setDevices(devices);
         sessionBean.saveStudent();
     }
 
     public void delete() {
-        System.out.println("del " + oldMac + " x");
-        if (oldMac != null && !oldMac.equals("/")) {
-            System.out.println("check");
+        if (oldMac != null && !oldMac.equals("")) {
             for (Device de : devices)
                 if (de.getMac().equals(oldMac)) {
                     devices.remove(de);
-                    System.out.println("out");
                     break;
                 }
         }
+
         device = new Device(false, "", "");
-        oldMac = "/";
+        oldMac = "";
         sessionBean.getStudent().setDevices(devices);
         sessionBean.saveStudent();
     }

@@ -33,8 +33,7 @@ public class PasswordBean implements Serializable {
             sessionBean.saveStudent();
             success = true;
         } else {
-            FacesMessage message = new FacesMessage("Old password isn't correct");
-            FacesContext.getCurrentInstance().addMessage("oldPassword", message);
+            FacesContext.getCurrentInstance().addMessage("formContainer:oldPassword", new FacesMessage("That's not your current password"));
         }
 
     }
