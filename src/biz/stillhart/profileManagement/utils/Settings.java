@@ -106,8 +106,8 @@ public class Settings {
             Settings.LOGIN_ATTEMPTS = Integer.parseInt(prop.getProperty("LOGIN_ATTEMPTS"));
             Settings.SECONDS_LOCKED = Integer.parseInt(prop.getProperty("SECONDS_LOCKED"));
 
-            Settings.RECOVER_LINK = prop.getProperty("RECOVER_LINK");
-            Settings.RECOVER_MAIL = prop.getProperty("RECOVER_MAIL");
+            Settings.RECOVER_LINK = prop.getProperty("RESET_LINK");
+            Settings.RECOVER_MAIL = prop.getProperty("RESET_MAIL");
             Settings.MAIL_RECOVER_ATTEMPTS = Integer.parseInt(prop.getProperty("MAIL_RECOVER_ATTEMPTS"));
             Settings.MAIL_RECOVER_LOCK_SECONDS = Integer.parseInt(prop.getProperty("MAIL_RECOVER_LOCK_SECONDS"));
 
