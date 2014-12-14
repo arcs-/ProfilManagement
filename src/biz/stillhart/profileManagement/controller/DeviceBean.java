@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
+ * Bean for device page
  */
 @ManagedBean
 @RequestScoped
