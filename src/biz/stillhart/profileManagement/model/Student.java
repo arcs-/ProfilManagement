@@ -25,6 +25,11 @@ public class Student extends Credentials implements Serializable {
     @NotBlank
     @NotNull
     private String lastName;
+
+    /**
+     * Private mail address
+     */
+    private String bzzMail;
     /**
      * Private mail address
      */
@@ -58,16 +63,18 @@ public class Student extends Credentials implements Serializable {
      * @param firstName     The first name
      * @param lastName      The last name
      * @param password      The password
+     * @param bzzMail       The bzz mail
      * @param privateMail   The private mail address
      * @param addressStreet The address street
      * @param addressCity   The address city
      */
-    public Student(String userName, String firstName, String lastName, String password, String privateMail, String phoneNumber, String addressStreet, String addressCity, String profilePicturePath, ArrayList<Device> devices) {
+    public Student(String userName, String firstName, String lastName, String password, String bzzMail, String privateMail, String phoneNumber, String addressStreet, String addressCity, String profilePicturePath, ArrayList<Device> devices) {
         super();
         super.setUsername(userName);
         this.firstName = firstName;
         this.lastName = lastName;
         super.setPassword(password);
+        this.bzzMail = bzzMail;
         this.privateMail = privateMail;
         this.phoneNumber = phoneNumber;
         this.addressStreet = addressStreet;
@@ -129,8 +136,8 @@ public class Student extends Credentials implements Serializable {
      *
      * @return school mail address
      */
-    public String getSchoolMail() {
-        return getUsername() + "@bzz.ch";
+    public String getBzzMail() {
+        return bzzMail;
     }
 
     /**

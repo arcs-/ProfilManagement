@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <svg width="69" height="89" xmlns="http://www.w3.org/2000/svg">
     <g>
-        <rect fill="#333333" stroke-width="1.5" x="-12.625" y="1.75001" width="81.000003" height="67.66666" id="svg_1" rx="6" stroke="#333333"/>
-        <rect fill="#333333" stroke-width="1.5" x="-38.750029" y="30.416637" width="98.000001" height="53.000003" id="svg_2" stroke="#333333" transform="rotate(-16 10.249969482421838,56.91663742065429) "/>
+        <rect fill="#252525" stroke-width="1.5" x="-12.625" y="1.75001" width="81.000003" height="67.66666" id="svg_1" rx="6" stroke="#333333"/>
+        <rect fill="#252525" stroke-width="1.5" x="-38.750029" y="30.416637" width="98.000001" height="53.000003" id="svg_2" stroke="#333333" transform="rotate(-16 10.249969482421838,56.91663742065429) "/>
         <rect fill="#ffffff" stroke-width="1.5" x="12" y="8.5" width="50" height="12" id="svg_3" stroke="#333333"/>
         <rect fill="#ffffff" stroke-width="1.5" x="12" y="27" width="50" height="12" id="svg_6" stroke="#333333"/>
         <rect fill="#ffffff" stroke-width="1.5" x="12" y="45.5" width="50" height="12" id="svg_7" stroke="#333333"/>

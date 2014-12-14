@@ -27,7 +27,7 @@ public class ResetPasswordBase implements Serializable {
     private DataBaseBean dataBaseBean;
 
     /**
-     * Current recover list
+     * List with user who have a reset key
      * <code , username>
      */
     private HashMap<String, String> keyList;

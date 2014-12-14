@@ -60,7 +60,12 @@ public class ProfileBean implements Serializable {
                 ImageIO.write(profilePicture, "png", outfile);
 
                 student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
+                save();
 
+            } else {
+                File outfile = new File(Settings.NEW_PROFILE_IMAGE_PATH.replace("~~username~~", student.getUserName()));
+                ImageIO.write(ImageIO.read(profilePicture.getInputStream()), "png", outfile);
+                student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
                 save();
             }
 

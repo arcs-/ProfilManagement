@@ -68,7 +68,7 @@ public class DataBase implements Serializable {
      */
     public void save(Student student) {
 
-        //ToDO: talk about this
+        //ToDO: talk empty db
 
         // add ' because to later check if field was empty
         ModificationItem[] mods = new ModificationItem[8];
@@ -106,6 +106,7 @@ public class DataBase implements Serializable {
 
             // Get rest
             String mail = result.getAttributes().get("mail").get(0).toString().substring(1);
+            String registeredAddress = result.getAttributes().get("registeredAddress").get(0).toString();
             String telephoneNumber = result.getAttributes().get("telephoneNumber").get(0).toString().substring(1);
             String street = result.getAttributes().get("street").get(0).toString().substring(1);
             String postalAddress = result.getAttributes().get("postalAddress").get(0).toString().substring(1);
@@ -136,6 +137,7 @@ public class DataBase implements Serializable {
                     firstName,
                     lastName,
                     password,
+                    registeredAddress,
                     mail,
                     telephoneNumber,
                     street,

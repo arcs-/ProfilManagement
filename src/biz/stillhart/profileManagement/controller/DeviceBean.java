@@ -35,6 +35,13 @@ public class DeviceBean implements Serializable {
 
     public void save() {
         if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("")) {
+            // if primary set all other so false
+            if(device.isPrimary()) {
+                for (Device de : devices) {
+                    de.setPrimary(false);
+                }
+            }
+
             devices.add(device);
         } else {
             // Check if mac already is in use
