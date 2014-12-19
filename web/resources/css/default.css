@@ -347,7 +347,7 @@ input[type="submit"],input[type="button"],input[type="reset"] {
         margin: 0 auto;
     }
 
-    h1 {
+    #workspace h1 {
         padding-left:12%;
     }
 }
@@ -374,5 +374,9 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     .wide th:first-child{
         padding: 5px;
         text-align: left;
+    }
+
+    tbody td {
+        padding:10px 10px;
     }
 }
