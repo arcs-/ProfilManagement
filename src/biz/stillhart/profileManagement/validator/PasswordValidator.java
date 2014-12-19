@@ -20,13 +20,15 @@ public class PasswordValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String password = value.toString();
 
-        // ToDo: Validate length etc
-
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmPassword");
         String confirmPassword = uiInputConfirmPassword.getSubmittedValue().toString();
 
-        // required="true" does this job.
-        if (password == null || password.isEmpty() || confirmPassword == null || confirmPassword.isEmpty()) {
+        if(!password.matches("((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,})")) {
+            throw new ValidatorException(new FacesMessage("Needs to contain at least: 8 characters, lowercase and uppercase letters and numbers"));
+        }
+
+        // required="true" should does this job...
+        if (confirmPassword == null || confirmPassword.isEmpty()) {
             return;
         }
 

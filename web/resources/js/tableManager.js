@@ -1,5 +1,5 @@
 /**
- * Created by benutzer on 12/13/14.
+ * Created by Patrick Stillhart on 12/13/14.
  */
 $(document).ready(function() {
     $('.delete').first().hide();

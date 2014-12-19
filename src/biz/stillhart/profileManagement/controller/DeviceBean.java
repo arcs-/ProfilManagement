@@ -37,8 +37,8 @@ public class DeviceBean implements Serializable {
         if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("")) {
             // if primary set all other so false
             if(device.isPrimary()) {
-                for (Device de : devices) {
-                    de.setPrimary(false);
+                for (Device compareDevice : devices) {
+                    compareDevice.setPrimary(false);
                 }
             }
 
@@ -46,19 +46,19 @@ public class DeviceBean implements Serializable {
         } else {
             // Check if mac already is in use
             // ToDo: check all devices?
-            for(Device de : devices) {
-                if(de.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
+            for(Device compareDevice : devices) {
+                if(compareDevice.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
                     FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Mac already in use"));
                     return;
                 }
             }
 
             // Update devices
-            for (Device de : devices) {
-                if (de.getMac().equals(oldMac)) {
+            for (Device compareDevice : devices) {
+                if (compareDevice.getMac().equals(oldMac)) {
                     device.setMac(device.getMac().replace(":","-"));
-                    de.update(device);
-                } else if (device.isPrimary()) de.setPrimary(false);
+                    compareDevice.update(device);
+                } else if (device.isPrimary()) compareDevice.setPrimary(false);
             }
         }
 

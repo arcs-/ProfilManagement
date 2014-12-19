@@ -125,7 +125,7 @@ table.wide {
 }
 
 thead {
-    background-color:#373740;
+    background-color:#252525;
     color:#fff;
 }
 
@@ -182,7 +182,7 @@ input[type="submit"],input[type="button"],input[type="reset"] {
 #checkContainer input[type=checkbox] {display:none;}
 
 #checkContainer span {
-    background-color:#373740;
+    background-color:#252525;
     color:#FFF;
     text-align:center;
     width:296px;
@@ -197,13 +197,9 @@ input[type="submit"],input[type="button"],input[type="reset"] {
 }
 
 #checkContainer input[type=checkbox]:checked + span {
-    background-color: #008bcb;
+    background-color: #0064cb;
 }
 
-#checkContainer input[type=checkbox]:checked:hover + span {
-    background-color: #0f72cb;
-    color:rgba(255,255,255,0.5);
-}
 
 .next {
     background:#008bcb;
@@ -320,7 +316,7 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     }
 
 }
-@media only screen and (max-width: 970px){
+@media only screen and (max-width: 1030px){
     #navBar {
         width:295px;
     }
@@ -346,6 +342,14 @@ input[type="submit"],input[type="button"],input[type="reset"] {
         margin:10px;
         max-width:100%;
     }
+
+    table.wide {
+        margin: 0 auto;
+    }
+
+    h1 {
+        padding-left:12%;
+    }
 }
 
 @media only screen and (max-width : 450px) {
@@ -357,5 +361,18 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     }
     body {
         overflow-x: hidden;
+    }
+
+    h1 {
+        padding-left:0;
+    }
+
+    #checkContainer {
+        margin-right: 10px;
+    }
+
+    .wide th:first-child{
+        padding: 5px;
+        text-align: left;
     }
 }

@@ -30,14 +30,15 @@ public class DataBase implements Serializable {
     public DataBase() {
 
         try {
-            connection = new OpenLDAPConnection(Settings.DATABASE,
-                    Settings.USER_DN,
-                    Settings.LOGIN_DN,
-                    Settings.USER_PASSWORD);
+            connection = new OpenLDAPConnection(Settings.DB_HOST,
+                    Settings.DB_PORT,
+                    Settings.DB_USER_DN,
+                    Settings.DB_LOGIN,
+                    Settings.DB_PASSWORD);
         } catch (AuthenticationException e) {
-            System.err.println("DB -> Wrong Authentication");
+            System.err.println("LDAP -> Wrong Authentication");
         } catch (NamingException e) {
-            System.err.println("DB -> Couldn't connect: " + e.getMessage());
+            System.err.println("LDAP -> Couldn't connect: " + e.getMessage());
             e.printStackTrace();
         }
 

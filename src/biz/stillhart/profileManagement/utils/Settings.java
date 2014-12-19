@@ -30,10 +30,11 @@ public class Settings {
      * The private home page (without .xhtml)
      */
     public static final String PRIVATE_HOME = "profile";
-    public static String DATABASE;
-    public static String USER_DN;
-    public static String LOGIN_DN;
-    public static String USER_PASSWORD;
+    public static String DB_HOST;
+    public static int DB_PORT;
+    public static String DB_USER_DN;
+    public static String DB_LOGIN;
+    public static String DB_PASSWORD;
     /**
      * Number of login attempts
      */
@@ -97,10 +98,11 @@ public class Settings {
             input = new FileInputStream("/home/benutzer/Downloads/Profil/config.properties");
 
             prop.load(input);
-            Settings.DATABASE = prop.getProperty("DATABASE");
-            Settings.USER_DN = prop.getProperty("USER_DN");
-            Settings.LOGIN_DN = prop.getProperty("LOGIN_DN");
-            Settings.USER_PASSWORD = prop.getProperty("USER_PASSWORD");
+            Settings.DB_HOST = prop.getProperty("DB_HOST");
+            Settings.DB_PORT = Integer.parseInt(prop.getProperty("DB_PORT"));
+            Settings.DB_USER_DN = prop.getProperty("DB_USER_DN");
+            Settings.DB_LOGIN = prop.getProperty("DB_LOGIN");
+            Settings.DB_PASSWORD = prop.getProperty("DB_PASSWORD");
 
             Settings.LOGIN_ATTEMPTS = Integer.parseInt(prop.getProperty("LOGIN_ATTEMPTS"));
             Settings.SECONDS_LOCKED = Integer.parseInt(prop.getProperty("SECONDS_LOCKED"));
