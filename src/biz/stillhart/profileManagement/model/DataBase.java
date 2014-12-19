@@ -3,6 +3,7 @@ package biz.stillhart.profileManagement.model;
 import biz.stillhart.profileManagement.utils.OpenLDAPConnection;
 import biz.stillhart.profileManagement.utils.Settings;
 
+import javax.naming.AuthenticationException;
 import javax.naming.NamingException;
 import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.DirContext;
@@ -28,10 +29,17 @@ public class DataBase implements Serializable {
      */
     public DataBase() {
 
-        connection = new OpenLDAPConnection(Settings.DATABASE,
-                Settings.USER_DN,
-                Settings.LOGIN_DN,
-                Settings.USER_PASSWORD);
+        try {
+            connection = new OpenLDAPConnection(Settings.DATABASE,
+                    Settings.USER_DN,
+                    Settings.LOGIN_DN,
+                    Settings.USER_PASSWORD);
+        } catch (AuthenticationException e) {
+            System.err.println("DB -> Wrong Authentication");
+        } catch (NamingException e) {
+            System.err.println("DB -> Couldn't connect: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }
 

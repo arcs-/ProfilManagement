@@ -49,7 +49,6 @@ public class Settings {
      * ~~username~~ will get replaced with the username
      * ~~link~~ will get replaced with the recover link
      */
-    //public static String RECOVER_MAIL = "<body style=margin:0;background-color:#f6f9fb><table style=\"@import url(https://fonts.googleapis.com/css?family=Cabin:400,700,400italic,700italic);font-family:Cabin,sans-serif;border-spacing:0;width:100%\"><tr><th><td style=\"padding:50px 0;width:446px\"><center><h1 style=text-align:center>Hello ~~username~~</h1></center><p>We heard that you lost your password for the BZZ profile page. Sorry about that!<br><br>Use the button below to recover your password</p><th><tr style=background-color:#dae6ee;text-align:center><td><td style=\"padding:60px 0\"><a style=display:inline;width:300px;background:#008bcb;color:#fff;border:0;padding:4%;font-size:19px;cursor:pointer;text-decoration:none href=~~link~~ target=_blank tabindex=-1 rel=external>Recover your Password</a><br><br><br><a style=text-decoration:none href=~~link~~ target=_blank tabindex=-1 rel=external>~~link~~</a><td><tr><td><td style=\"padding:30px 0;width:400px;color:#aeaeae\"><p>If you didn't asked for a password recovery, please ignore this mail</p><td></table>";
     public static String RECOVER_MAIL;
 
 

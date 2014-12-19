@@ -29,8 +29,10 @@ public class OpenLDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
+     *
+     * @throws NamingException Can't connect to DB
      */
-    public OpenLDAPConnection(String server, String userDN, String loginDN, String password) {
+    public OpenLDAPConnection(String server, String userDN, String loginDN, String password) throws NamingException{
         reconnect(server, 389, userDN, loginDN, password);
     }
 
@@ -42,8 +44,10 @@ public class OpenLDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
+     *
+     * @throws NamingException Can't connect to DB
      */
-    public OpenLDAPConnection(String server, int port, String userDN, String loginDN, String password) {
+    public OpenLDAPConnection(String server, int port, String userDN, String loginDN, String password) throws NamingException{
         reconnect(server, port, userDN, loginDN, password);
     }
 
@@ -54,8 +58,10 @@ public class OpenLDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
+     *
+     * @throws NamingException Can't connect to DB
      */
-    public void reconnect(String server, String userDN, String loginDN, String password) {
+    public void reconnect(String server, String userDN, String loginDN, String password) throws NamingException{
         reconnect(server, 389, userDN, loginDN, password);
     }
 
@@ -67,8 +73,10 @@ public class OpenLDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
+     *
+     * @throws NamingException Can't connect to DB
      */
-    public void reconnect(String server, int port, String userDN, String loginDN, String password) {
+    public void reconnect(String server, int port, String userDN, String loginDN, String password) throws NamingException{
         if (connected) close();
 
         this.server = server;
@@ -81,25 +89,17 @@ public class OpenLDAPConnection {
 
     }
 
-    private void connect() {
+    private void connect() throws NamingException{
         Properties props = new Properties();
         props.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         props.put(Context.PROVIDER_URL, "ldap://" + server + ":" + port + "/");
         props.put(Context.SECURITY_CREDENTIALS, password);
         props.put(Context.SECURITY_PRINCIPAL, loginDN);
 
-        try {
-            connection = new InitialDirContext(props);
-            System.out.println(PREFIX + "Authentication Success!");
-            connected = true;
+        connection = new InitialDirContext(props);
 
-        } catch (AuthenticationException e) {
-            System.err.println(PREFIX + "Authentication failed!");
-
-        } catch (NamingException e) {
-            System.err.println(PREFIX + "Something went wrong! " + e.getMessage());
-
-        }
+        System.out.println(PREFIX + "Authentication Success!");
+        connected = true;
 
     }
 

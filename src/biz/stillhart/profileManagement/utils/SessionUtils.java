@@ -26,17 +26,6 @@ public class SessionUtils {
     }
 
     /**
-     * Returns current request
-     *
-     * @return current request
-     */
-    public static HttpServletRequest getRequest() {
-        return (HttpServletRequest) FacesContext.
-                getCurrentInstance().
-                getExternalContext().getRequest();
-    }
-
-    /**
      * Returns the username saved in the session
      *
      * @return the username

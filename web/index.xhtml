@@ -38,7 +38,7 @@
             <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Password"/>
 
             <h:commandButton class="next" value="Login" action="#{loginBean.login()}"/>
-            <a href="recoverSend.xhtml">Forgot Password</a>
+            <h:link outcome="recoverSend.xhtml" value="Forgot Password"/>
         </h:form>
 
     </ui:composition>

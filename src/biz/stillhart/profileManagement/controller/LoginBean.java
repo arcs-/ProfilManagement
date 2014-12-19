@@ -31,20 +31,22 @@ public class LoginBean implements Serializable {
      * Initialize a messages
      */
     public LoginBean() {
-        if (UrlUtils.getDomainParameter("state") != null) {
-            String state = UrlUtils.getDomainParameter("state");
-            if (state.equals("success")) successMessage = true;
-            else if (state.equals("error")) errorMessage = true;
-            else if (state.equals("warning")) warningMessage = true;
+        String urlValue = UrlUtils.getDomainParameter("state");
+        if (urlValue != null) {
+            if (urlValue.equals("success")) successMessage = true;
+            else if (urlValue.equals("error")) errorMessage = true;
+            else if (urlValue.equals("warning")) warningMessage = true;
+
+            String urlMessage = UrlUtils.getDomainParameter("message");
+            if (urlMessage != null) message = UrlUtils.decode(urlMessage);
         }
 
-        if (UrlUtils.getDomainParameter("message") != null)
-            message = UrlUtils.decode(UrlUtils.getDomainParameter("message"));
         credentials = new Credentials();
+
     }
 
     /**
-     * Action for commandButton
+     * Action for commandButton (login)
      *
      * @return the next page
      */

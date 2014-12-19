@@ -21,9 +21,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - Bean Validation" level="application_server_libraries" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0" level="application_server_libraries" />
-    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - JSF" level="application_server_libraries" />
     <orderEntry type="library" name="javax.mail" level="project" />
     <orderEntry type="library" name="Face" level="project" />
+    <orderEntry type="library" name="myfaces-bundle-2.2.6" level="project" />
   </component>
 </module>
-

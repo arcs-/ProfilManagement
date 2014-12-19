@@ -21,8 +21,6 @@ import java.io.Serializable;
 @RequestScoped
 public class ResetPasswordSendBean implements Serializable {
 
-    private String username;
-
     @ManagedProperty("#{resetPasswordBaseBean}")
     private ResetPasswordBaseBean resetPasswordBaseBean;
 
@@ -32,9 +30,7 @@ public class ResetPasswordSendBean implements Serializable {
     @ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 
-    public ResetPasswordSendBean() {
-        username = "";
-    }
+    private String username;
 
     /**
      * Action for commandButton
@@ -55,7 +51,7 @@ public class ResetPasswordSendBean implements Serializable {
 
         resetPasswordBaseBean.getDataBase().sendMail(username);
 
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail was sent");
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail is sent");
     }
 
     /*

@@ -15,13 +15,13 @@ import java.io.Serializable;
 @RequestScoped
 public class PasswordBean implements Serializable {
 
+    @ManagedProperty("#{sessionBean}")
+    private SessionBean sessionBean;
+
     private String oldPassword;
     private String newPassword;
 
     private boolean success;
-
-    @ManagedProperty("#{sessionBean}")
-    private SessionBean sessionBean;
 
     /**
      * Action for commandButton
