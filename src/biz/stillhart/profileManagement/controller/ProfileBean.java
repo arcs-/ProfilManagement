@@ -54,7 +54,6 @@ public class ProfileBean implements Serializable {
                 face.setDimension(128, 128);
                 BufferedImage profilePicture = face.getScaledProfileFace();
 
-                // ToDo: Check jpg error
                 // ToDO: fix drag and drop
                 File outfile = new File(Settings.NEW_PROFILE_IMAGE_PATH.replace("~~username~~", student.getUserName()));
                 ImageIO.write(profilePicture, "png", outfile);

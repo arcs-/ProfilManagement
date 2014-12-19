@@ -1,6 +1,6 @@
 package biz.stillhart.profileManagement.model;
 
-import biz.stillhart.profileManagement.utils.OpenLDAPConnection;
+import biz.stillhart.profileManagement.utils.LDAPConnection;
 import biz.stillhart.profileManagement.utils.Settings;
 
 import javax.naming.AuthenticationException;
@@ -22,7 +22,7 @@ public class DataBase implements Serializable {
     /**
      * The connection
      */
-    private OpenLDAPConnection connection;
+    private LDAPConnection connection;
 
     /**
      * Establish a database connection
@@ -30,7 +30,7 @@ public class DataBase implements Serializable {
     public DataBase() {
 
         try {
-            connection = new OpenLDAPConnection(Settings.DB_HOST,
+            connection = new LDAPConnection(Settings.DB_HOST,
                     Settings.DB_PORT,
                     Settings.DB_USER_DN,
                     Settings.DB_LOGIN,

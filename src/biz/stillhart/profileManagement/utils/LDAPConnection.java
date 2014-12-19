@@ -9,7 +9,7 @@ import java.util.Properties;
  * Created by Patrick Stillhart on 11/27/14.
  * Copyright (c) 2014 Patrick Stillhart
  */
-public class OpenLDAPConnection {
+public class LDAPConnection {
 
     private static final String PREFIX = "LDAP -> ";
 
@@ -32,7 +32,7 @@ public class OpenLDAPConnection {
      *
      * @throws NamingException Can't connect to DB
      */
-    public OpenLDAPConnection(String server, String userDN, String loginDN, String password) throws NamingException{
+    public LDAPConnection(String server, String userDN, String loginDN, String password) throws NamingException{
         reconnect(server, 389, userDN, loginDN, password);
     }
 
@@ -47,7 +47,7 @@ public class OpenLDAPConnection {
      *
      * @throws NamingException Can't connect to DB
      */
-    public OpenLDAPConnection(String server, int port, String userDN, String loginDN, String password) throws NamingException{
+    public LDAPConnection(String server, int port, String userDN, String loginDN, String password) throws NamingException{
         reconnect(server, port, userDN, loginDN, password);
     }
 
@@ -250,5 +250,3 @@ public class OpenLDAPConnection {
         return "uid=" + uid + "," + userDN;
     }
 }
-
-
