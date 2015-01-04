@@ -210,7 +210,7 @@ public class Student extends Credentials implements Serializable {
      * @return profile picture path or default path
      */
     public String getProfilePicturePath() {
-        if (profilePicturePath == null) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
+        if (profilePicturePath == null || profilePicturePath.isEmpty()) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
         return profilePicturePath;
     }
 
@@ -223,11 +223,12 @@ public class Student extends Credentials implements Serializable {
 
     /**
      * Gets profile picture with changing url
+     * -> ignore browser cache
      *
      * @return profile picture path or default path
      */
     public String getProfilePicturePathTime() {
-        if (profilePicturePath == null) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
+        if (profilePicturePath == null || profilePicturePath.isEmpty()) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
         return profilePicturePath + "?dum=" + System.currentTimeMillis();
     }
 
