@@ -34,8 +34,19 @@ public class DeviceBean implements Serializable {
     }
 
     public void save() {
-        if (oldMac == null || oldMac.trim().equals("") || oldMac.equals("")) {
-            // if primary set all other so false
+
+        // Check if mac already is in use
+        for(Device compareDevice : devices) {
+            if(compareDevice.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
+                FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Diese Mac-Adresse wird breits benuzt"));
+                return;
+            }
+        }
+
+
+        if (oldMac == null || oldMac.trim().equals("")) {
+
+            // if the new device is primary, reset all other
             if(device.isPrimary()) {
                 for (Device compareDevice : devices) {
                     compareDevice.setPrimary(false);
@@ -44,21 +55,16 @@ public class DeviceBean implements Serializable {
 
             devices.add(device);
         } else {
-            // Check if mac already is in use
-            for(Device compareDevice : devices) {
-                if(compareDevice.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
-                    FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Diese Mac-Adresse wird breits benuzt"));
-                    return;
-                }
-            }
 
             // Update devices
             for (Device compareDevice : devices) {
                 if (compareDevice.getMac().equals(oldMac)) {
+                    // replace : with /
                     device.setMac(device.getMac().replace(":","-"));
                     compareDevice.update(device);
                 } else if (device.isPrimary()) compareDevice.setPrimary(false);
             }
+
         }
 
         device = new Device(false, "", "");
