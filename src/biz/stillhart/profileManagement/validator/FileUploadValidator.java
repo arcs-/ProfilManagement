@@ -23,23 +23,20 @@ public class FileUploadValidator implements Validator {
         // 1. validate file name
         String fileName = getFileName(part);
         if (fileName.length() == 0) {
-            FacesMessage message = new FacesMessage("Please select a file");
-            throw new ValidatorException(message);
-        } else if (fileName.length() > 50) {
-            FacesMessage message = new FacesMessage("File name is too long!");
+            FacesMessage message = new FacesMessage("Keine Datei ausgewählt!");
             throw new ValidatorException(message);
         }
 
         // 2. validate file type
         if (!part.getContentType().startsWith("image/")) {
 
-            FacesMessage message = new FacesMessage("That's not an image");
+            FacesMessage message = new FacesMessage("Dies ist kein Bild!");
             throw new ValidatorException(message);
         }
 
         // 3. validate file size
         if (part.getSize() > 1000000) {
-            FacesMessage message = new FacesMessage("Image is too big!");
+            FacesMessage message = new FacesMessage("Das Bild ist zu gross!");
             throw new ValidatorException(message);
         }
     }

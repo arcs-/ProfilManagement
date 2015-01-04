@@ -47,7 +47,7 @@ public class DeviceBean implements Serializable {
             // Check if mac already is in use
             for(Device compareDevice : devices) {
                 if(compareDevice.getMac().equals(device.getMac()) && !device.getMac().equals(oldMac)){
-                    FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Mac already in use"));
+                    FacesContext.getCurrentInstance().addMessage("formContainer:mac", new FacesMessage("Diese Mac-Adresse wird breits benuzt"));
                     return;
                 }
             }

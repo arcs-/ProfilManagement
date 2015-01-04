@@ -29,6 +29,7 @@ public class ProfileBean implements Serializable {
     private Student student;
 
     private Part profilePicture;
+    private boolean success;
 
     /**
      * Initialize the user
@@ -66,6 +67,7 @@ public class ProfileBean implements Serializable {
                 ImageIO.write(ImageIO.read(profilePicture.getInputStream()), "png", outfile);
                 student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
                 save();
+                success = true;
             }
 
         } catch (IOException e) {
@@ -80,6 +82,7 @@ public class ProfileBean implements Serializable {
      */
     public void save() {
         sessionBean.saveStudent();
+        success = true;
     }
 
 
@@ -105,5 +108,9 @@ public class ProfileBean implements Serializable {
 
     public void setProfilePicture(Part profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 }

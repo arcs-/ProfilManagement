@@ -23,7 +23,7 @@ public class EmailAddressValidator implements Validator {
         if (email == null || email.isEmpty() || email.trim().length() == 0) return;
 
         if (!new EmailValidator().isValid(email, null)) {
-            throw new ValidatorException(new FacesMessage("The email address you entered is not valid."));
+            throw new ValidatorException(new FacesMessage("Dies ist keine gültige Mailadresse"));
         }
     }
 }

@@ -24,7 +24,7 @@ public class PasswordBean implements Serializable {
     private boolean success;
 
     /**
-     * Action for commandButton
+     * Action for commandButtonsuccess = true;
      * Saves the new password
      */
     public void save() {
@@ -33,7 +33,7 @@ public class PasswordBean implements Serializable {
             sessionBean.saveStudent();
             success = true;
         } else {
-            FacesContext.getCurrentInstance().addMessage("formContainer:oldPassword", new FacesMessage("That's not your current password"));
+            FacesContext.getCurrentInstance().addMessage("formContainer:oldPassword", new FacesMessage("Dies ist nicht dein derzeites Passwort"));
         }
 
     }

@@ -19,7 +19,7 @@
         </div>
 
         <h:form id="formContainer">
-            <h1>Log in</h1>
+            <h1>Login</h1>
 
             <h:panelGrid columns="1" rendered="#{loginBean.errorMessage}" class="isa_error">
                 <h:outputText value="#{loginBean.message}"/>
@@ -34,11 +34,11 @@
             </h:panelGrid>
 
 
-            <h:inputText id="username" value="#{loginBean.credentials.username}" a:placeholder="Username" autofocus="true"/>
-            <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Password"/>
+            <h:inputText id="username" value="#{loginBean.credentials.username}" a:placeholder="Nutzername" autofocus="true"/>
+            <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Passwort"/>
 
             <h:commandButton class="next" value="Login" action="#{loginBean.login()}"/>
-            <h:link outcome="recoverSend.xhtml" value="Forgot Password"/>
+            <h:link outcome="recoverSend.xhtml" value="Passwort vergessen"/>
         </h:form>
 
     </ui:composition>

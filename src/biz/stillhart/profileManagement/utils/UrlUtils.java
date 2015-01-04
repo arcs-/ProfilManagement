@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Created by Patrick Stillhart on 11/4/14.
- * <p/>
+ *
  * Utils to help to work with URLs
  */
 public class UrlUtils {

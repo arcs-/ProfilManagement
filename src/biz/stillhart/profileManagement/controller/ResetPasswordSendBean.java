@@ -46,12 +46,12 @@ public class ResetPasswordSendBean implements Serializable {
         if (attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
             sessionBean.setRecoverState(UserState.LOCKED);
 
-            return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("A mail is already sent. Please wait");
+            return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Ein Mail wurde bereits versendent, bitte warte");
         }
 
         resetPasswordBaseBean.getDataBase().sendMail(username);
 
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("A recover mail is sent");
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("Ein Mail wurde gesendet");
     }
 
     /*

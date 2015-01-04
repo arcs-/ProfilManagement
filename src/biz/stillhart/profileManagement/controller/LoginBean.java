@@ -54,9 +54,9 @@ public class LoginBean implements Serializable {
 
         switch (sessionBean.loginUser(credentials)) {
             case LOCKED:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Too many tris! Wait a couple of minutes");
+                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Zuviele versuche! Warte ein paar Minuten");
             case WRONG:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Wrong username or password");
+                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Falscher Nutzername oder falsches Passwort");
             case CORRECT:
                 return Settings.PRIVATE_HOME + "?faces-redirect=true";
             default:

@@ -20,17 +20,17 @@
         </div>
 
         <h:form id="formContainer">
-            <h1>Reset password</h1>
+            <h1>Passwort zurücksetzen</h1>
 
-            <h:outputText value="Too many tries! Wait a couple of minutes" class="wrong"
+            <h:outputText value="Zuviele versuche! Warte ein paar Minuten" class="wrong"
                           rendered="#{resetPasswordSendBean.locked}"/>
 
             <h:message class="wrong" for="username"/>
             <h:inputText type="text" id="username" required="true" value="#{resetPasswordSendBean.username}"
-                         a:placeholder="Username"/>
+                         a:placeholder="Nutzername"/>
 
-            <h:button outcome="index" value="Cancel" class="small cancel"/>
-            <h:commandButton value="Send Mail" action="#{resetPasswordSendBean.send()}" class="small next"/>
+            <h:button outcome="index" value="Abbrechen" class="small cancel"/>
+            <h:commandButton value="Mail senden" action="#{resetPasswordSendBean.send()}" class="small next"/>
         </h:form>
 
     </ui:composition>

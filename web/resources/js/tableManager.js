@@ -8,8 +8,8 @@ $(document).ready(function() {
 
     $('table tr').click(function() {
         $('.delete').first().show();
-        $('h1:eq(1)').first().text('Edit device');
-        if($(this).find("td:eq(0)").text().trim()=='true') $(".formBlock:eq(0) input").prop('checked', true);
+        $('h1:eq(1)').first().text('Bearbeite Gerät');
+        if($(this).find("td:eq(0)").text().trim()=='Ja') $(".formBlock:eq(0) input").prop('checked', true);
         else $(".formBlock:eq(0) input").prop('checked', false);
 
         $('.formBlock:eq(1) input').val( $(this).find("td:eq(1)").text().trim() );
@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
 
     $("input[type='reset']").click( function() {
-        $('h1:eq(1)').first().text('New device');
+        $('h1:eq(1)').first().text('Neues Gerät');
         $('.delete').first().hide();
         $('input[name="formContainer:huk"]').val('');
         $('.formBlock:eq(1) input').val('');

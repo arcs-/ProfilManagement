@@ -22,24 +22,24 @@
     <ui:composition>
         <div id="workspace">
 
-            <h1>Devices</h1>
+            <h1>Geräte</h1>
 
             <h:dataTable value="#{deviceBean.devices}" var="device" class="wide">
                 <h:column>
-                    <f:facet name="header">Primary</f:facet>
-                    #{device.primary}
+                    <f:facet name="header">Primäres Gerät</f:facet>
+                    #{(device.primary)?"Ja":"Nein"}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Name</f:facet>
                     #{device.name}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Mac-Adress</f:facet>
+                    <f:facet name="header">Mac-Adresse</f:facet>
                     #{device.mac}
                 </h:column>
             </h:dataTable>
 
-            <h1>New device</h1>
+            <h1>Neues Gerät</h1>
 
             <h:form id="formContainer">
 
@@ -47,7 +47,7 @@
                     <h:message for="primary" class="singleError"/>
                     <label id="checkContainer">
                         <h:selectBooleanCheckbox id="primary" value="#{deviceBean.device.primary}"/>
-                        <span>Is your primary device</span>
+                        <span>Ist dein primäres Gerät</span>
                     </label>
                 </div>
 
@@ -59,8 +59,8 @@
 
                 <div class="formBlock">
                     <h:message for="mac" class="singleError"/>
-                    <h:outputLabel value="Mac-address" for="mac"/>
-                    <h:inputText id="mac" value="#{deviceBean.device.mac}" maxlength="17">
+                    <h:outputLabel value="Mac-Adresse" for="mac"/>
+                    <h:inputText id="mac" value="#{deviceBean.device.mac}" maxlength="17" >
                         <f:validator validatorId="macAddressValidator"/>
                     </h:inputText>
                 </div>
@@ -69,9 +69,9 @@
 
                 <h:inputHidden id="huk" value="#{deviceBean.oldMac}" />
 
-                <h:commandButton class="cancel small" value="Cancel" type="reset"/>
-                <h:commandButton class="cancel small delete" value="Delete" action="#{deviceBean.delete()}"/>
-                <h:commandButton class="next small" value="Save" action="#{deviceBean.save()}"/>
+                <h:commandButton class="cancel small" value="Abbrechen" type="reset"/>
+                <h:commandButton class="cancel small delete" value="Löschen" action="#{deviceBean.delete()}"/>
+                <h:commandButton class="next small" value="Speichern" action="#{deviceBean.save()}"/>
             </h:form>
 
 

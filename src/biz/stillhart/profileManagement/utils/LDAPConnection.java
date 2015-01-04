@@ -66,7 +66,7 @@ public class LDAPConnection {
     }
 
     /**
-     * Closes currect connection and creates a new one
+     * Closes current connection and creates a new one
      *
      * @param server   the servers ip / domain
      * @param port     a custom port

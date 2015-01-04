@@ -60,7 +60,7 @@ public class ResetPasswordSetBean implements Serializable {
             student.setPassword(password);
             dataBaseBean.getDataBase().save(student);
         }
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("New password is set");
+        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("Neues Passwort gesezt");
     }
 
     /*

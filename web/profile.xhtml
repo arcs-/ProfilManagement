@@ -24,7 +24,11 @@
 
         <div id="workspace">
 
-            <h1>Personal info</h1>
+            <h1>Profil</h1>
+
+            <h:panelGrid columns="1" rendered="#{passwordBean.success}" class="isa_success">
+                <h:outputText value="Profil gespeichert."/>
+            </h:panelGrid>
 
             <div id="profileContainer">
                 <h:graphicImage library="images" value="#{profileBean.student.profilePicturePathTime}" />
@@ -44,19 +48,19 @@
             <h:form id="formContainer">
 
                 <div class="formBlock">
-                    <h:outputLabel value="Username" for="username"/>
+                    <h:outputLabel value="Nutzername" for="username"/>
                     <h:inputText id="username" value="#{profileBean.student.userName}" disabled="true"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="firstName" class="singleError"/>
-                    <h:outputLabel value="First Name" for="firstName"/>
+                    <h:outputLabel value="Vorname" for="firstName"/>
                     <h:inputText id="firstName" value="#{profileBean.student.firstName}" maxlength="30"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="lastName" class="singleError"/>
-                    <h:outputLabel value="Last Name" for="lastName"/>
+                    <h:outputLabel value="Nachname" for="lastName"/>
                     <h:inputText id="lastName" value="#{profileBean.student.lastName}" maxlength="30"/>
                 </div>
                 <br/> <br/>
@@ -77,26 +81,26 @@
 
                 <div class="formBlock">
                     <h:message for="phone" class="singleError"/>
-                    <h:outputLabel value="Phone number" for="phone"/>
+                    <h:outputLabel value="Telefonnummer" for="phone"/>
                     <h:inputText id="phone" value="#{profileBean.student.phoneNumber}" maxlength="30"/>
                 </div>
                 <br/><br/>
 
                 <div class="formBlock">
                     <h:message for="street" class="singleError"/>
-                    <h:outputLabel value="Street" for="street"/>
+                    <h:outputLabel value="Strasse" for="street"/>
                     <h:inputText id="street" value="#{profileBean.student.addressStreet}" maxlength="30"/>
                 </div>
 
                 <div class="formBlock">
                     <h:message for="city" class="singleError"/>
-                    <h:outputLabel value="City" for="city"/>
+                    <h:outputLabel value="Ort" for="city"/>
                     <h:inputText id="city" value="#{profileBean.student.addressCity}" maxlength="30"/>
                 </div><br/>
 
                 <br/><br/>
-                <h:commandButton class="cancel small" value="Cancel" type="reset"/>
-                <h:commandButton class="next small" value="Save" action="#{profileBean.save()}"/>
+                <h:commandButton class="cancel small" value="Abbrechen" type="reset"/>
+                <h:commandButton class="next small" value="Speichern" action="#{profileBean.save()}"/>
             </h:form>
         </div>
     </ui:composition>

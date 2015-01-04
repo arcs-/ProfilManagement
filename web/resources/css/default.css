@@ -1,5 +1,5 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,700);
+@import url('//fonts.googleapis.com/css?family=Roboto:400,300,700');
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
 /*--------------------------------------------------------------*\
 |*                     Layout                                   *|
 \*--------------------------------------------------------------*/
@@ -8,7 +8,6 @@ body {
     background:#fff;
     margin:0;
 }
-
 h1 {
     margin-top:25px;
     padding:29px 0;
@@ -16,7 +15,6 @@ h1 {
     font-weight:300;
     color:#000;
 }
-
 #navBar {
     top:0;
     width:320px;
@@ -24,20 +22,16 @@ h1 {
     background:#252525;
     position:fixed;
 }
-
 #drawer {
     display:none;
     cursor: pointer;
 }
-
 .logo {
     margin:30px;
 }
-
 #nav {
     overflow:hidden!important;
 }
-
 #nav a,#nav input[type="submit"] {
     width:100%;
     display:inline-block;
@@ -50,7 +44,6 @@ h1 {
     margin-bottom:2px;
     outline:none!important;
 }
-
 #nav input[type="submit"] {
     border:0;
     font-family:Roboto,sans-serif;
@@ -58,24 +51,20 @@ h1 {
     background:none;
     text-align:left;
 }
-
 #nav a:hover,#nav input[type="submit"]:hover {
-    background-color:#008bcb;
-    color:#fff;
-    transition:background .2s, color .2s;
+    background-color: #008bcb;
+    color: #fff;
+    transition: background .2s, color .2s;
 }
-
 #nav .active {
     color:#fff;
     background-color:#008bcb;
 }
-
 #workspace {
     margin:6% 0 0 500px;
     max-width:calc(100% - 300px);
     margin-top:91px;
 }
-
 #profileContainer {
     padding: 0 10px;
     border-radius: 20px;
@@ -83,37 +72,30 @@ h1 {
     float: right;
     margin-right: 25%;
 }
-
 #profileContainer input[type="submit"] {
     width: 188px;
 }
-
 #profileContainer img {
     width: 100%;
 }
-
 .uploader_mask {
     background:#FFFDD6;
     color:#D3B910;
 }
-
 #formContainer {
     width:100%;
     max-width:520px;
 }
-
 .formBlock input[type="text"],
 .formBlock input[type="password"],
 .formBlock input[type="checkbox"] {
     float:right;
 }
-
 .formBlock {
     display:inline-block;
     margin-bottom: 13px;
     width: 100%;
 }
-
 /*--------------------------------------------------------------*\
 |*                     Table style                              *|
 \*--------------------------------------------------------------*/
@@ -123,25 +105,20 @@ table.wide {
     border-spacing:0;
     text-align:right;
 }
-
 thead {
     background-color:#252525;
     color:#fff;
 }
-
 thead th {
     padding:10px 15px;
 }
-
 tbody td {
     padding:10px 17px;
 }
-
 table.wide tbody tr:hover {
     background-color:#F7F7F7;
     cursor:pointer;
 }
-
 /*--------------------------------------------------------------*\
 |*                     Form style                               *|
 \*--------------------------------------------------------------*/
@@ -155,11 +132,9 @@ input[type="text"],input[type="password"] {
     font-size:19px;
     color:#555;
 }
-
 input[type="text"]:disabled {
     background-color:#cfcfcf;
 }
-
 input[type="submit"],input[type="button"],input[type="reset"] {
     display:inline;
     width:299px;
@@ -174,13 +149,10 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin-bottom:5px;
     outline:none;
 }
-
 #checkContainer {
     float: right;
 }
-
 #checkContainer input[type=checkbox] {display:none;}
-
 #checkContainer span {
     background-color:#252525;
     color:#FFF;
@@ -191,65 +163,51 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     cursor:pointer;
     display:block;
 }
-
 #checkContainer span:hover {
     background-color: #008bcb;
 }
-
 #checkContainer input[type=checkbox]:checked + span {
     background-color: #0064cb;
 }
-
-
 .next {
     background:#008bcb;
 }
-
 .next:hover {
     background:#0f72cb;
     transition:background .4s;
 }
-
 .cancel {
     background:#737373;
 }
-
 .cancel:hover {
     background:#575757;
     transition:background .4s;
 }
-
 .small {
     width:145px!important;
     /* Because rule input[] over classes ... */
     margin-right:3px!important;
 }
-
 .isa_success,.isa_warning,.isa_error {
     margin:10px 0;
     padding:3px 10px 3px 0;
     min-width:300px;
 }
-
 .isa_success tbody td,.isa_warning tbody td,.isa_error tbody td {
     padding: 4px 20px;
 }
-
 .isa_success {
     color:#4F8A10;
     background-color:#DFF2BF;
 }
-
 .isa_warning {
     color:#9F6000;
     background-color:#FEEFB3;
 }
-
 .isa_error {
     color:#D8000C;
     background-color:#FFBABA;
 }
-
 .isa_success td:before {
     content:'\f058';
     font-family:FontAwesome;
@@ -257,7 +215,6 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin-right:10px;
     vertical-align:middle;
 }
-
 .isa_warning td:before {
     content:'\f071';
     font-family:FontAwesome;
@@ -266,7 +223,6 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin-right:10px;
     vertical-align:middle;
 }
-
 .isa_error td:before {
     content:'\f057';
     font-family:FontAwesome;
@@ -274,7 +230,6 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin-right:10px;
     vertical-align:middle;
 }
-
 .error {
     color:#D8000C;
     background-color:#FFBABA;
@@ -289,7 +244,6 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     margin-right:10px;
     vertical-align:middle;
 }
-
 .singleError {
     color: #D8000C;
     background-color: #FFBABA;
@@ -302,7 +256,6 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     width: 287px;
     max-width: 100%;
 }
-
 /*--------------------------------------------------------------*\
 |*                     Mobile                                   *|
 \*--------------------------------------------------------------*/
@@ -314,17 +267,14 @@ input[type="submit"],input[type="button"],input[type="reset"] {
         margin-bottom: 20px;
         overflow: hidden;
     }
-
 }
 @media only screen and (max-width: 1030px){
     #navBar {
         width:295px;
     }
-
     #formContainer {
         margin: 0 auto
     }
-
     #drawer {
         display:inline;
         position:absolute;
@@ -332,26 +282,21 @@ input[type="submit"],input[type="button"],input[type="reset"] {
         margin-top:-1px;
         margin-left:295px;
     }
-
     #profileContainer {
         float: inherit;
         margin: 0 auto 30px auto;
     }
-
     #workspace {
         margin:10px;
         max-width:100%;
     }
-
     table.wide {
         margin: 0 auto;
     }
-
     #workspace h1 {
         padding-left:12%;
     }
 }
-
 @media only screen and (max-width : 450px) {
     .formBlock input[type="text"],
     .formBlock input[type="password"],
@@ -362,20 +307,16 @@ input[type="submit"],input[type="button"],input[type="reset"] {
     body {
         overflow-x: hidden;
     }
-
     h1 {
         padding-left:0;
     }
-
     #checkContainer {
         margin-right: 10px;
     }
-
     .wide th:first-child{
         padding: 5px;
         text-align: left;
     }
-
     tbody td {
         padding:10px 10px;
     }
