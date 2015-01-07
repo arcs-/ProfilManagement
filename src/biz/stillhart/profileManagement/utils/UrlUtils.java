@@ -25,32 +25,4 @@ public class UrlUtils {
         return facesContext.getExternalContext().getRequestParameterMap().get(parameterName);
     }
 
-    /**
-     * Formats a string fo match url specs
-     *
-     * @param message the string to encode
-     * @return the encoded string
-     */
-    public static String encode(String message) {
-        try {
-            return URLEncoder.encode(message, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return " ";
-        }
-    }
-
-    /**
-     * Decode a url formatted string
-     *
-     * @param message the encoded string
-     * @return the encoded string
-     */
-    public static String decode(String message) {
-        try {
-            return URLDecoder.decode(message, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return " ";
-        }
-    }
-
 }
