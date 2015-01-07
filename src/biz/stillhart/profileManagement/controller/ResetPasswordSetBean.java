@@ -1,5 +1,7 @@
 package biz.stillhart.profileManagement.controller;
 
+import biz.stillhart.profileManagement.model.Information;
+import biz.stillhart.profileManagement.model.InformationType;
 import biz.stillhart.profileManagement.model.Student;
 import biz.stillhart.profileManagement.service.DataBaseBean;
 import biz.stillhart.profileManagement.service.ResetPasswordBaseBean;
@@ -17,6 +19,8 @@ import java.io.Serializable;
 /**
  * Created by Patrick Stillhart on 11/1/14.
  * Recover process: sets new password for user
+ *
+ * Is ViewScoped to prevent loosing the key at refresh
  */
 @ManagedBean
 @ViewScoped
@@ -24,6 +28,9 @@ public class ResetPasswordSetBean implements Serializable {
 
     @ManagedProperty("#{dataBaseBean}")
     private DataBaseBean dataBaseBean;
+
+    @ManagedProperty("#{sessionBean}")
+    private SessionBean sessionBean;
 
     @ManagedProperty("#{resetPasswordBaseBean}")
     private ResetPasswordBaseBean resetPasswordBaseBean;
@@ -60,7 +67,8 @@ public class ResetPasswordSetBean implements Serializable {
             student.setPassword(password);
             dataBaseBean.getDataBase().save(student);
         }
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("Neues Passwort gesezt");
+        sessionBean.setInformation(new Information(InformationType.SUCCESS, "Neues Passwort gesezt"));
+        return Settings.PUBLIC_HOME + "?faces-redirect=true";
     }
 
     /*
@@ -81,5 +89,9 @@ public class ResetPasswordSetBean implements Serializable {
 
     public void setResetPasswordBaseBean(ResetPasswordBaseBean resetPasswordBaseBean) {
         this.resetPasswordBaseBean = resetPasswordBaseBean;
+    }
+
+    public void setSessionBean(SessionBean sessionBean) {
+        this.sessionBean = sessionBean;
     }
 }

@@ -1,9 +1,6 @@
 package biz.stillhart.profileManagement.controller;
 
-import biz.stillhart.profileManagement.model.Credentials;
-import biz.stillhart.profileManagement.model.LockType;
-import biz.stillhart.profileManagement.model.Student;
-import biz.stillhart.profileManagement.model.UserState;
+import biz.stillhart.profileManagement.model.*;
 import biz.stillhart.profileManagement.service.AttemptBean;
 import biz.stillhart.profileManagement.service.DataBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
@@ -32,6 +29,8 @@ public class SessionBean implements Serializable {
     private Student student;
     private UserState userState = UserState.NOT_SET;
     private UserState recoverState = UserState.NOT_SET;
+
+    private Information information;
 
     /**
      * Checks if user credentials are correct and if so logs the user in
@@ -114,4 +113,22 @@ public class SessionBean implements Serializable {
     public void setRecoverState(UserState recoverState) {
         this.recoverState = recoverState;
     }
+
+    public boolean hasInformation() {
+        return this.information != null;
+    }
+
+    public Information getInformation() {
+        return information;
+    }
+
+    public void setInformation(Information information) {
+        this.information = information;
+    }
+
+    public void clearInformation() {
+        this.information = null;
+    }
+
+
 }

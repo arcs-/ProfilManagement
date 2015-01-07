@@ -1,9 +1,12 @@
 package biz.stillhart.profileManagement.controller;
 
 import biz.stillhart.profileManagement.model.Credentials;
+import biz.stillhart.profileManagement.model.Information;
+import biz.stillhart.profileManagement.model.InformationType;
 import biz.stillhart.profileManagement.utils.Settings;
 import biz.stillhart.profileManagement.utils.UrlUtils;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -28,21 +31,29 @@ public class LoginBean implements Serializable {
     private String message;
 
     /**
-     * Initialize a messages
+     * Initialize the bean and sets, if set, the information message
      */
-    public LoginBean() {
-        String urlValue = UrlUtils.getDomainParameter("state");
-        if (urlValue != null) {
-            if (urlValue.equals("success")) successMessage = true;
-            else if (urlValue.equals("error")) errorMessage = true;
-            else if (urlValue.equals("warning")) warningMessage = true;
-
-            String urlMessage = UrlUtils.getDomainParameter("message");
-            if (urlMessage != null) message = UrlUtils.decode(urlMessage);
-        }
-
+    @PostConstruct
+    public void init() {
         credentials = new Credentials();
 
+        if(sessionBean.hasInformation()) {
+            switch (sessionBean.getInformation().getInformationType()) {
+                case ERROR: errorMessage = true; break;
+                case WARNING: warningMessage = true; break;
+                case  SUCCESS: successMessage = true; break;
+            }
+
+            message = sessionBean.getInformation().getMessage();
+            sessionBean.clearInformation();
+        }
+
+        // Has to be with URL, because JSF forgets
+        String state = UrlUtils.getDomainParameter("state");
+        if(state != null && state.equals("expired")) {
+            warningMessage = true;
+            message = "Session abgelaufen!";
+        }
     }
 
     /**
@@ -54,9 +65,11 @@ public class LoginBean implements Serializable {
 
         switch (sessionBean.loginUser(credentials)) {
             case LOCKED:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Zuviele versuche! Warte ein paar Minuten");
+                sessionBean.setInformation(new Information(InformationType.ERROR, "Zuviele versuche! Warte ein paar Minuten"));
+                return Settings.PUBLIC_HOME + "?faces-redirect=true";
             case WRONG:
-                return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Falscher Nutzername oder falsches Passwort");
+                sessionBean.setInformation(new Information(InformationType.ERROR, "Falscher Nutzername oder falsches Passwort"));
+                return Settings.PUBLIC_HOME + "?faces-redirect=true";
             case CORRECT:
                 return Settings.PRIVATE_HOME + "?faces-redirect=true";
             default:

@@ -16,14 +16,14 @@ public class Student extends Credentials implements Serializable {
     /**
      * First name
      */
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "Darf nicht leer sein!")
+    @NotNull(message = "Darf nicht leer sein!")
     private String firstName;
     /**
      * Last name
      */
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "Darf nicht leer sein!")
+    @NotNull(message = "Darf nicht leer sein!")
     private String lastName;
 
     /**

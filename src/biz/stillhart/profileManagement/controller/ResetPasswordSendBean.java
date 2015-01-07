@@ -1,5 +1,7 @@
 package biz.stillhart.profileManagement.controller;
 
+import biz.stillhart.profileManagement.model.Information;
+import biz.stillhart.profileManagement.model.InformationType;
 import biz.stillhart.profileManagement.model.LockType;
 import biz.stillhart.profileManagement.model.UserState;
 import biz.stillhart.profileManagement.service.AttemptBean;
@@ -45,13 +47,13 @@ public class ResetPasswordSendBean implements Serializable {
 
         if (attemptBean.getAttemptManager().isLocked(ip, LockType.RECOVER)) {
             sessionBean.setRecoverState(UserState.LOCKED);
-
-            return Settings.PUBLIC_HOME + "?faces-redirect=true&state=error&message=" + UrlUtils.encode("Ein Mail wurde bereits versendent, bitte warte");
+            sessionBean.setInformation(new Information(InformationType.ERROR, "Ein Mail wurde bereits versendent, bitte warte"));
+            return Settings.PUBLIC_HOME + "?faces-redirect=true";
         }
 
         resetPasswordBaseBean.getDataBase().sendMail(username);
-
-        return Settings.PUBLIC_HOME + "?faces-redirect=true&state=success&message=" + UrlUtils.encode("Ein Mail wurde gesendet");
+        sessionBean.setInformation(new Information(InformationType.SUCCESS, "Ein Mail wurde gesendet"));
+        return Settings.PUBLIC_HOME + "?faces-redirect=true";
     }
 
     /*

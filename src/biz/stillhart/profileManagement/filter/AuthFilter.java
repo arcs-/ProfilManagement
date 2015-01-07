@@ -40,7 +40,7 @@ public class AuthFilter implements Filter {
 
             } else {
                 if (request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid() && !isPublicPage(reqURI)) // session expired
-                    res.sendRedirect(request.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml?state=warning&message=" + UrlUtils.encode("Session abgelaufen"));
+                    res.sendRedirect(request.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml?state=expired");
                 else if (!isPublicPage(reqURI) && !reqURI.contains("javax.faces.resource")) {
                     res.sendRedirect(request.getContextPath() + "/" + Settings.PUBLIC_HOME + ".xhtml");
                 } else
@@ -48,7 +48,7 @@ public class AuthFilter implements Filter {
             }
 
         } catch (Throwable t) {
-            System.out.println(t.getMessage());
+            System.err.println(t.getMessage());
         }
     }
 
