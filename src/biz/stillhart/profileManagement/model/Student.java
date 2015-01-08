@@ -4,6 +4,7 @@ import biz.stillhart.profileManagement.utils.Settings;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -16,12 +17,14 @@ public class Student extends Credentials implements Serializable {
     /**
      * First name
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     @NotBlank(message = "Darf nicht leer sein!")
     @NotNull(message = "Darf nicht leer sein!")
     private String firstName;
     /**
      * Last name
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     @NotBlank(message = "Darf nicht leer sein!")
     @NotNull(message = "Darf nicht leer sein!")
     private String lastName;
@@ -33,19 +36,23 @@ public class Student extends Credentials implements Serializable {
     /**
      * Private mail address
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String privateMail;
 
     /**
      * Phone number
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String phoneNumber;
     /**
      * Private address street
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String addressStreet;
     /**
      * Private address city
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String addressCity;
     /**
      * Url path to profile picture

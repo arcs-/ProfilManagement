@@ -1,5 +1,6 @@
 package biz.stillhart.profileManagement.model;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -11,10 +12,12 @@ public class Credentials implements Serializable {
     /**
      * The username
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String username;
     /**
      * The password
      */
+    @Size(max = 30, message = "Maximal 30 Zeichen")
     private String password;
 
     /**

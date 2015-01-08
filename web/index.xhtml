@@ -34,8 +34,8 @@
             </h:panelGrid>
 
 
-            <h:inputText id="username" value="#{loginBean.credentials.username}" a:placeholder="Nutzername" autofocus="true"/>
-            <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Passwort"/>
+            <h:inputText id="username" value="#{loginBean.credentials.username}" a:placeholder="Nutzername" autofocus="true" maxlength="30"/>
+            <h:inputSecret id="password" value="#{loginBean.credentials.password}" a:placeholder="Passwort" maxlength="30"/>
 
             <h:commandButton class="next" value="Login" action="#{loginBean.login()}"/>
             <h:link outcome="recoverSend.xhtml" value="Passwort vergessen"/>

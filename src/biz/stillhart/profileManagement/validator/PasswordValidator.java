@@ -23,8 +23,8 @@ public class PasswordValidator implements Validator {
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmPassword");
         String confirmPassword = uiInputConfirmPassword.getSubmittedValue().toString();
 
-        if(!password.matches("((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,})")) {
-            throw new ValidatorException(new FacesMessage("Das Passwort muss mindestens 8 Zeichen haben sowie Zahlen, gross- und klein Buchstaben beinhalten"));
+        if(!password.matches("((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,30})")) {
+            throw new ValidatorException(new FacesMessage("Das Passwort muss mindestens 8 und maximal 30 Zeichen haben sowie Zahlen, gross- und klein Buchstaben beinhalten"));
         }
 
         // required="true" should does this job...
