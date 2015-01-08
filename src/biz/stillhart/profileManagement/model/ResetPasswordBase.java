@@ -59,16 +59,20 @@ public class ResetPasswordBase implements Serializable {
      */
     public static void sendResetMail(String email, String name, String recoverCode) {
 
-        String from = "recover@bzz.ch";
+        String from = Settings.RECOVER_LOGIN_MAIL;
 
-        //     Properties properties = new Properties();
-        //     properties.setProperty("mail.transport.protocol", "pop3");
-        //     properties.setProperty("mail.host", "pop.udag.de");
-        //     properties.setProperty("mail.user", "stillhartbiz-0002");
-        //     properties.setProperty("mail.password", "YouDontSeeMe");
 
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", "localhost");
+        if(Settings.RECOVER_LOGIN_HOST.equals("NoServer")) {
+            properties.setProperty("mail.smtp.host", "localhost");
+
+        } else {
+            properties.setProperty("mail.transport.protocol", "pop3");
+            properties.setProperty("mail.host", Settings.RECOVER_LOGIN_HOST);
+            properties.setProperty("mail.user", Settings.RECOVER_LOGIN_USER);
+            properties.setProperty("mail.password", Settings.RECOVER_LOGIN_PASSWORD);
+
+        }
 
         Session session = Session.getDefaultInstance(properties);
         try {

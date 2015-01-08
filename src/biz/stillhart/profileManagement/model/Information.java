@@ -8,7 +8,13 @@ import java.io.Serializable;
  */
 public class Information implements Serializable{
 
+    /**
+     * Type of that information
+     */
     private InformationType informationType;
+    /**
+     * The message of this information
+     */
     private String message;
 
     /**

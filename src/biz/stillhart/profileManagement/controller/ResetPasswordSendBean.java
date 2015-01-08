@@ -8,7 +8,6 @@ import biz.stillhart.profileManagement.service.AttemptBean;
 import biz.stillhart.profileManagement.service.ResetPasswordBaseBean;
 import biz.stillhart.profileManagement.utils.SessionUtils;
 import biz.stillhart.profileManagement.utils.Settings;
-import biz.stillhart.profileManagement.utils.UrlUtils;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -51,7 +50,7 @@ public class ResetPasswordSendBean implements Serializable {
             return Settings.PUBLIC_HOME + "?faces-redirect=true";
         }
 
-        resetPasswordBaseBean.getDataBase().sendMail(username);
+        resetPasswordBaseBean.getRecoverBase().sendMail(username);
         sessionBean.setInformation(new Information(InformationType.SUCCESS, "Ein Mail wurde gesendet"));
         return Settings.PUBLIC_HOME + "?faces-redirect=true";
     }

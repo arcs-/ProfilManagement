@@ -24,7 +24,7 @@ public class PasswordBean implements Serializable {
     private boolean success;
 
     /**
-     * Action for commandButtonsuccess = true;
+     * Action for commandButton
      * Saves the new password
      */
     public void save() {

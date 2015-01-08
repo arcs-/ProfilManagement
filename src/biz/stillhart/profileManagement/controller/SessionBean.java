@@ -82,6 +82,45 @@ public class SessionBean implements Serializable {
         getDataBaseBean().getDataBase().save(student);
     }
 
+    /**
+     * Check if a information is present
+     * @return true if present
+     */
+    public boolean hasInformation() {
+        return this.information != null;
+    }
+
+    /**
+     * Get the current information
+     * @return the information
+     */
+    public Information getInformation() {
+        return information;
+    }
+
+    /**
+     * Sets a new Information
+     * @param information the new information object
+     */
+    public void setInformation(Information information) {
+        this.information = information;
+    }
+
+    /**
+     * Clears the information attribute
+     */
+    public void clearInformation() {
+        this.information = null;
+    }
+
+    /**
+     * Gets the current logged in user
+     * @return the current user
+     */
+    public Student getStudent() {
+        return student;
+    }
+
     /*
         Getter & Setter for JSF / View
      */
@@ -98,10 +137,6 @@ public class SessionBean implements Serializable {
         this.attemptBean = attemptBean;
     }
 
-    public Student getStudent() {
-        return student;
-    }
-
     public UserState getUserState() {
         return userState;
     }
@@ -113,22 +148,5 @@ public class SessionBean implements Serializable {
     public void setRecoverState(UserState recoverState) {
         this.recoverState = recoverState;
     }
-
-    public boolean hasInformation() {
-        return this.information != null;
-    }
-
-    public Information getInformation() {
-        return information;
-    }
-
-    public void setInformation(Information information) {
-        this.information = information;
-    }
-
-    public void clearInformation() {
-        this.information = null;
-    }
-
 
 }

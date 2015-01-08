@@ -26,6 +26,9 @@ public class DeviceBean implements Serializable {
     private Device device;
     private String oldMac;
 
+    /**
+     * Initialize a new Device Bean
+     */
     @PostConstruct
     public void init() {
         oldMac = "";
@@ -33,6 +36,10 @@ public class DeviceBean implements Serializable {
         devices = sessionBean.getStudent().getDevices();
     }
 
+    /**
+     * Action for commandButton
+     * Check the current devices, reset primary and eventually saves to db
+     */
     public void save() {
 
         // Check if mac already is in use
@@ -73,6 +80,10 @@ public class DeviceBean implements Serializable {
         sessionBean.saveStudent();
     }
 
+    /**
+     * Action for commandButton
+     * Deletes device by oldMac attribute
+     */
     public void delete() {
         if (oldMac != null && !oldMac.equals("")) {
             for (Device de : devices)

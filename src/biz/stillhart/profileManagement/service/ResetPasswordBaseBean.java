@@ -26,9 +26,13 @@ public class ResetPasswordBaseBean implements Serializable {
         resetPasswordBase = new ResetPasswordBase(dataBaseBean);
     }
 
-    public ResetPasswordBase getDataBase() {
+    public ResetPasswordBase getRecoverBase() {
         return resetPasswordBase;
     }
+
+    /*
+     Getter & Setter for JSF / View
+     */
 
     public void setDataBaseBean(DataBaseBean dataBaseBean) {
         this.dataBaseBean = dataBaseBean;

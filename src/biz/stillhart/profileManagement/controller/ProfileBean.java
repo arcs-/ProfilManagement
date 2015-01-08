@@ -78,7 +78,7 @@ public class ProfileBean implements Serializable {
 
     /**
      * Action for commandButton
-     * Saves the student
+     * Saves the student to db
      */
     public void save() {
         sessionBean.saveStudent();

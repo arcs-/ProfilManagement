@@ -46,6 +46,14 @@ public class Settings {
     public static int SECONDS_LOCKED;
 
     /**
+     * Mail log in
+     */
+    public static String RECOVER_LOGIN_HOST;
+    public static String RECOVER_LOGIN_MAIL;
+    public static String RECOVER_LOGIN_USER;
+    public static String RECOVER_LOGIN_PASSWORD;
+
+    /**
      * The html code for the recover mail
      * ~~username~~ will get replaced with the username
      * ~~link~~ will get replaced with the recover link
@@ -106,6 +114,11 @@ public class Settings {
 
             Settings.LOGIN_ATTEMPTS = Integer.parseInt(prop.getProperty("LOGIN_ATTEMPTS"));
             Settings.SECONDS_LOCKED = Integer.parseInt(prop.getProperty("SECONDS_LOCKED"));
+
+            Settings.RECOVER_LOGIN_HOST = prop.getProperty("RECOVER_LOGIN_HOST");
+            Settings.RECOVER_LOGIN_MAIL = prop.getProperty("RECOVER_LOGIN_MAIL");
+            Settings.RECOVER_LOGIN_USER = prop.getProperty("RECOVER_LOGIN_USER");
+            Settings.RECOVER_LOGIN_PASSWORD = prop.getProperty("RECOVER_LOGIN_PASSWORD");
 
             Settings.RECOVER_LINK = prop.getProperty("RESET_LINK");
             Settings.RECOVER_MAIL = prop.getProperty("RESET_MAIL");

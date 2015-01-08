@@ -21,6 +21,11 @@ public class AuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
+    /**
+     * Filter for all pages
+     * Allow public page if not logged in (no session)
+     * Allow private page if logged in
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         try {
@@ -52,6 +57,11 @@ public class AuthFilter implements Filter {
         }
     }
 
+    /**
+     * Check if attribute is a public page
+     * @param request the page to check
+     * @return true if public page
+     */
     private boolean isPublicPage(String request) {
         for (String compare : Settings.PUBLIC_PAGES)
             if (request.contains(compare)) return true;

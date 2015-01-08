@@ -61,7 +61,7 @@ public class ResetPasswordSetBean implements Serializable {
      * @return the next page
      */
     public String set() {
-        String studentName = resetPasswordBaseBean.getDataBase().getUsernameByKey(key);
+        String studentName = resetPasswordBaseBean.getRecoverBase().getUsernameByKey(key);
         if (studentName != null) {
             Student student = dataBaseBean.getDataBase().getStudent(studentName);
             student.setPassword(password);
