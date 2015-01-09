@@ -47,11 +47,17 @@ public class SessionBean implements Serializable {
             return userState = UserState.LOCKED;
 
         } else if (dataBaseBean.getDataBase().isUser(credentials)) { // Correct credentials
+
+            try {
+                student = dataBaseBean.getDataBase().getStudent(credentials.getUsername());
+            } catch (Exception e) {
+                student = null;
+                return userState = UserState.BROKEN;
+            }
+
             HttpSession session = SessionUtils.getSession();
             // Set dummy attribute to hold session
             session.setAttribute("username", credentials.getUsername());
-
-            student = dataBaseBean.getDataBase().getStudent(credentials.getUsername());
 
             return userState = UserState.CORRECT;
 

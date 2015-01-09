@@ -75,7 +75,6 @@ public class DataBase implements Serializable {
 
     /**
      * Saves a student to database
-     * <p/>
      * adds a ' before fields that can be null
      *
      * @param student the student
@@ -100,71 +99,67 @@ public class DataBase implements Serializable {
 
     /**
      * Get a student by username
-     * <p/>
      * removes a ' before fields that can be null
      *
      * @param username the username
      * @return the student with this username
      */
-    public Student getStudent(String username) {
+    public Student getStudent(String username) throws NamingException {
         SearchResult result = connection.getUser(username);
 
-        try {
-            // Get name
-            String displayName = result.getAttributes().get("displayName").get(0).toString().trim();
-            String firstName = displayName.substring(0, displayName.indexOf(' '));
-            String lastName = displayName.substring(displayName.indexOf(' ') + 1);
+        // Get name
+        String displayName = result.getAttributes().get("displayName").get(0).toString().trim();
+        String firstName = displayName.substring(0, displayName.indexOf(' '));
+        String lastName = displayName.substring(displayName.indexOf(' ') + 1);
 
-            // Get password
-            String password = decodeByte(result.getAttributes().get("userPassword").get(0));
+        // Get password
+        String password = decodeByte(result.getAttributes().get("userPassword").get(0));
 
-            // Get rest
-            String mail = result.getAttributes().get("mail").get(0).toString().substring(1);
-            String registeredAddress = result.getAttributes().get("registeredAddress").get(0).toString();
-            String telephoneNumber = result.getAttributes().get("telephoneNumber").get(0).toString().substring(1);
-            String street = result.getAttributes().get("street").get(0).toString().substring(1);
-            String postalAddress = result.getAttributes().get("postalAddress").get(0).toString().substring(1);
-            String gitPublicKey = result.getAttributes().get("postOfficeBox").get(0).toString().substring(1);
-            String emailPublicKey = result.getAttributes().get("physicalDeliveryOfficeName").get(0).toString().substring(1);
-            String labeledURI = result.getAttributes().get("labeledURI").get(0).toString().substring(1);
+        // Get rest
+        String mail = result.getAttributes().get("mail").get(0).toString().substring(1);
+        String registeredAddress = result.getAttributes().get("registeredAddress").get(0).toString();
+        String telephoneNumber = result.getAttributes().get("telephoneNumber").get(0).toString().substring(1);
+        String street = result.getAttributes().get("street").get(0).toString().substring(1);
+        String postalAddress = result.getAttributes().get("postalAddress").get(0).toString().substring(1);
+        String gitPublicKey = result.getAttributes().get("postOfficeBox").get(0).toString().substring(1);
+        String emailPublicKey = result.getAttributes().get("physicalDeliveryOfficeName").get(0).toString().substring(1);
+        String labeledURI = result.getAttributes().get("labeledURI").get(0).toString().substring(1);
 
 
-            // Load devices
-            ArrayList<Device> devices = new ArrayList<Device>();
-            String[] deviceParts = result.getAttributes().get("description").get(0).toString().substring(1).split(";");
-            for (int i = 0; i < deviceParts.length; i += 3) {
-                String name, mac;
-                try {
-                    name = deviceParts[i + 1];
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    name = " ";
-                }
-                try {
-                    mac = deviceParts[i + 2];
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    mac = " ";
-                }
-
-                devices.add(new Device(deviceParts[i].equals("1"), name, mac));
+        // Load devices
+        ArrayList<Device> devices = new ArrayList<Device>();
+        String[] deviceParts = result.getAttributes().get("description").get(0).toString().substring(1).split(";");
+        for (int i = 0; i < deviceParts.length; i += 3) {
+            String name, mac;
+            try {
+                name = deviceParts[i + 1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                name = " ";
+            }
+            try {
+                mac = deviceParts[i + 2];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                mac = " ";
             }
 
-
-            return new Student(result.getAttributes().get("uid").get(0).toString(),
-                    firstName,
-                    lastName,
-                    password,
-                    registeredAddress,
-                    mail,
-                    telephoneNumber,
-                    street,
-                    postalAddress,
-                    gitPublicKey,
-                    emailPublicKey,
-                    labeledURI,
-                    devices);
-        } catch (NamingException e) {
-            return null;
+            devices.add(new Device(deviceParts[i].equals("1"), name, mac));
         }
+
+
+        return new Student(result.getAttributes().get("uid").get(0).toString(),
+                firstName,
+                lastName,
+                password,
+                registeredAddress,
+                mail,
+                telephoneNumber,
+                street,
+                postalAddress,
+                gitPublicKey,
+                emailPublicKey,
+                labeledURI,
+                devices);
+
     }
 
     /**

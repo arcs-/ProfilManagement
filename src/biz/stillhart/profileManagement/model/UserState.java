@@ -5,5 +5,5 @@ package biz.stillhart.profileManagement.model;
  * Login state types
  */
 public enum UserState {
-    NOT_SET, CORRECT, WRONG, LOCKED
+    NOT_SET, CORRECT, WRONG, LOCKED, BROKEN
 }

@@ -13,13 +13,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.Serializable;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
  * Recover process: sets new password for user
- *
  * Is ViewScoped to prevent loosing the key at refresh
  */
 @ManagedBean
@@ -63,9 +63,14 @@ public class ResetPasswordSetBean implements Serializable {
     public String set() {
         String studentName = resetPasswordBaseBean.getRecoverBase().getUsernameByKey(key);
         if (studentName != null) {
-            Student student = dataBaseBean.getDataBase().getStudent(studentName);
-            student.setPassword(password);
-            dataBaseBean.getDataBase().save(student);
+            try {
+                Student student = dataBaseBean.getDataBase().getStudent(studentName);
+                student.setPassword(password);
+                dataBaseBean.getDataBase().save(student);
+            } catch (NamingException e) {
+                sessionBean.setInformation(new Information(InformationType.ERROR, "Dein Daten sind kaput. Bitte Admin kontaktieren"));
+                return Settings.PUBLIC_HOME + "?faces-redirect=true";
+            }
         }
         sessionBean.setInformation(new Information(InformationType.SUCCESS, "Neues Passwort gesezt"));
         return Settings.PUBLIC_HOME + "?faces-redirect=true";

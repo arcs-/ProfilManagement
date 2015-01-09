@@ -78,6 +78,9 @@ public class LoginBean implements Serializable {
                 return Settings.PUBLIC_HOME + "?faces-redirect=true";
             case CORRECT:
                 return Settings.PRIVATE_HOME + "?faces-redirect=true";
+            case BROKEN:
+                sessionBean.setInformation(new Information(InformationType.ERROR, "Dein Daten sind kaput, bitte kontaktiere einen Admin"));
+                return Settings.PUBLIC_HOME + "?faces-redirect=true";
             default:
                 return Settings.PUBLIC_HOME + "?faces-redirect=true";
         }

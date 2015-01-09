@@ -51,8 +51,9 @@ public class ResetPasswordSendBean implements Serializable {
         }
 
         resetPasswordBaseBean.getRecoverBase().sendMail(username);
-        sessionBean.setInformation(new Information(InformationType.SUCCESS, "Ein Mail wurde gesendet"));
+        sessionBean.setInformation(new Information(InformationType.SUCCESS, "Wenn der Name korrekt ist, wurde eine Mail gesendet"));
         return Settings.PUBLIC_HOME + "?faces-redirect=true";
+
     }
 
     /*

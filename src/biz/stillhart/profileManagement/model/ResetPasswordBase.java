@@ -9,6 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.naming.NamingException;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -112,6 +113,8 @@ public class ResetPasswordBase implements Serializable {
 
             }
         } catch (NullPointerException e) {
+            // Ignore, user gave wrong username... don't react
+        } catch (NamingException e) {
             // Ignore, user gave wrong username... don't react
         }
     }
