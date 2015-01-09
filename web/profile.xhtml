@@ -25,9 +25,10 @@
 
             <h1>Profil</h1>
 
-            <h:panelGrid columns="1" rendered="#{passwordBean.success}" class="isa_success">
+            <h:panelGrid columns="1" rendered="#{profileBean.success}" class="isa_success">
                 <h:outputText value="Profil gespeichert."/>
             </h:panelGrid>
+            <br/>
 
             <div id="profileContainer">
                 <h:graphicImage library="images" value="#{profileBean.student.profilePicturePathTime}" />
@@ -40,7 +41,7 @@
                     <br/>
 
                     <h:commandButton class="next" action="#{profileBean.upload()}" value="Upload"/>
-                    <h:message for="file" class="wrong"/>
+                    <h:message for="file" class="singleError smallError"/>
                 </h:form>
             </div>
 

@@ -5,9 +5,11 @@ import biz.stillhart.profileManagement.model.Student;
 import biz.stillhart.profileManagement.utils.Settings;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
 import java.awt.image.BufferedImage;
@@ -55,19 +57,17 @@ public class ProfileBean implements Serializable {
                 face.setDimension(128, 128);
                 BufferedImage profilePicture = face.getScaledProfileFace();
 
-                // ToDO: fix drag and drop
                 File outfile = new File(Settings.NEW_PROFILE_IMAGE_PATH.replace("~~username~~", student.getUserName()));
                 ImageIO.write(profilePicture, "png", outfile);
+
+                success = true;
 
                 student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
                 save();
 
             } else {
-                File outfile = new File(Settings.NEW_PROFILE_IMAGE_PATH.replace("~~username~~", student.getUserName()));
-                ImageIO.write(ImageIO.read(profilePicture.getInputStream()), "png", outfile);
-                student.setProfilePicturePath("profile/" + student.getUserName() + ".png");
-                save();
-                success = true;
+                FacesContext.getCurrentInstance().addMessage("imageContainer:file", new FacesMessage("Kein Gesicht gefunden!"));
+
             }
 
         } catch (IOException e) {

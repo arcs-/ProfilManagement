@@ -30,11 +30,32 @@ public class Settings {
      * The private home page (without .xhtml)
      */
     public static final String PRIVATE_HOME = "profile";
+
+    /**
+     * Database host
+     */
     public static String DB_HOST;
+    /**
+     * Database port
+     */
     public static int DB_PORT;
+    /**
+     * Database base path for all users
+     */
     public static String DB_USER_DN;
+    /**
+     * Database login user
+     */
     public static String DB_LOGIN;
+    /**
+     * Database login password
+     */
     public static String DB_PASSWORD;
+
+    /**
+     * mail blacklist
+     */
+    public static String[] MAIL_BLACKLIST;
     /**
      * Number of login attempts
      */
@@ -46,11 +67,20 @@ public class Settings {
     public static int SECONDS_LOCKED;
 
     /**
-     * Mail log in
+     * Mail server host
      */
     public static String RECOVER_LOGIN_HOST;
+    /**
+     * Mail sender
+     */
     public static String RECOVER_LOGIN_MAIL;
+    /**
+     * Mail server login user
+     */
     public static String RECOVER_LOGIN_USER;
+    /**
+     * Mail server login password
+     */
     public static String RECOVER_LOGIN_PASSWORD;
 
     /**
@@ -88,7 +118,7 @@ public class Settings {
 
 
     /**
-     * Construct the settings
+     * Build up the settings
      */
     public Settings() {
         readFile();
@@ -111,6 +141,8 @@ public class Settings {
             Settings.DB_USER_DN = prop.getProperty("DB_USER_DN");
             Settings.DB_LOGIN = prop.getProperty("DB_LOGIN");
             Settings.DB_PASSWORD = prop.getProperty("DB_PASSWORD");
+
+            Settings.MAIL_BLACKLIST = prop.getProperty("MAIL_BLACKLIST").split(";");
 
             Settings.LOGIN_ATTEMPTS = Integer.parseInt(prop.getProperty("LOGIN_ATTEMPTS"));
             Settings.SECONDS_LOCKED = Integer.parseInt(prop.getProperty("SECONDS_LOCKED"));

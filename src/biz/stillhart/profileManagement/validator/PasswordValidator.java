@@ -16,6 +16,9 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("passwordValidator")
 public class PasswordValidator implements Validator {
 
+    /**
+     * Validates a password for syntax and if match the confirm password
+     */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String password = value.toString();

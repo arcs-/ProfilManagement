@@ -15,6 +15,9 @@ import javax.servlet.http.Part;
 @FacesValidator(value = "fileUploadValidator")
 public class FileUploadValidator implements Validator {
 
+    /**
+     * Validates a file upload for size and type
+     */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 

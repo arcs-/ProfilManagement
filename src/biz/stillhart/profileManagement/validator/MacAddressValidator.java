@@ -14,6 +14,9 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator(value = "macAddressValidator")
 public class MacAddressValidator implements Validator {
 
+    /**
+     * Validates a mac address
+     */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String mac = String.valueOf(value);
