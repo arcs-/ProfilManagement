@@ -77,8 +77,6 @@ public class DataBase implements Serializable {
      */
     public void save(Student student) {
 
-        //ToDO: talk empty db
-
         // add ' because to later check if field was empty
         ModificationItem[] mods = new ModificationItem[8];
         mods[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("displayName", student.getFirstName().trim() + " " + student.getLastName().trim()));
