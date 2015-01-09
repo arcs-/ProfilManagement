@@ -1,14 +1,10 @@
 package biz.stillhart.profileManagement.utils;
 
 import javax.faces.context.FacesContext;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.NoSuchElementException;
 
 /**
  * Created by Patrick Stillhart on 11/4/14.
- *
  * Utils to help to work with URLs
  */
 public class UrlUtils {

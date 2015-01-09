@@ -6,7 +6,7 @@
 body {
     font-family:Roboto,sans-serif;
     background:#fff;
-    margin:0;
+    margin: 0 0 150px 0;
 }
 h1 {
     margin-top:25px;
@@ -61,16 +61,14 @@ h1 {
     background-color:#008bcb;
 }
 #workspace {
-    margin:6% 0 0 500px;
+    margin:90px 0 0 500px;
     max-width:calc(100% - 300px);
-    margin-top:91px;
 }
 #profileContainer {
     padding: 0 10px;
-    border-radius: 20px;
     width: 188px;
     float: right;
-    margin-right: 25%;
+    margin-right: 19%;
 }
 #profileContainer input[type="submit"] {
     width: 188px;
@@ -84,8 +82,9 @@ h1 {
 }
 #formContainer {
     width:100%;
-    max-width:520px;
+    max-width:550px;
 }
+textarea,
 .formBlock input[type="text"],
 .formBlock input[type="password"],
 .formBlock input[type="checkbox"] {
@@ -122,7 +121,7 @@ table.wide tbody tr:hover {
 /*--------------------------------------------------------------*\
 |*                     Form style                               *|
 \*--------------------------------------------------------------*/
-input[type="text"],input[type="password"] {
+input[type="text"],input[type="password"], textarea {
     width:280px;
     max-width:100%;
     background:#fff;
@@ -131,6 +130,14 @@ input[type="text"],input[type="password"] {
     font-family:Roboto,sans-serif;
     font-size:17px;
     color:#555;
+}
+textarea {
+    resize: none;
+    font-size: 12px;
+    padding: 4px;
+}
+.areaSize {
+    width: 350px!important;
 }
 input[type="text"]:disabled {
     background-color:#cfcfcf;
@@ -269,7 +276,7 @@ input[type="file"] {
 @media only screen and (max-width: 1475px){
     #profileContainer {
         float: left;
-        margin-left: 322px;
+        margin-left: 352px;
         margin-top: -82px;
         margin-bottom: 20px;
         overflow: hidden;
@@ -305,6 +312,7 @@ input[type="file"] {
     }
 }
 @media only screen and (max-width : 450px) {
+    textarea,
     .formBlock input[type="text"],
     .formBlock input[type="password"],
     .formBlock input[type="checkbox"]{

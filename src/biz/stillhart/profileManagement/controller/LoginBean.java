@@ -37,11 +37,17 @@ public class LoginBean implements Serializable {
     public void init() {
         credentials = new Credentials();
 
-        if(sessionBean.hasInformation()) {
+        if (sessionBean.hasInformation()) {
             switch (sessionBean.getInformation().getInformationType()) {
-                case ERROR: errorMessage = true; break;
-                case WARNING: warningMessage = true; break;
-                case  SUCCESS: successMessage = true; break;
+                case ERROR:
+                    errorMessage = true;
+                    break;
+                case WARNING:
+                    warningMessage = true;
+                    break;
+                case SUCCESS:
+                    successMessage = true;
+                    break;
             }
 
             message = sessionBean.getInformation().getMessage();
@@ -50,7 +56,7 @@ public class LoginBean implements Serializable {
 
         // Has to be with URL, because JSF forgets
         String state = UrlUtils.getDomainParameter("state");
-        if(state != null && state.equals("expired")) {
+        if (state != null && state.equals("expired")) {
             warningMessage = true;
             message = "Session abgelaufen!";
         }

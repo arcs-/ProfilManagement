@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Created by Patrick Stillhart on 11/1/14.
- *
  * Utils to work with session
  */
 

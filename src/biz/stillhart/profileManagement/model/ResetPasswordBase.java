@@ -63,7 +63,7 @@ public class ResetPasswordBase implements Serializable {
 
 
         Properties properties = System.getProperties();
-        if(Settings.RECOVER_LOGIN_HOST.equals("NoServer")) {
+        if (Settings.RECOVER_LOGIN_HOST.equals("NoServer")) {
             properties.setProperty("mail.smtp.host", "localhost");
 
         } else {
@@ -90,7 +90,7 @@ public class ResetPasswordBase implements Serializable {
             Transport.send(message);
             System.out.println("Sent mail to " + email);
         } catch (MessagingException e) {
-            System.err.println("Error sending mail to: "+email+" -> " + e.getMessage() );
+            System.err.println("Error sending mail to: " + email + " -> " + e.getMessage());
         }
 
     }

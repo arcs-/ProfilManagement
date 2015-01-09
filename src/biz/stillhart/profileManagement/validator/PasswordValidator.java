@@ -17,7 +17,7 @@ import javax.faces.validator.ValidatorException;
 public class PasswordValidator implements Validator {
 
     /**
-     * Validates a password for syntax and if match the confirm password
+     * Validates password syntax and if match the confirm password
      */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -26,8 +26,8 @@ public class PasswordValidator implements Validator {
         UIInput uiInputConfirmPassword = (UIInput) component.getAttributes().get("confirmPassword");
         String confirmPassword = uiInputConfirmPassword.getSubmittedValue().toString();
 
-        if(!password.matches("((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,30})")) {
-            throw new ValidatorException(new FacesMessage("Das Passwort muss mindestens 8 und maximal 30 Zeichen haben sowie Zahlen, gross- und klein Buchstaben beinhalten"));
+        if (!password.matches("((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,35})")) {
+            throw new ValidatorException(new FacesMessage("Das Passwort muss mindestens 8 und maximal 35 Zeichen haben sowie Zahlen, gross- und klein Buchstaben beinhalten"));
         }
 
         // required="true" should does this job...

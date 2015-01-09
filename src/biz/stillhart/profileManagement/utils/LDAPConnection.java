@@ -1,6 +1,9 @@
 package biz.stillhart.profileManagement.utils;
 
-import javax.naming.*;
+import javax.naming.Context;
+import javax.naming.NameAlreadyBoundException;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
 import javax.naming.directory.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -29,10 +32,9 @@ public class LDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
-     *
      * @throws NamingException Can't connect to DB
      */
-    public LDAPConnection(String server, String userDN, String loginDN, String password) throws NamingException{
+    public LDAPConnection(String server, String userDN, String loginDN, String password) throws NamingException {
         reconnect(server, 389, userDN, loginDN, password);
     }
 
@@ -44,10 +46,9 @@ public class LDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
-     *
      * @throws NamingException Can't connect to DB
      */
-    public LDAPConnection(String server, int port, String userDN, String loginDN, String password) throws NamingException{
+    public LDAPConnection(String server, int port, String userDN, String loginDN, String password) throws NamingException {
         reconnect(server, port, userDN, loginDN, password);
     }
 
@@ -58,10 +59,9 @@ public class LDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
-     *
      * @throws NamingException Can't connect to DB
      */
-    public void reconnect(String server, String userDN, String loginDN, String password) throws NamingException{
+    public void reconnect(String server, String userDN, String loginDN, String password) throws NamingException {
         reconnect(server, 389, userDN, loginDN, password);
     }
 
@@ -73,10 +73,9 @@ public class LDAPConnection {
      * @param userDN   the base DN (e.g. 'cn=schueler,cn=users,ou=it_bzz,dc=openiam,dc=com')
      * @param loginDN  admin logon (e.g. 'cn=Manager,dc=openiam,dc=com')
      * @param password admin password
-     *
      * @throws NamingException Can't connect to DB
      */
-    public void reconnect(String server, int port, String userDN, String loginDN, String password) throws NamingException{
+    public void reconnect(String server, int port, String userDN, String loginDN, String password) throws NamingException {
         if (connected) close();
 
         this.server = server;
@@ -89,7 +88,7 @@ public class LDAPConnection {
 
     }
 
-    private void connect() throws NamingException{
+    private void connect() throws NamingException {
         Properties props = new Properties();
         props.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         props.put(Context.PROVIDER_URL, "ldap://" + server + ":" + port + "/");

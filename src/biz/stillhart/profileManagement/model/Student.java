@@ -4,6 +4,7 @@ import biz.stillhart.profileManagement.utils.Settings;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -59,6 +60,18 @@ public class Student extends Credentials implements Serializable {
      */
     private String profilePicturePath;
     /**
+     * Git SSH key
+     */
+    @Size(max = 700, message = "Zu grosser Key")
+    @Pattern(regexp = "(ssh-rsa ([^@]*) (.+\\@.+\\..+))|($^)", message = "Kein gültiger SSH-Key!")
+    private String gitPublicKey;
+    /**
+     * Email RSA key
+     */
+    @Size(max = 2500, message = "Zu grosser Key")
+    @Pattern(regexp = "(-{5}BEGIN PUBLIC KEY-{5}[^-]*-{5}END PUBLIC KEY-{5})|($^)", message = "Kein gültiger Public-RSA-Key!")
+    private String emailPublicKey;
+    /**
      * List of devices
      */
     private ArrayList<Device> devices;
@@ -75,7 +88,7 @@ public class Student extends Credentials implements Serializable {
      * @param addressStreet The address street
      * @param addressCity   The address city
      */
-    public Student(String userName, String firstName, String lastName, String password, String bzzMail, String privateMail, String phoneNumber, String addressStreet, String addressCity, String profilePicturePath, ArrayList<Device> devices) {
+    public Student(String userName, String firstName, String lastName, String password, String bzzMail, String privateMail, String phoneNumber, String addressStreet, String addressCity, String gitPublicKey, String emailPublicKey, String profilePicturePath, ArrayList<Device> devices) {
         super();
         super.setUsername(userName);
         this.firstName = firstName;
@@ -86,6 +99,8 @@ public class Student extends Credentials implements Serializable {
         this.phoneNumber = phoneNumber;
         this.addressStreet = addressStreet;
         this.addressCity = addressCity;
+        this.gitPublicKey = gitPublicKey;
+        this.emailPublicKey = emailPublicKey;
         this.profilePicturePath = profilePicturePath;
         this.devices = devices;
     }
@@ -237,6 +252,42 @@ public class Student extends Credentials implements Serializable {
     public String getProfilePicturePathTime() {
         if (profilePicturePath == null || profilePicturePath.isEmpty()) return Settings.DEFAULT_PROFILE_IMAGE_PATH;
         return profilePicturePath + "?dum=" + System.currentTimeMillis();
+    }
+
+    /**
+     * gets public git key
+     *
+     * @return SSH key
+     */
+    public String getGitPublicKey() {
+        return gitPublicKey;
+    }
+
+    /**
+     * Sets public git key
+     *
+     * @param gitPublicKey SSH key
+     */
+    public void setGitPublicKey(String gitPublicKey) {
+        this.gitPublicKey = gitPublicKey;
+    }
+
+    /**
+     * Get email RSA key
+     *
+     * @return RSA key
+     */
+    public String getEmailPublicKey() {
+        return emailPublicKey;
+    }
+
+    /**
+     * Set email RSA key
+     *
+     * @param emailPublicKey RSA key
+     */
+    public void setEmailPublicKey(String emailPublicKey) {
+        this.emailPublicKey = emailPublicKey;
     }
 
     /**

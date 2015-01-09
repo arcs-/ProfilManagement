@@ -28,19 +28,20 @@ public class EmailAddressValidator implements Validator {
 
         if (!new EmailValidator().isValid(email, null)) {
             throw new ValidatorException(new FacesMessage("Dies ist keine gültige Mailadresse!"));
-        } else if(isBlacklistedMail(email)) {
+        } else if (isBlacklistedMail(email)) {
             throw new ValidatorException(new FacesMessage("Das ist keine private Mail!"));
         }
     }
 
     /**
      * Check if the mail is blocked in settings
+     *
      * @param email the email to check
      * @return true if blocked
      */
     private boolean isBlacklistedMail(String email) {
-        for(String comparator : Settings.MAIL_BLACKLIST) {
-            if(email.toLowerCase().contains(comparator)) return true;
+        for (String comparator : Settings.MAIL_BLACKLIST) {
+            if (email.toLowerCase().contains(comparator)) return true;
         }
         return false;
     }

@@ -28,7 +28,7 @@
             <h:panelGrid columns="1" rendered="#{profileBean.success}" class="isa_success">
                 <h:outputText value="Profil gespeichert."/>
             </h:panelGrid>
-            <br/>
+
 
             <div id="profileContainer">
                 <h:graphicImage library="images" value="#{profileBean.student.profilePicturePathTime}" />
@@ -47,6 +47,8 @@
 
             <h:form id="formContainer">
 
+                <h3>Personel</h3>
+
                 <div class="formBlock">
                     <h:outputLabel value="Nutzername" for="username"/>
                     <h:inputText id="username" value="#{profileBean.student.userName}" disabled="true"/>
@@ -63,7 +65,13 @@
                     <h:outputLabel value="Nachname" for="lastName"/>
                     <h:inputText id="lastName" value="#{profileBean.student.lastName}" maxlength="30"/>
                 </div>
-                <br/> <br/>
+
+                <div class="formBlock">
+                    <h:message for="phone" class="singleError"/>
+                    <h:outputLabel value="Telefonnummer" for="phone"/>
+                    <h:inputText id="phone" value="#{profileBean.student.phoneNumber}" maxlength="30"/>
+                </div>
+                <br/><br/><h3>Mail</h3>
 
                 <div class="formBlock">
                     <h:outputLabel value="BZZ Mail" for="schoolMail"/>
@@ -77,14 +85,7 @@
                         <f:validator validatorId="emailAddressValidator"/>
                     </h:inputText>
                 </div>
-                <br/><br/>
-
-                <div class="formBlock">
-                    <h:message for="phone" class="singleError"/>
-                    <h:outputLabel value="Telefonnummer" for="phone"/>
-                    <h:inputText id="phone" value="#{profileBean.student.phoneNumber}" maxlength="30"/>
-                </div>
-                <br/><br/>
+                <br/><br/><h3>Adress</h3>
 
                 <div class="formBlock">
                     <h:message for="street" class="singleError"/>
@@ -96,9 +97,25 @@
                     <h:message for="city" class="singleError"/>
                     <h:outputLabel value="Ort" for="city"/>
                     <h:inputText id="city" value="#{profileBean.student.addressCity}" maxlength="30"/>
-                </div><br/>
+                </div>
+                <br/><br/><h3>Autorisierung</h3>
 
-                <br/><br/>
+                <div class="formBlock">
+                    <h:message for="gitKey" class="singleError areaSize"/>
+                    <h:outputLabel value="Git SSH Key" for="gitKey"/>
+                    <h:inputTextarea class="areaSize" id="gitKey" cols="30" rows="7" value="#{profileBean.student.gitPublicKey}" />
+                </div>
+
+                <div class="formBlock">
+                    <h:message for="emailKey" class="singleError areaSize"/>
+                    <h:outputLabel value="Mail RSA Key" for="emailKey"/>
+                    <h:inputTextarea class="areaSize" id="emailKey" cols="30" rows="7" value="#{profileBean.student.emailPublicKey}" />
+                </div>
+
+
+
+
+                <br/><br/><br/><br/>
                 <h:commandButton class="cancel small" value="Abbrechen" type="reset"/>
                 <h:commandButton class="next small" value="Speichern" action="#{profileBean.save()}"/>
             </h:form>

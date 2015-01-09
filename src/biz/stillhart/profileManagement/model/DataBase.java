@@ -20,6 +20,11 @@ import java.util.ArrayList;
 public class DataBase implements Serializable {
 
     /**
+     * Placeholder to prevent empty records
+     */
+    private static final String SPACER = "'";
+
+    /**
      * The connection
      */
     private LDAPConnection connection;
@@ -70,7 +75,7 @@ public class DataBase implements Serializable {
 
     /**
      * Saves a student to database
-     *
+     * <p/>
      * adds a ' before fields that can be null
      *
      * @param student the student
@@ -78,22 +83,24 @@ public class DataBase implements Serializable {
     public void save(Student student) {
 
         // add ' because to later check if field was empty
-        ModificationItem[] mods = new ModificationItem[8];
+        ModificationItem[] mods = new ModificationItem[10];
         mods[0] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("displayName", student.getFirstName().trim() + " " + student.getLastName().trim()));
         mods[1] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("userPassword", encodeByte(student.getPassword())));
-        mods[2] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("mail", "'"+student.getPrivateMail()));
-        mods[3] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("telephoneNumber", "'"+student.getPhoneNumber()));
-        mods[4] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("street", "'"+student.getAddressStreet()));
-        mods[5] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("postalAddress", "'"+student.getAddressCity()));
-        mods[6] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("labeledURI", "'"+student.getProfilePicturePath()));
-        mods[7] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("description", "'"+student.getDeviceString()));
+        mods[2] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("mail", SPACER + student.getPrivateMail()));
+        mods[3] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("telephoneNumber", SPACER + student.getPhoneNumber()));
+        mods[4] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("street", SPACER + student.getAddressStreet()));
+        mods[5] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("postalAddress", SPACER + student.getAddressCity()));
+        mods[6] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("postOfficeBox", SPACER + student.getGitPublicKey()));
+        mods[7] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("physicalDeliveryOfficeName", SPACER + student.getEmailPublicKey()));
+        mods[8] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("labeledURI", SPACER + student.getProfilePicturePath()));
+        mods[9] = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("description", SPACER + student.getDeviceString()));
 
         connection.updateUser(student.getUserName(), mods);
     }
 
     /**
      * Get a student by username
-     *
+     * <p/>
      * removes a ' before fields that can be null
      *
      * @param username the username
@@ -106,10 +113,10 @@ public class DataBase implements Serializable {
             // Get name
             String displayName = result.getAttributes().get("displayName").get(0).toString().trim();
             String firstName = displayName.substring(0, displayName.indexOf(' '));
-            String lastName =  displayName.substring(displayName.indexOf(' ') + 1);
+            String lastName = displayName.substring(displayName.indexOf(' ') + 1);
 
             // Get password
-            String password =  decodeByte(result.getAttributes().get("userPassword").get(0));
+            String password = decodeByte(result.getAttributes().get("userPassword").get(0));
 
             // Get rest
             String mail = result.getAttributes().get("mail").get(0).toString().substring(1);
@@ -117,6 +124,8 @@ public class DataBase implements Serializable {
             String telephoneNumber = result.getAttributes().get("telephoneNumber").get(0).toString().substring(1);
             String street = result.getAttributes().get("street").get(0).toString().substring(1);
             String postalAddress = result.getAttributes().get("postalAddress").get(0).toString().substring(1);
+            String gitPublicKey = result.getAttributes().get("postOfficeBox").get(0).toString().substring(1);
+            String emailPublicKey = result.getAttributes().get("physicalDeliveryOfficeName").get(0).toString().substring(1);
             String labeledURI = result.getAttributes().get("labeledURI").get(0).toString().substring(1);
 
 
@@ -149,6 +158,8 @@ public class DataBase implements Serializable {
                     telephoneNumber,
                     street,
                     postalAddress,
+                    gitPublicKey,
+                    emailPublicKey,
                     labeledURI,
                     devices);
         } catch (NamingException e) {

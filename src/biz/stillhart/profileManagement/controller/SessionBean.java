@@ -84,6 +84,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Check if a information is present
+     *
      * @return true if present
      */
     public boolean hasInformation() {
@@ -92,6 +93,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Get the current information
+     *
      * @return the information
      */
     public Information getInformation() {
@@ -100,6 +102,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Sets a new Information
+     *
      * @param information the new information object
      */
     public void setInformation(Information information) {
@@ -115,6 +118,7 @@ public class SessionBean implements Serializable {
 
     /**
      * Gets the current logged in user
+     *
      * @return the current user
      */
     public Student getStudent() {

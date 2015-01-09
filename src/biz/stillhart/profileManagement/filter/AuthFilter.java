@@ -1,7 +1,6 @@
 package biz.stillhart.profileManagement.filter;
 
 import biz.stillhart.profileManagement.utils.Settings;
-import biz.stillhart.profileManagement.utils.UrlUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -59,6 +58,7 @@ public class AuthFilter implements Filter {
 
     /**
      * Check if attribute is a public page
+     *
      * @param request the page to check
      * @return true if public page
      */
