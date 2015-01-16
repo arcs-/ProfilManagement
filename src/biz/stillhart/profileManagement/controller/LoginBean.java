@@ -35,7 +35,7 @@ public class LoginBean implements Serializable {
      */
     @PostConstruct
     public void init() {
-        credentials = new Credentials();
+
 
         if (sessionBean.hasInformation()) {
             switch (sessionBean.getInformation().getInformationType()) {
@@ -52,6 +52,7 @@ public class LoginBean implements Serializable {
 
             message = sessionBean.getInformation().getMessage();
             sessionBean.clearInformation();
+            return;
         }
 
         // Has to be with URL, because JSF forgets
@@ -59,7 +60,10 @@ public class LoginBean implements Serializable {
         if (state != null && state.equals("expired")) {
             warningMessage = true;
             message = "Session abgelaufen!";
+            return;
         }
+
+        credentials = new Credentials();
     }
 
     /**
